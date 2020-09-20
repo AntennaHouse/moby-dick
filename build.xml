@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="udhr" basedir="." default="pdf">
+  <description>Process "Moby-Dick" files.</description>
+
+  <dirname property="system.basedir" file="${ant.file.udhr}"/>
+
+  <pathconvert property="system.basedir.converted" dirsep="/">
+    <path location="${system.basedir}" />
+    <!-- Ant under cygwin uses a lowercase drive letter, which some
+	 Java programs don't recognise as a drive letter, so
+	 translate. -->
+    <map from="c:" to="/C:"/>
+    <map from="d:" to="/D:"/>
+    <map from="e:" to="/E:"/>
+  </pathconvert>
+
+  <pathconvert property="basedir.converted" dirsep="/">
+    <path location="${basedir}" />
+    <!-- Ant under cygwin uses a lowercase drive letter, which some
+	 Java programs don't recognise as a drive letter, so
+	 translate. -->
+    <map from="c:" to="/C:"/>
+    <map from="d:" to="/D:"/>
+    <map from="e:" to="/E:"/>
+  </pathconvert>
+
+  <!-- Local file of properties determining or describing local
+       configuration. -->
+  <property name="build.local.properties"
+	    location="${basedir.converted}/build.local.properties"/>
+  <property file="${build.local.properties}"/>
+
+  <!-- File of properties determining or describing local
+       configuration. -->
+  <property name="build.properties"
+	    location="${basedir.converted}/build.properties"/>
+  <property file="${build.properties}"/>
+
+  <!-- Local file of properties determining or describing system
+       configuration. -->
+  <property name="system.local.properties"
+	    location="${system.basedir}/system.local.properties"/>
+  <property file="${system.local.properties}"/>
+  <!-- File of properties determining or describing system
+       configuration. -->
+  <property name="system.properties"
+	    location="${system.basedir}/system.properties"/>
+  <property file="${system.properties}"/>
+
+  <basename property="basename" file="${xml}" suffix=".xml" />
+  <!-- Filename of HTML output. -->
+  <property name="html" value="index.html" />
+
+  <property name="udhr.dir" value="${basedir.converted}/../udhr" />
+  <property name="xsl.dir" value="${system.basedir.converted}" />
+  <property name="fo.dir" value="${system.basedir.converted}" />
+  <property name="html.dir" value="${basedir.converted}" />
+
+  <!-- XSL processor location depends on OS. -->
+  <condition property="xsl.processor" value="${xsl.processor.windows}">
+    <os family="windows" />
+  </condition>
+  <condition property="xsl.processor" value="${xsl.processor.mac}">
+    <os family="mac" />
+  </condition>
+  <property name="xsl.processor" value="${xsl.processor.unix}" />
+
+  <!-- saxon.jar location depends on OS. -->
+  <condition property="saxon.jar" value="${saxon.jar.windows}">
+    <os family="windows" />
+  </condition>
+  <condition property="saxon.jar" value="${saxon.jar.mac}">
+    <os family="mac" />
+  </condition>
+  <property name="saxon.jar" value="${saxon.jar.unix}" />
+
+  <target name="init">
+    <mkdir dir="${html.dir}" />
+  </target>
+
+  <target name="html"
+	  depends="init">
+    <dependset>
+      <srcfileset dir="${udhr.dir}"
+		  includes="${xml}, udhr_*.xml" />
+      <srcfileset dir="${xsl.dir}"
+		  includes="${style.html}" />
+      <srcfileset file="${build.properties}" />
+      <srcfileset file="${system.properties}" />
+      <targetfileset file="${html.dir}/${html}" />
+    </dependset>
+    <xslt in="${xml}"
+	  out="${html.dir}/${html}"
+	  style="${xsl.dir}/${style.html}"
+	  classpath="${saxon.jar}">
+      <factory name="net.sf.saxon.TransformerFactoryImpl">
+	<attribute
+	   name="http://saxon.sf.net/feature/allow-external-functions" 
+	   value="true"/>
+	<attribute
+	   name="http://saxon.sf.net/feature/validation" 
+	   value="false"/>
+      </factory>
+      <param name="split-into" expression="#no"/>
+      <param name="full" expression="yes"/>
+    </xslt>
+  </target>
+
+  <target name="htmlfo">
+    <dependset>
+      <srcfileset dir="${fo.dir}" includes="${style.fo}, fo-layout.xsl" />
+      <targetfileset file="${basedir.converted}/${basename}.fo" />
+    </dependset>
+    <xslt in="3014_fol-JC.tei.html"
+	  out="${basedir.converted}/${basename}.html.fo"
+	  style="${fo.dir}/${style.fo}"
+	  classpath="${saxon.jar}">
+      <factory name="net.sf.saxon.TransformerFactoryImpl">
+	<attribute
+	   name="http://saxon.sf.net/feature/allow-external-functions" 
+	   value="true"/>
+	<attribute
+	   name="http://saxon.sf.net/feature/validation" 
+	   value="false"/>
+	<attribute
+	   name="http://saxon.sf.net/feature/version-warning" 
+	   value="false"/>
+      </factory>
+      <param name="lang" expression="${lang}" />
+      <param name="debug" expression="${debug}" if="debug" />
+      <param name="no-rule" expression="${no-rule}" if="no-rule" />
+    </xslt>
+  </target>
+
+  <target name="fo">
+    <dependset>
+      <srcfileset dir="${fo.dir}" includes="${style.fo}, fo-layout.xsl" />
+      <targetfileset file="${basedir.converted}/${basename}.fo" />
+    </dependset>
+    <xslt in="${xml}"
+	  out="${basedir.converted}/${basename}.fo"
+	  style="${fo.dir}/${style.fo}"
+	  classpath="${saxon.jar}">
+      <factory name="net.sf.saxon.TransformerFactoryImpl">
+	<attribute
+	   name="http://saxon.sf.net/feature/allow-external-functions" 
+	   value="true"/>
+	<attribute
+	   name="http://saxon.sf.net/feature/validation" 
+	   value="false"/>
+	<attribute
+	   name="http://saxon.sf.net/feature/version-warning" 
+	   value="false"/>
+      </factory>
+      <param name="lang" expression="${lang}" />
+      <param name="debug" expression="${debug}" if="debug" />
+      <param name="no-rule" expression="${no-rule}" if="no-rule" />
+    </xslt>
+  </target>
+
+  <target name="pdf"
+	  depends="fo">
+    <exec executable="${xsl.processor}"
+	  dir="${basedir.converted}">
+      <arg value="-x" />
+      <arg value="3" />
+      <arg value="-peb" />
+      <arg value="1" />
+      <arg value="-o" />
+      <arg value="${basename}.pdf" />
+      <arg value="-d" />
+      <arg value="${basename}.fo" />
+    </exec>
+  </target>
+
+  <target name="echoproperties">
+    <echoproperties />
+  </target>
+
+</project>
