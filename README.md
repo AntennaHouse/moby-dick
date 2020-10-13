@@ -17,3 +17,13 @@ The mark image is from the Project Gutenberg version:
 Run `stages.bat` to format and analyse multiple renditions of 'Moby-Dick' with successively more error corrections applied.
 
 `stages.bat` expects the analysis-utility files (available from the GitHub repository) to be in a sibling directory. I.e., in `../analysis-utility`.
+
+`stages.bat` requires AH Formatter V7.0, Java, and Saxon 9 or later.  (AH Formatter V7.0 MR4 will report only paragraph widow errors. Use a later version if possible.)
+
+Specify the full path of `AHFCmd.exe` with the `-ahfcmd` option.
+
+Specify the full path of `saxon9he.jar` with the `-saxon` option.
+
+`stages.bat` can be slow: 'Moby-Dick' formats as more than 650 pages. It is formatted eight times, and four analysis reports are also produced.
+
+The types of corrections that are made are discussed in `doc/automated-analysis-example.docx`.
