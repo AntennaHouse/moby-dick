@@ -10,14 +10,18 @@
 
 <!-- 'Moby-Dick' first edition. -->
 
-<!-- 7 3/8 x 4 7/8 inches page size from:
+<!-- Page dimensions are in inches because it was 1850. -->
+
+<!-- 7 3/8 x 4 7/8 inches book size from:
 
      http://web.archive.org/web/20200917105448/https://www.donaldheald.com/pages/books/36148/herman-melville/moby-dick-or-the-whale
+
+     Page size would have been slightly smaller, so assume boards are
+     0.125in larger in each direction.
+
 -->
 <xsl:param name="page-height" select="7.375"/>
 <xsl:param name="page-width" select="4.875"/>
-<xsl:param name="grid-x" select="$page-width div 16"/>
-<xsl:param name="grid-y" select="$page-height div 16"/>
 
 <xsl:param name="text-block-width" select="3.125"/>
 
@@ -120,7 +124,6 @@
           extent="150mm"
           precedence="false"
           padding-right="8mm"
-          margin-bottom="8mm"
           padding-left="8mm"
           display-align="after"/>
     </fo:simple-page-master>
@@ -140,7 +143,6 @@
           extent="180mm"
           precedence="false"
           padding-right="8mm"
-          margin-bottom="8mm"
           padding-left="8mm"
           display-align="after"/>
     </fo:simple-page-master>
@@ -163,7 +165,7 @@
             master-reference="PageMaster-CoverFront"
             page-position="first"/>
         <fo:conditional-page-master-reference
-            master-reference="PageMaster-CoverBlank"
+            master-reference="PageMaster-CoverFront"
             page-position="rest"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
@@ -203,12 +205,6 @@
 </xsl:template>
 
 <xsl:template name="PageMaster-static-content">
-  <xsl:param name="name" as="xs:string?" tunnel="yes"/>
-  <xsl:param name="code" as="xs:string?" tunnel="yes"/>
-  <xsl:param name="lang" as="xs:string?" tunnel="yes"/>
-  <xsl:param name="country" as="xs:string?" tunnel="yes"/>
-  <xsl:param name="region" as="xs:string?" tunnel="yes"/>
-
   <fo:static-content flow-name="Even-Header">
     <xsl:call-template name="Even-Header" />
   </fo:static-content>
@@ -220,35 +216,17 @@
     <xsl:call-template name="Odd-Header" />
   </fo:static-content>
   <fo:static-content flow-name="Even-Footer">
-    <fo:block
-        keep-together.within-line="always"
-        text-align="start"
-        font-size="small">
-      <fo:page-number/>
-      <xsl:call-template name="footer-leader"/>
-      <xsl:value-of select="/slideshow/control/rights"/>
-      <xsl:call-template name="footer-leader"/>
-    </fo:block>
+    <xsl:call-template name="Even-Footer" />
   </fo:static-content>
   <fo:static-content flow-name="First-Footer">
     <xsl:call-template name="First-Footer" />
   </fo:static-content>
   <fo:static-content flow-name="Odd-Footer">
-    <fo:block
-        keep-together.within-line="always"
-        text-align="end"
-        font-size="small">
-      <xsl:call-template name="footer-leader"/>
-      <xsl:value-of select="/slideshow/control/rights"/>
-      <xsl:call-template name="footer-leader"/>
-      <fo:page-number/>
-    </fo:block>
+    <xsl:call-template name="Odd-Footer" />
   </fo:static-content>
   <fo:static-content flow-name="xsl-footnote-separator">
     <fo:block>
-      <fo:leader leader-pattern="rule"
-                 rule-thickness="0.5pt"
-                 leader-length="33%"/>
+      <fo:leader/>
     </fo:block>
   </fo:static-content>
 </xsl:template>
@@ -262,19 +240,28 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template name="Odd-Footer" />
+
+<xsl:template name="Even-Footer" />
+
 <xsl:template name="Odd-Header">
   <fo:block
       keep-together.within-line="always"
       text-align="center"
       font-size="small"
-      border-bottom="thin solid black"
-      axf:leader-expansion="force">
-    <fo:page-number/>
+      border-bottom="1pt solid black"
+      axf:leader-expansion="force"
+      padding-bottom="4pt"
+      margin-bottom="4pt">
+    <fo:page-number color="transparent"/>
     <fo:leader />
-    <fo:retrieve-marker
-        retrieve-class-name="Chapter-Title"
-        retrieve-position="first-including-carryover" />
+    <fo:inline letter-spacing="0.1em">
+      <fo:retrieve-marker
+          retrieve-class-name="Chapter-Title"
+          retrieve-position="first-starting-within-page" />
+    </fo:inline>
     <fo:leader />
+    <fo:page-number />
   </fo:block>
 </xsl:template>
 
@@ -282,14 +269,19 @@
   <fo:block
       keep-together.within-line="always"
       font-size="small"
-      border-bottom="thin solid black"
-      axf:leader-expansion="force">
+      border-bottom="1pt solid black"
+      axf:leader-expansion="force"
+      padding-bottom="4pt"
+      margin-bottom="4pt">
+    <fo:page-number />
     <fo:leader />
-    <fo:retrieve-marker
-        retrieve-class-name="Chapter-Title"
-        retrieve-position="first-including-carryover" />
+    <fo:inline letter-spacing="0.2em">
+      <fo:retrieve-marker
+          retrieve-class-name="Chapter-Title"
+          retrieve-position="first-starting-within-page" />
+    </fo:inline>
     <fo:leader />
-    <fo:page-number/>
+    <fo:page-number color="transparent" />
   </fo:block>
 </xsl:template>
 

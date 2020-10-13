@@ -98,12 +98,13 @@
             P5.</change>
          <change who="Siobhain Rivera" when="2014-08-04">Edited encoding to fix Table of Contents
             and title page.</change>
+         <change who="Antenna House" when="2020-10-20">Changes to be able to format the document.</change>
       </revisionDesc>
    </teiHeader>
    <text>
       <front>
-         <pb n=" (TitlePage) " xml:id="VAC7237-00000001"/>
          <titlePage>
+         <pb n=" (TitlePage) " xml:id="VAC7237-00000001"/>
             <docTitle>
                <titlePart>MOBY-DICK;</titlePart>
                <titlePart type="sub">OR, THE WHALE.</titlePart>
@@ -118,8 +119,8 @@
             </docImprint>
             <docDate when="1851">1851.</docDate>
          </titlePage>
-         <pb n="iii" xml:id="VAC7237-00000002"/>
          <div type="fly_title">
+         <pb n="iii" xml:id="VAC7237-00000002"/>
             <bibl>
                <edition>Entered, according to Act of Congress, in the year 1851, by HERMAN MELVILLE,
                   in the Clerk's Office of the District Court for the Southern District of New
@@ -170,7 +171,7 @@
                </item>
                <item>XVIII.—His Mark. <ref target="VAC7237-00000062" rend="right">97</ref>
                </item>
-               <item>XIX.—The Prophet. <ref target="VAC7237-00000065" rend="right">102</ref>
+               <item>XIX.—The Prophet. <ref target="VAC7237-00000064" rend="right">102</ref>
                </item>
                <item>XX.—All Astir. <ref target="VAC7237-00000066" rend="right">106</ref>
                </item>
@@ -452,11 +453,12 @@
          </div>
          <div type="fly_title">
             <head>MOBY-DICK; OR, THE WHALE.</head>
-            <pb n="viii-ix" xml:id="VAC7237-00000005"/>
+         </div>
             <div type="intro_text">
+            <pb n="viii-ix" xml:id="VAC7237-00000005"/>
                <head>ETYMOLOGY.</head>
                <head type="sub">(SUPPLIED BY A LATE CONSUMPTIVE USHER TO A GRAMMAR SCHOOL.)</head>
-               <p>THE pale Usher—threadbare in coat, heart, body, and brain; I see him now. He was
+               <p><hi rend="small-caps">The</hi> pale Usher—threadbare in coat, heart, body, and brain; I see him now. He was
                   ever dusting his old lexicons and grammars, with a queer handkerchief, mockingly
                   embellished with all the gay flags of all the known nations of the world. He loved
                   to dust his old grammars; it somehow mildly reminded him of his mortality.</p>
@@ -494,51 +496,49 @@
                   <table>
                      <row>
                         <cell>
-                           <foreign xml:lang="HEB">
-                              <figure/>
-                           </foreign>
+                           <foreign xml:lang="HEB">חו</foreign>,
                         </cell>
                         <cell>Hebrew.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="GRC">κετος,</foreign>
+                           <foreign xml:lang="GRC">κετος</foreign>,
                         </cell>
                         <cell>Greek.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="LAT">CETUS,</foreign>
+                           <foreign xml:lang="LAT">CETUS</foreign>,
                         </cell>
                         <cell>Latin.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="ANG">WHŒL,</foreign>
+                           <foreign xml:lang="ANG">WHŒL</foreign>,
                         </cell>
                         <cell>Anglo-Saxon.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="DAN">HVALT,</foreign>
+                           <foreign xml:lang="DAN">HVALT</foreign>,
                         </cell>
                         <cell>Danish.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="DUT">WAL,</foreign>
+                           <foreign xml:lang="DUT">WAL</foreign>,
                         </cell>
                         <cell>Dutch.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="SVE">HWAL,</foreign>
+                           <foreign xml:lang="SVE">HWAL</foreign>,
                         </cell>
                         <cell>Swedish.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="ICE">WHALE,</foreign>
+                           <foreign xml:lang="ICE">WHALE</foreign>,
                         </cell>
                         <cell>Icelandic.</cell>
                      </row>
@@ -548,33 +548,33 @@
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="FRA">BALEINE,</foreign>
+                           <foreign xml:lang="FRA">BALEINE</foreign>,
                         </cell>
                         <cell>French.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="SPA">BALLENA,</foreign>
+                           <foreign xml:lang="SPA">BALLENA</foreign>,
                         </cell>
                         <cell>Spanish.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign xml:lang="FIJ">PEKEE-NUEE-NUEE,</foreign>
+                           <foreign xml:lang="FIJ">PEKEE-NUEE-NUEE</foreign>,
                         </cell>
                         <cell>Fegee.</cell>
                      </row>
                      <row>
                         <cell>
-                           <foreign>PEHEE-NUEE-NUEE,</foreign>
+                           <foreign>PEHEE-NUEE-NUEE</foreign>,
                         </cell>
                         <cell>Erromangoan.</cell>
                      </row>
                   </table>
                </p>
             </div>
-            <pb n="x-xi" xml:id="VAC7237-00000006"/>
             <div type="intro_text">
+            <pb n="x-xi" xml:id="VAC7237-00000006"/>
 
                <head>EXTRACTS.</head>
                <head type="sub">(Supplied by a Sub-Sub-Librarian.)</head>
@@ -1018,7 +1018,7 @@
                         <p>"Spain——a great whale stranded on the shores of Europe."</p>
                      </q>
                      <bibl>
-                        <title>Edmund Burke</title>. (<hi rend="i"/>somewhere.)</bibl>
+                        <title>Edmund Burke</title>. (<hi rend="i">somewhere</hi>.)</bibl>
                   </cit>
                   <cit>
                      <q>
@@ -1067,7 +1067,7 @@
                      </q>
                      <bibl>
                         <title>John Hunter's account of the dissection of a whale</title>. (<hi
-                           rend="i"/>A small sized one.)</bibl>
+                           rend="i">A small sized one.</hi>)</bibl>
                   </cit>
                   <cit>
                      <q>
@@ -1433,7 +1433,6 @@
                   </cit>
                </p>
             </div>
-         </div>
       </front>
       <body>
          <pb n="1" xml:id="VAC7237-00000013"/>
@@ -1443,7 +1442,7 @@
                
                <head>CHAPTER I.</head>
                <head type="sub">LOOMINGS.</head>
-               <p>CALL me Ishmael. Some years ago—never mind how long precisely—having little or no
+               <p><hi rend="small-caps">Call</hi> me Ishmael. Some years ago—never mind how long precisely—having little or no
                   money in my purse, and nothing particular to interest me on shore, I thought I
                   would sail about a little and see the watery part of the world. It is a way I have
                   of driving off the spleen, and regulating the circulation. Whenever I find myself
@@ -1577,9 +1576,9 @@
                   a long time ago. It came in as a sort of brief interlude and solo between more
                   extensive performances. I take it that this part of the bill must have run
                   something like this: <q>
-                     <p>"<hi rend="i"/>Grand Contested Election for the Presidency of the United
-                        States.</p>
-                     <p>"WHALING VOYAGE BY ONE ISHMAEL.</p>
+                     <p>"<hi rend="i">Grand Contested Election for the Presidency of the United
+                        States.</hi></p>
+                     <p>"<hi rend="all-small-caps">WHALING VOYAGE BY ONE ISHMAEL</hi>.</p>
                      <p>"BLOODY BATTLE IN AFFGHANISTAN."</p>
                   </q>
                </p>
@@ -1612,7 +1611,7 @@
             <div type="chapter">
                <head>CHAPTER II.</head>
                <head type="sub">THE CARPET-BAG.</head>
-               <p>I STUFFED a shirt or two into my old carpet-bag, tucked it under my arm, and
+               <p><hi rend="small-caps">I stuffed</hi> a shirt or two into my old carpet-bag, tucked it under my arm, and
                   started for Cape Horn and the Pacific. Quitting the good city of old Manhatto, I
                   duly arrived in New Bedford. It was on a Saturday night in December. Much was I
                   disappointed upon learning that the little packet for Nantucket had already
@@ -1722,7 +1721,7 @@
             <div type="chapter">
                <head>CHAPTER III.</head>
                <head type="sub">THE SPOUTER-INN.</head>
-               <p>ENTERING that gable-ended Spouter-Inn, you found yourself in a wide, low,
+               <p><hi rend="small-caps">Entering</hi> that gable-ended Spouter-Inn, you found yourself in a wide, low,
                   straggling entry with old-fashioned wainscots, reminding one of the bulwarks of
                   some condemned old craft. On one side hung a very large oil-painting so thoroughly
                   be-smoked, and every way defaced, that in the unequal cross-lights by which you
@@ -1792,7 +1791,7 @@
                   penny more; and so on to the full glass—the Cape Horn measure, which you may gulph
                   down for a shilling.</p>
                <p>Upon entering the place I found a number of young seamen gathered about a table,
-                  examining by a dim light divers specimens of <hi rend="i"/>skrimshander. I sought
+                  examining by a dim light divers specimens of <hi rend="i">skrimshander</hi>. I sought
                   the landlord, and telling him I desired to be accommodated with a room, received
                   for answer that his house was full—not a bed unoccupied. "But avast," he added,
                   tapping his forehead, "you haint no objections to sharing a harpooneer's blanket,
@@ -2173,7 +2172,7 @@
                <pb n="28-29" xml:id="VAC7237-00000027"/>
                <head>CHAPTER IV.</head>
                <head type="sub">THE COUNTERPANE.</head>
-               <p>UPON waking next morning about daylight, I found Queequeg's arm thrown over me in
+               <p><hi rend="small-caps">Upon</hi> waking next morning about daylight, I found Queequeg's arm thrown over me in
                   the most loving and affectionate manner. You had almost thought I had been his
                   wife. The counterpane was of patchwork, full of odd little parti-colored squares
                   and triangles; and this arm of his tattooed all over with an interminable Cretan
@@ -2297,7 +2296,7 @@
             <div type="chapter">
                <head>CHAPTER V.</head>
                <head type="sub">BREAKFAST.</head>
-               <p>I QUICKLY followed suit, and descending into the bar-room accosted the grinning
+               <p><hi rend="small-caps">I quickly</hi> followed suit, and descending into the bar-room accosted the grinning
                   landlord very pleasantly. I cherished no malice towards him, though he had been
                   skylarking with me not a little in the matter of my bedfellow.</p>
                <p>However, a good laugh is a mighty good thing, and rather too scarce a good thing;
@@ -2359,7 +2358,7 @@
             <div type="chapter">
                <head>CHAPTER VI.</head>
                <head type="sub">THE STREET.</head>
-               <p>IF I had been astonished at first catching a glimpse of so outlandish an
+               <p><hi rend="small-caps">If</hi> I had been astonished at first catching a glimpse of so outlandish an
                   individual as Queequeg circulating among the polite society of a civilized town,
                   that astonishment soon departed upon taking my first daylight stroll through the
                   streets of New Bedford.</p>
@@ -2429,7 +2428,7 @@
             <div type="chapter">
                <head>CHAPTER VII.</head>
                <head type="sub">THE CHAPEL.</head>
-               <p>IN this same New Bedford there stands a Whaleman's Chapel, and few are the moody
+               <p><hi rend="small-caps">In</hi> this same New Bedford there stands a Whaleman's Chapel, and few are the moody
                   fishermen, shortly bound for the Indian Ocean or Pacific, who fail to make a
                   Sunday visit to the spot. I am sure that I did not.</p>
                <p>Returning from my first morning stroll, I again sallied out upon this special
@@ -2445,7 +2444,7 @@
                   Three of them ran something like the following, but I do not pretend to quote:— <q>
                      <p>SACRED<lb/> To the Memory<lb/> OF<lb/> JOHN TALBOT,<lb/> Who, at the age of
                         eighteen, was lost overboard,<lb/> Near the Isle of Desolation, off Patagonia,<lb/>
-                        <hi rend="i"/>November 1<hi rend="i"/>st, 1836.<lb/> THIS TABLET<lb/> Is
+                        <hi rend="i">November</hi> 1<hi rend="i">st</hi>, 1836.<lb/> THIS TABLET<lb/> Is
                         erected to his Memory<lb/> BY HIS SISTER.</p>
                   </q>
                   <q>
@@ -2453,14 +2452,14 @@
                         NATHAN COLEMAN, WALTER CANNY, SETH MACY<lb/> AND SAMUEL GLEIG,<lb/> Forming
                         one of the boats' crews<lb/> OF<lb/> THE SHIP ELIZA,<lb/> Who were towed out
                         of sight by a Whale,<lb/> On the Off-shore Ground in the<lb/> PACIFIC,<lb/>
-                        <hi rend="i"/>December 31<hi rend="i"/>st, 1839.<lb/> THIS MARBLE<lb/> Is
+                        <hi rend="i">December</hi> 31<hi rend="i">st</hi>, 1839.<lb/> THIS MARBLE<lb/> Is
                         here placed by their surviving<lb/> Shipmates.</p>
                   </q>
                   <q>
                      <p>SACRED<lb/> To the Memory<lb/> OF<lb/> The late<lb/> CAPTAIN EZEKIEL
                         HARDY,<lb/> Who in the bows of his boat was killed by a<lb/> Sperm Whale on
                         the coast of Japan,<lb/>
-                        <hi rend="i"/>August 3<hi rend="i"/>d, 1833.<lb/> THIS TABLET<lb/> Is
+                        <hi rend="i">August</hi> 3<hi rend="i">d</hi>, 1833.<lb/> THIS TABLET<lb/> Is
                         erected to his Memory<lb/> BY<lb/> HIS WIDOW.</p>
                   </q>
                </p>
@@ -2516,7 +2515,7 @@
             <div type="chapter">
                <head>CHAPTER VIII.</head>
                <head type="sub">THE PULPIT.</head>
-               <p>I HAD not been seated very long ere a man of a certain venerable robustness
+               <p><hi rend="small-caps">I had</hi> not been seated very long ere a man of a certain venerable robustness
                   entered; immediately as the storm-pelted door flew back upon admitting him, a
                   quick regardful eyeing of him by all the congregation, sufficiently attested that
                   this fine old man was the chaplain. Yes, it was the famous Father Mapple, so
@@ -2592,7 +2591,7 @@
                <pb n="44-45" xml:id="VAC7237-00000035"/>
                <head>CHAPTER IX.</head>
                <head type="sub">THE SERMON.</head>
-               <p>FATHER MAPPLE rose, and in a mild voice of unassuming authority ordered the
+               <p><hi rend="small-caps">Father Mapple</hi> rose, and in a mild voice of unassuming authority ordered the
                   scattered people to condense. "Starboard gangway, there! side away to
                   larboard—larboard gangway to starboard! Midships! midships!"</p>
                <p>There was a low rumbling of heavy sea-boots among the benches, and a still
@@ -2879,7 +2878,7 @@
             <div type="chapter">
                <head>CHAPTER X.</head>
                <head type="sub">A BOSOM FRIEND.</head>
-               <p>RETURNING to the Spouter-Inn from the Chapel, I found Queequeg there quite alone;
+               <p><hi rend="small-caps">Returning</hi> to the Spouter-Inn from the Chapel, I found Queequeg there quite alone;
                   he having left the Chapel before the benediction some time. He was sitting on a
                   bench before the fire, with his feet on the stove hearth, and in one hand was
                   holding close up to his face that little negro idol of his; peering hard into its
@@ -2999,7 +2998,7 @@
             <div type="chapter">
                <head>CHAPTER XI.</head>
                <head type="sub">NIGHTGOWN.</head>
-               <p>WE had lain thus in bed, chatting and napping at short intervals, and Queequeg now
+               <p><hi rend="small-caps">We</hi> had lain thus in bed, chatting and napping at short intervals, and Queequeg now
                   and then affectionately throwing his brown tattooed legs over mine, and then
                   drawing them back; so entirely sociable and free and easy were we; when, at last,
                   by reason of our confabulations, what little nappishness remained in us altogether
@@ -3054,7 +3053,7 @@
             <div type="chapter">
                <head>CHAPTER XII.</head>
                <head type="sub">BIOGRAPHICAL.</head>
-               <p>QUEEQUEG was a native of Kokovoko, an island far away to the West and South. It is
+               <p><hi rend="small-caps">Queequeg</hi> was a native of Kokovoko, an island far away to the West and South. It is
                   not down in any map; true places never are.</p>
                <p>When a new-hatched savage running wild about his native woodlands in a grass
                   clout, followed by the nibbling goats, as if he were a green sapling; even then,
@@ -3123,7 +3122,7 @@
             <div type="chapter">
                <head>CHAPTER XIII.</head>
                <head type="sub">WHEELBARROW.</head>
-               <p>NEXT morning, Monday, after disposing of the embalmed head to a barber, for a
+               <p><hi rend="small-caps">Next</hi> morning, Monday, after disposing of the embalmed head to a barber, for a
                   block, I settled my own and comrade's bill; using, however, my comrade's money.
                   The grinning landlord, as well as the boarders, seemed amazingly tickled at the
                      sudden<pb n="64-65" xml:id="VAC7237-00000045"/> friendship which had sprung up
@@ -3259,7 +3258,7 @@
             <div type="chapter">
                <head>CHAPTER XIV.</head>
                <head type="sub">NANTUCKET.</head>
-               <p>NOTHING more happened on the passage worthy the mentioning; so, after a fine run,
+               <p><hi rend="small-caps">Nothing</hi> more happened on the passage worthy the mentioning; so, after a fine run,
                   we safely arrived in Nantucket.</p>
                <p>Nantucket! Take out your map and look at it. See what a real corner of the world
                   it occupies; how it stands there, away off shore, more lonely than the Eddystone
@@ -3322,7 +3321,7 @@
             <div type="chapter">
                <head>CHAPTER XV.</head>
                <head type="sub">CHOWDER.</head>
-               <p>IT was quite late in the evening when the little Moss came snugly to anchor, and
+               <p><hi rend="small-caps">It</hi> was quite late in the evening when the little Moss came snugly to anchor, and
                   Queequeg and I went ashore; so we could attend to no business that day, at least
                   none but a supper and a bed. The landlord of the Spouter-Inn had recommended us to
                   his cousin Hosea Hussey of the Try Pots, whom he asserted to be the proprietor of
@@ -3417,7 +3416,7 @@
             <div type="chapter">
                <head>CHAPTER XVI.</head>
                <head type="sub">THE SHIP.</head>
-               <p>IN bed we concocted our plans for the morrow. But to my surprise and no small
+               <p><hi rend="small-caps">In</hi> bed we concocted our plans for the morrow. But to my surprise and no small
                   concern, Queequeg now gave me to understand, that he had been diligently
                   consulting Yojo—the name of his black little god—and Yojo had told him two or
                   three times over, and strongly insisted upon it everyway, that instead of our
@@ -3448,8 +3447,8 @@
                   pipe, and Yojo warming himself at his sacrificial fire of shavings, I sallied out
                   among the shipping. After much prolonged sauntering and many random inquiries, I
                   learnt that there were three ships up for three-years' voyages—The Devil-dam, the
-                  Tit-bit, and the Pequod. <hi rend="i"/>Devil-Dam, I do not know the origin of; <hi
-                     rend="i"/>Tit-bit is obvious; <hi rend="i"/>Pequod, you will no doubt remember,
+                  Tit-bit, and the Pequod. <hi rend="i">Devil-Dam</hi>, I do not know the origin of; <hi
+                     rend="i">Tit-bit</hi> is obvious; <hi rend="i">Pequod</hi>, you will no doubt remember,
                   was the name of a celebrated tribe of Massachusetts Indians, now extinct as the
                   ancient Medes. I peered and pryed about the Devil-Dam; from her, hopped over to
                   the Tit-bit; and, finally, going on board the Pequod, looked around her for a
@@ -3687,7 +3686,7 @@
                   think it was high time to settle with myself at what terms I would be willing to
                   engage for the voyage. I was already aware that in the whaling business they paid
                   no wages; but all hands, including the captain, received certain shares of the
-                  profits called <hi rend="i"/>lays, and that these lays were proportioned to the
+                  profits called <hi rend="i">lays</hi>, and that these lays were proportioned to the
                   degree of importance pertaining to the respective duties of the ship's company. I
                   was also aware that being a green hand at whaling, my own lay would not be very
                   large; but considering that I was used to the sea, could steer a ship, splice a
@@ -3852,7 +3851,7 @@
             <div type="chapter">
                <head>CHAPTER XVII.</head>
                <head type="sub">THE RAMADAN.</head>
-               <p>AS Queequeg's Ramadan, or Fasting and Humiliation, was to continue all day, I did
+               <p><hi rend="small-caps">As</hi> Queequeg's Ramadan, or Fasting and Humiliation, was to continue all day, I did
                   not choose to disturb him till towards night-fall; for I cherish the greatest
                   respect towards everybody's religious obligations, never mind how comical, and
                   could not find it in my heart to undervalue even a congregation of ants
@@ -4031,7 +4030,7 @@
             <div type="chapter">
                <head>CHAPTER XVII.</head>
                <head type="sub">HIS MARK.</head>
-               <p>AS we were walking down the end of the wharf towards the ship, Queequeg carrying
+               <p><hi rend="small-caps">As</hi> we were walking down the end of the wharf towards the ship, Queequeg carrying
                   his harpoon, Captain Peleg in his gruff voice loudly hailed us from his wigwam,
                   saying he had<pb n="98-99" xml:id="VAC7237-00000062"/> not suspected my friend was
                   a cannibal, and furthermore announcing that he let no cannibals on board that
@@ -4149,7 +4148,7 @@
             <div type="chapter">
                <head>CHAPTER XIX.</head>
                <head type="sub">THE PROPHET.</head>
-               <p>"SHIPMATES, have ye shipped in that ship?"</p>
+               <p>"<hi rend="small-caps">Shipmates</hi>, have ye shipped in that ship?"</p>
                <p>Queequeg and I had just left the Pequod, and were sauntering away from the water,
                   for the moment each occupied with his own thoughts, when the above words were put
                   to us by a stranger, who, pausing before us, levelled his massive forefinger at
@@ -4256,7 +4255,7 @@
                <pb n="106-107" xml:id="VAC7237-00000066"/>
                <head>CHAPTER XX.</head>
                <head type="sub">ALL ASTIR.</head>
-               <p>A DAY or two passed, and there was great activity aboard the Pequod. Not only were
+               <p><hi rend="small-caps">A day</hi> or two passed, and there was great activity aboard the Pequod. Not only were
                   the old sails being mended, but new sails were coming on board, and bolts of
                   canvas, and coils of rigging; in short, everything betokened that the ship's
                   preparations were hurrying to a close. Captain Peleg seldom or never went ashore,
@@ -4328,7 +4327,7 @@
             <div type="chapter">
                <head>CHAPTER XXI.</head>
                <head type="sub">GOING ABOARD.</head>
-               <p>IT was nearly six o'clock, but only grey imperfect misty dawn, when we drew nigh
+               <p><hi rend="small-caps">It</hi> was nearly six o'clock, but only grey imperfect misty dawn, when we drew nigh
                   the wharf.</p>
                <p>"There are some sailors running ahead there, if I see right," said I to Queequeg,
                   "it can't be shadows; she's off by sunrise, I guess; come on!"</p>
@@ -4430,7 +4429,7 @@
             <div type="chapter">
                <head>CHAPTER XXII.</head>
                <head type="sub">MERRY CHRISTMAS.</head>
-               <p>AT length, towards noon, upon the final dismissal of the ship's riggers, and after
+               <p><hi rend="small-caps">At</hi> length, towards noon, upon the final dismissal of the ship's riggers, and after
                   the Pequod had been hauled out from the wharf, and after the ever-thoughtful
                   Charity had come off in a whaleboat, with her last gift—a night-cap for Stubb, the
                   second mate, her brother-in-law, and a spare Bible for the steward—after all this,
@@ -4564,7 +4563,7 @@
             <div type="chapter">
                <head>CHAPTER XXIII.</head>
                <head type="sub">THE LEE SHORE.</head>
-               <p>SOME chapters back, one Bulkington was spoken of, a tall, new-landed mariner,
+               <p><hi rend="small-caps">Some</hi> chapters back, one Bulkington was spoken of, a tall, new-landed mariner,
                   encountered in New Bedford at the inn.</p>
                <p>When on that shivering winter's night, the Pequod thrust her vindictive bows into
                   the cold malicious waves, who should I see standing at her helm but Bulkington! I
@@ -4597,7 +4596,7 @@
             <div type="chapter">
                <head>CHAPTER XXIV.</head>
                <head type="sub">THE ADVOCATE.</head>
-               <p>AS Queequeg and I are now fairly embarked in this business of whaling; and as this
+               <p><hi rend="small-caps">As</hi> Queequeg and I are now fairly embarked in this business of whaling; and as this
                   business of whaling has somehow come to be regarded among landsmen as a rather
                   unpoetical and disreputable pursuit; therefore, I am all anxiety to convince ye,
                   ye landsmen, of the injustice hereby done to us hunters of whales.</p>
@@ -4714,8 +4713,8 @@
                   statutory law, the whale is declared "a royal fish."<ref rend="super"
                      target="#note_001" xml:id="return_001">*</ref>
                   <note place="foot" xml:id="note_001">
-                     <ref target="#return_001">*</ref>
-                     <p>See subsequent chapters for something more on this head.</p>
+                     
+                     <p><ref target="#return_001">*</ref>See subsequent chapters for something more on this head.</p>
                   </note>
                </p>
                <p>Oh, that's only nominal! The whale himself has never figured in any grand imposing
@@ -4753,7 +4752,7 @@
                <pb n="124-125" xml:id="VAC7237-00000075"/>
                <head>CHAPTER XXV.</head>
                <head type="sub">POSTSCRIPT.</head>
-               <p>IN behalf of the dignity of whaling, I would fain advance naught but substantiated
+               <p><hi rend="small-caps">In</hi> behalf of the dignity of whaling, I would fain advance naught but substantiated
                   facts. But after embattling his facts, an advocate who should wholly suppress a
                   not unreasonable surmise, which might tell eloquently upon his cause—such an
                   advocate, would he not be blameworthy?</p>
@@ -4878,7 +4877,7 @@
             <div type="chapter">
                <head>CHAPTER XXVII.</head>
                <head type="sub">KNIGHTS AND SQUIRES.</head>
-               <p>STUBB was the second mate. He was a native of Cape Cod; and hence, according to
+               <p><hi rend="small-caps">Stubb</hi> was the second mate. He was a native of Cape Cod; and hence, according to
                   local usage, was called a Cape-Cod-man. A happy-go-lucky; neither craven nor
                   valiant; taking perils as they came with an indifferent air; and while engaged in
                   the most imminent crisis of the chase, toiling away, calm and collected lected as
@@ -4991,8 +4990,8 @@
                   put in at the Shetland Islands, to receive the full complement of their crew. Upon
                   the passage homewards, they drop them there again. How it is, there is no telling,
                   but Islanders seem to make the best whalemen. They were nearly all Islanders in
-                  the Pequod, <hi rend="i"/>Isolatoes too, I call such, not acknowledging the common
-                  continent of men, but each <hi rend="i"/>Isolato living on a separate continent of
+                  the Pequod, <hi rend="i">Isolatoes</hi> too, I call such, not acknowledging the common
+                  continent of men, but each <hi rend="i">Isolato</hi> living on a separate continent of
                   his own. Yet now, federated along one keel, what a set these Isolatoes were! An
                   Anacharsis Clootz deputation from all the isles of the sea, and all the ends of
                   the earth, accompanying Old Ahab in the Pequod to lay the world's grievances
@@ -5006,7 +5005,7 @@
             <div type="chapter">
                <head>CHAPTER XXVIII.</head>
                <head type="sub">AHAB.</head>
-               <p>FOR several days after leaving Nantucket, nothing above hatches was seen of
+               <p><hi rend="small-caps">For</hi> several days after leaving Nantucket, nothing above hatches was seen of
                   Captain Ahab. The mates regularly relieved each other at the watches, and for
                   aught that could be seen to the contrary, they seemed to be the only commanders of
                   the ship; only they sometimes issued from the cabin with orders so sudden and
@@ -5115,7 +5114,8 @@
             <div type="chapter">
                <head>CHAPTER XXIX.</head>
                <head type="sub">ENTER AHAB; TO HIM, STUBB.</head>
-               <p>SOME days elapsed, and ice and icebergs all astern, the Pequod now went rolling
+               <fw type="head" place="top-centre">ENTER AHAB.</fw>
+               <p><hi rend="small-caps">Some</hi> days elapsed, and ice and icebergs all astern, the Pequod now went rolling
                   through the bright Quito spring, which, at sea, almost perpetually reigns on the
                   threshold of the eternal August of the Tropic. The warmly cool, clear, ringing,
                   perfumed, overflowing, redundant days, were as crystal goblets<pb n="138-139"
@@ -5208,7 +5208,7 @@
             <div type="chapter">
                <head>CHAPTER XXX.</head>
                <head type="sub">THE PIPE.</head>
-               <p>WHEN Stubb had departed, Ahab stood for a while leaning over the bulwarks; and
+               <p><hi rend="small-caps">When</hi> Stubb had departed, Ahab stood for a while leaning over the bulwarks; and
                   then, as had been usual with him of late, calling a sailor of the watch, he sent
                   him below for his ivory stool, and also his pipe. Lighting the pipe at the
                   binnacle lamp and planting the stool on the weather side of the deck, he sat and
@@ -5235,7 +5235,7 @@
             <div type="chapter">
                <head>CHAPTER XXXI.</head>
                <head type="sub">QUEEN MAB.</head>
-               <p>NEXT morning Stubb accosted Flask.</p>
+               <p><hi rend="small-caps">Next</hi> morning Stubb accosted Flask.</p>
                <p>"Such a queer dream, King-Post, I never had. You know the old man's ivory leg,
                   well I dreamed he kicked me with it; and when I tried to kick back, upon my soul,
                   my little man, I kicked my leg right off! And then, presto! Ahab seemed a pyramid,
@@ -5299,7 +5299,7 @@
             <div type="chapter">
                <head>CHAPTER XXXII.</head>
                <head type="sub">CETOLOGY.</head>
-               <p>ALREADY we are boldly launched upon the deep; but soon we shall be lost in its
+               <p><hi rend="small-caps">Already</hi> we are boldly launched upon the deep; but soon we shall be lost in its
                   unshored, harborless immensities. Ere that come to pass; ere the Pequod's weedy
                   hull rolls side by side with the barnacled hulls of the leviathan; at the outset
                   it is but well to attend to a matter almost indispensable to a thorough
@@ -5395,8 +5395,8 @@
                   these: lungs and warm blood; whereas, all other fish are lungless and cold
                   blooded.</p>
                <p>Next: how shall we define the whale, by his obvious externals, so as conspicuously
-                  to label him for all time to come? To be short, then, a whale is <hi rend="i"/>a
-                  spouting fish with a horizontal tail. There you have him. However contracted, that
+                  to label him for all time to come? To be short, then, a whale is <hi rend="i">a
+                  spouting fish with a horizontal tail</hi>. There you have him. However contracted, that
                   definition is the result of expanded meditation. A walrus spouts much like a
                   whale, but the walrus is not a fish, because he is amphibious. But the last term
                   of the definition is still more cogent, as coupled with the first. Almost any one
@@ -5425,14 +5425,14 @@
                   (subdivisible into CHAPTERS), and these shall comprehend them all, both small and
                   large.</p>
                <p>I. The FOLIO WHALE; II. the OCTAVO WHALE; III. the DUODECIMO WHALE.</p>
-               <p>As the type of the FOLIO I present the <hi rend="i"/>Sperm Whale; of the OCTAVO,
-                  the <hi rend="i"/>Grampus; of the DUODECIMO, the <hi rend="i"/>Porpoise.</p>
+               <p>As the type of the FOLIO I present the <hi rend="i">Sperm Whale</hi>; of the OCTAVO,
+                  the <hi rend="i">Grampus</hi>; of the DUODECIMO, the <hi rend="i">Porpoise</hi>.</p>
                <p>FOLIOS. Among these I here include the following chapters:—I. The <hi rend="i"
-                  />Sperm Whale; II. the <hi rend="i"/>Right Whale; III. the <hi rend="i"/>Fin Back
-                  Whale; IV. the <hi rend="i"/>Hump-backed Whale; V. the <hi rend="i"/>Razor Back
-                  Whale; VI. the <hi rend="i"/>Sulphur Bottom Whale.</p>
-               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER I. (<hi rend="i"/>Sperm
-                  Whale).—This whale, among the English of old vaguely known as the Trumpa whale,
+                  >Sperm Whale</hi>; II. the <hi rend="i">Right Whale</hi>; III. the <hi rend="i">Fin Back
+                  Whale</hi>; IV. the <hi rend="i">Hump-backed Whale</hi>; V. the <hi rend="i">Razor Back
+                  Whale</hi>; VI. the <hi rend="i">Sulphur Bottom Whale</hi>.</p>
+               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER I. (<hi rend="i">Sperm
+                  Whale</hi>).—This whale, among the English of old vaguely known as the Trumpa whale,
                   and the Physeter whale, and the Anvil Headed whale, is the present Cachalot of the
                   French, and the Pottsfich of the Germans, and the Macrocephalus of the Long Words.
                   He is, without doubt, the largest inhabitant of the globe; the most formidable of
@@ -5456,7 +5456,7 @@
                   last have come to be bestowed upon the whale from which this spermaceti was really
                   derived.</p>
                <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER II. (<hi rend="i"
-                  />Right Whale).—In one respect this is the most venerable of the leviathans, being
+                  >Right Whale</hi>).—In one respect this is the most venerable of the leviathans, being
                   the one first regularly hunted by man. It yields the article commonly known as
                   whalebone or baleen; and the oil specially known as "whale oil," an inferior
                   article in commerce. Among the fishermen, he is indiscriminately designated by all
@@ -5479,7 +5479,7 @@
                   repellingly intricate. The right whale will be elsewhere treated of at some
                   length, with reference to elucidating the sperm whale.</p>
                <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER III. (<hi rend="i"
-                  />Fin-Back).—Under this head I reckon a monster which, by the various names of
+                  >Fin-Back</hi>).—Under this head I reckon a monster which, by the various names of
                   Fin-Back, Tall-Spout, and Long-John, has been seen almost in every sea and is
                   commonly the whale whose distant jet is so often descried by passengers crossing
                   the Atlantic, in the New York packet-tracks. In the length he attains, and in his
@@ -5503,7 +5503,7 @@
                   seems the banished and unconquerable Cain of his race, bearing for his mark that
                   style upon his back. From having the baleen in his mouth, the Fin-Back is<pb
                      n="152-153" xml:id="VAC7237-00000089"/> sometimes included with the right
-                  whale, among a theoretic species denominated <hi rend="i"/>Whalebone whales, that
+                  whale, among a theoretic species denominated <hi rend="i">Whalebone whales</hi>, that
                   is, whales with baleen. Of these so called Whalebone whales, there would seem to
                   be several varieties, most of which, however, are little known. Broad-nosed whales
                   and beaked whales; pike-headed whales; bunched whales; under-jawed whales and
@@ -5536,22 +5536,22 @@
                   liberal volume, and boldly sort them that way. And this is the Bibliographical
                   system here adopted; and it is the only one that can possibly succeed, for it
                   alone is practicable. To proceed.</p>
-               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER IV. (<hi rend="i"/>Hump
-                  Back).—This whale is often seen on the northern American coast. He has been
+               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER IV. (<hi rend="i">Hump
+                  Back</hi>).—This whale is often seen on the northern American coast. He has been
                   frequently captured there, and towed into harbor. He has a great pack on him like
                   a peddler; or you might call him the Elephant and Castle whale. At any rate, the
                   popular name for him does not sufficiently distinguish him, since the sperm whale
                   also has a hump, though a smaller one. His oil is not very valuable. He has
                   baleen. He is the most gamesome and lighthearted of all the whales, making more
                   gay foam and white water generally than any other of them.</p>
-               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER V. (<hi rend="i"/>Razor
-                  Back).—Of this whale little is known but his name. I have seen him at a distance
+               <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER V. (<hi rend="i">Razor
+                  Back</hi>).—Of this whale little is known but his name. I have seen him at a distance
                   off Cape Horn. Of a retiring nature, he eludes both hunters and philosophers.
                   Though no coward, he has never yet shown any part of him but his back, which rises
                   in a long sharp ridge. Let him go. I know little more of him, nor does anybody
                   else.</p>
                <p>BOOK I. (<foreign xml:lang="LAT">Folio</foreign>), CHAPTER VI. (<hi rend="i"
-                  />Sulphur Bottom).—Another retiring gentleman, with a brimstone belly, doubtless
+                  >Sulphur Bottom</hi>).—Another retiring gentleman, with a brimstone belly, doubtless
                   got by scraping along the Tartarian tiles in some of his profounder divings. He is
                   seldom seen; at least I have never seen him except in the remoter southern seas,
                   and then always at too great a distance to study his countenance. He is never
@@ -5563,9 +5563,9 @@
                   II. (<foreign xml:lang="LAT">Octavo</foreign>).</p>
                <p>OCTAVOES.<ref rend="super" target="#note_004" xml:id="return_004">*</ref>
                    These embrace the whales of middling magnitude, among which at present may
-                  be numbered:—I., the <hi rend="i"/>Grampus; II., the <hi rend="i"/>Black Fish;
-                  III., the <hi rend="i"/>Narwhale; IV., the <hi rend="i"/>Thrasher; V., the <hi
-                     rend="i"/>Killer.</p>
+                  be numbered:—I., the <hi rend="i">Grampus</hi>; II., the <hi rend="i">Black Fish</hi>;
+                  III., the <hi rend="i">Narwhale</hi>; IV., the <hi rend="i">Thrasher</hi>; V., the <hi
+                     rend="i">Killer</hi>.</p>
                <note place="foot" xml:id="note_004">
                   
                   <p><ref target="#return_004">*</ref>Why this book of whales is not denominated the Quarto is very plain.
@@ -5575,7 +5575,7 @@
                      preserve the shape of the Folio volume, but the Octavo volume does.</p>
                </note>
                <p>BOOK II. (<foreign xml:lang="LAT">Octavo</foreign>), CHAPTER I. (<hi rend="i"
-                  />Grampus).—Though this fish, whose loud sonorous breathing, or rather blowing,
+                  >Grampus</hi>).—Though this fish, whose loud sonorous breathing, or rather blowing,
                   has furnished a proverb to landsmen, is so well known a denizen of the deep, yet
                   is he not popularly classed among whales. But possessing all the grand distinctive
                   features of the leviathan, most naturalists have recognised him for one. He is of
@@ -5585,7 +5585,7 @@
                   some fishermen his approach is regarded as premonitory of the advance of the great
                   sperm whale.</p>
                <p>BOOK II. (<foreign xml:lang="LAT">Octavo</foreign>), CHAPTER II. (<hi rend="i"
-                  />Black Fish).—I give the popular fishermen's names for all these fish, for
+                  >Black Fish</hi>).—I give the popular fishermen's names for all these fish, for
                   generally they are the best. Where any name happens to be vague or inexpressive, I
                   shall say so, and suggest another. I do so now, touching the Black Fish, so
                   called, because blackness is the rule among almost all whales. So, call him the
@@ -5601,7 +5601,7 @@
                   very thin, some of these whales will yield you upwards of thirty gallons of
                   oil.</p>
                <p>BOOK II. (<foreign xml:lang="LAT">Octavo</foreign>), CHAPTER III. (<hi rend="i"
-                  />Narwhale), that is, <hi rend="i"/>Nostril whale.—Another instance of a curiously
+                  >Narwhale</hi>), that is, <hi rend="i">Nostril whale</hi>.—Another instance of a curiously
                   named whale, so named I suppose from his peculiar horn being originally mistaken
                   for a peaked nose. The creature is some sixteen feet in length, while its horn
                   averages five feet, though some exceed ten, and even attain to fifteen feet.
@@ -5639,7 +5639,7 @@
                   superior, clear and fine; but there is little of it, and he is seldom hunted. He
                   is mostly found in the circumpolar seas.</p>
                <p>BOOK II. (<foreign xml:lang="LAT">Octavo</foreign>), CHAPTER IV. (<hi rend="i"
-                  />Killer).—Of this whale little is precisely known to the Nantucketer, and nothing
+                  >Killer</hi>).—Of this whale little is precisely known to the Nantucketer, and nothing
                   at all to the professed naturalist. From what I have seen of him at a distance, I
                   should say that he was about the bigness of a grampus. He is very savage—a sort of
                   Feegee fish. He sometimes takes the great Folio whales by the lip, and hangs there
@@ -5648,7 +5648,7 @@
                   name bestowed upon this whale, on the ground of its indistinctness. For we are all
                   killers, on land and on sea; Bonapartes and Sharks included.</p>
                <p>BOOK II. (<foreign xml:lang="LAT">Octavo</foreign>), CHAPTER V. (<hi rend="i"
-                  />Thrasher).—This gentleman is famous for his tail, which he uses for a ferule in
+                  >Thrasher</hi>).—This gentleman is famous for his tail, which he uses for a ferule in
                   thrashing his foes. He mounts the Folio whale's back, and as he swims, he works
                   his passage by flogging him; as some schoolmasters get along in the world by a
                   similar process. Still less is known of the Thrasher than of the Killer. Both are
@@ -5664,7 +5664,7 @@
                   whales, by the terms of my definition of what a whale is—i. e. a spouting fish,
                   with a horizontal tail.</p>
                <p>BOOK III. (<foreign xml:lang="LAT">Duodecimo</foreign>), CHAPTER I. (<hi rend="i"
-                  />Huzza Porpoise).—This is the common porpoise found almost all over the globe.
+                  >Huzza Porpoise</hi>).—This is the common porpoise found almost all over the globe.
                   The name is of my own bestowal; for there are more than one sort of porpoises, and
                   something must be done to distinguish them. I call him thus, because he always
                   swims in hilarious shoals, which upon the broad sea keep tossing themselves to
@@ -5682,12 +5682,12 @@
                   the next time you have a chance, watch him; and you will then see the great Sperm
                   whale himself in miniature.</p>
                <p>BOOK III. (<foreign xml:lang="LAT">Duodecimo</foreign>), CHAPTER II. (<hi rend="i"
-                  />Algerine Porpoise). A pirate. Very savage. He is only found, I think, in the
+                  >Algerine Porpoise</hi>). A pirate. Very savage. He is only found, I think, in the
                   Pacific. He is somewhat larger than the Huzza Porpoise, but much of the same
                   general make. Provoke him, and he will buckle to a shark. I have lowered for him
                   many times, but never yet saw him captured.</p>
                <p>BOOK III. (<foreign xml:lang="LAT">Duodecimo</foreign>), CHAPTER III. (<hi
-                     rend="i"/>Mealy-mouthed Porpoise).—The largest kind of Porpoise; and only found
+                     rend="i">Mealy-mouthed Porpoise</hi>).—The largest kind of Porpoise; and only found
                   in the Pacific, so far as it is known. The only English name, by which he has
                   hitherto been designated, is that of the fishers—Right-Whale Porpoise, from the
                   circumstance that he is chiefly found in the vicinity of that Folio. In shape, he
@@ -5729,7 +5729,7 @@
             <div type="chapter">
                <head>CHAPTER XXXIII.</head>
                <head type="sub">THE SPECKSYNDER.</head>
-               <p>CONCERNING the officers of the whale craft, this seems as good a place as any to
+               <p><hi rend="small-caps">Concerning</hi> the officers of the whale craft, this seems as good a place as any to
                   set down a little domestic peculiarity on shipboard<pb n="160-161"
                      xml:id="VAC7237-00000093"/> board, arising from the existence of the harpooneer
                   class of officers, a class unknown of course in any other marine than the
@@ -5811,7 +5811,7 @@
             <div type="chapter">
                <head>CHAPTER XXXIV.</head>
                <head type="sub">THE CABIN-TABLE.</head>
-               <p>IT is noon; and Dough-Boy, the steward, thrusting his pale loaf-of-bread face from
+               <p><hi rend="small-caps">It</hi> is noon; and Dough-Boy, the steward, thrusting his pale loaf-of-bread face from
                   the cabin-scuttle, announces dinner to his lord and master; who, sitting in the
                   lee quarter-boat, has just been taking an observation of the sun; and is now
                   mutely reckoning the latitude on the smooth, medallion-shaped tablet, reserved for
@@ -5981,7 +5981,7 @@
             <div type="chapter">
                <head>CHAPTER XXXV.</head>
                <head type="sub">THE MAST-HEAD.</head>
-               <p>IT was during the more pleasant weather, that in due rotation with the other
+               <p><hi rend="small-caps">It</hi> was during the more pleasant weather, that in due rotation with the other
                   seamen my first mast-head came round.</p>
                <p>In most American whalemen the mast-heads are manned almost simultaneously with the
                   vessel's leaving her port; even though she may have fifteen thousand miles, and
@@ -6076,14 +6076,14 @@
                   watch-coat.</p>
                <p>Concerning all this, it is much to be deplored that the mastheads of a southern
                   whale ship are unprovided with those enviable little tents or pulpits, called <hi
-                     rend="i"/>crow's-nests, in which the lookouts of a Greenland whaler are
+                     rend="i">crow's-nests</hi>, in which the lookouts of a Greenland whaler are
                   protected from the inclement weather of the frozen seas. In the fire-side
                   narrative of Captain Sleet, entitled "A Voyage among the Icebergs, in quest of the
                   Greenland Whale, and incidentally for the re-discovery of the Lost Icelandic
                   Colonies of Old Greenland;" in this admirable volume, all standers of mast-heads
                   are furnished with a charmingly circumstantial account of the then recently
-                  invented <hi rend="i"/>crow's-nest of the Glacier, which was the name of Captain
-                  Sleet's good craft. He called it the <hi rend="i"/>Sleet's crow's-nest, in honor
+                  invented <hi rend="i">crow's-nest</hi> of the Glacier, which was the name of Captain
+                  Sleet's good craft. He called it the <hi rend="i">Sleet's crow's-nest</hi>, in honor
                   of himself; he being the original inventor and patentee, and free from all
                   ridiculous false delicacy, and holding that if we call our own children after our
                   own names (we fathers being the original inventors and patentees), so likewise
@@ -6182,7 +6182,7 @@
                <head>CHAPTER XXXVI.</head>
                <head type="sub">THE QUARTER-DECK.</head>
                <stage>(Enter Ahab: Then, all.)</stage>
-               <p>IT was not a great while after the affair of the pipe, that one morning shortly
+               <p><hi rend="small-caps">It</hi> was not a great while after the affair of the pipe, that one morning shortly
                   after breakfast, Ahab, as was his wont, ascended the cabin-gangway to the deck.
                   There most sea-captains usually walk at that hour, as country gentlemen, after the
                   same meal, take a few turns in the garden.</p>
@@ -6338,7 +6338,7 @@
                   then, the best lance out of all Nantucket, surely he will not hang back, when
                   every foremast-hand has clutched a whetstone? Ah! constrainings seize thee; I see!
                   the billow lifts thee! Speak, but speak!—Aye, aye! thy silence, then,
-                     <emph>that</emph> voices thee. (<hi rend="i"/>Aside) Something shot from my
+                     <emph>that</emph> voices thee. (<hi rend="i">Aside</hi>) Something shot from my
                   dilated nostrils, he has inhaled it in his lungs. Starbuck now is mine; cannot
                   oppose me now, without rebellion."</p>
                <p>"God keep me!—keep us all!" murmured Starbuck, lowly.</p>
@@ -6414,7 +6414,7 @@
                <head>CHAPTER XXXVII.</head>
                <head type="sub">SUNSET.</head>
                <stage>The cabin; by the stern windows; Ahab sitting alone, and gazing out.</stage>
-               <p>I LEAVE a white and turbid wake; pale waters, paler cheeks, where'er I sail. The
+               <p><hi rend="small-caps">I leave</hi> a white and turbid wake; pale waters, paler cheeks, where'er I sail. The
                   envious billows sidelong swell to whelm my track; let them; but first I pass.</p>
                <p>Yonder, by the ever-brimming goblet's rim, the warm waves blush like wine. The
                   gold brow plumbs the blue. The diver sun—slow dived from noon,—goes down; my soul
@@ -6429,8 +6429,8 @@
                   sunset soothed. No more. This lovely light, it lights not me; all loveliness is
                   anguish to me, since I can ne'er enjoy. Gifted with the high perception, I lack
                   the low, enjoying power; damned, most subtly and most malignantly! damned in the
-                  midst of Paradise! Good night—good night! (<hi rend="i"/>waving his hand, he moves
-                  from the window.)</p>
+                  midst of Paradise! Good night—good night! (<hi rend="i">waving his hand, he moves
+                  from the window.</hi>)</p>
                <pb n="186-187" xml:id="VAC7237-00000106"/>
                <p>'Twas not so hard a task. I thought to find one stubborn, at the least; but my one
                   cogged circle fits into all their various wheels, and they revolve. Or, if you
@@ -6456,7 +6456,7 @@
                <head>CHAPTER XXXVIII.</head>
                <head type="sub">DUSK.</head>
                <stage>By the Mainmast; Starbuck leaning against it.</stage>
-               <p>My soul is more than matched; she's overmanned; and by a madman! Insufferable
+               <p><hi rend="small-caps">My</hi> soul is more than matched; she's overmanned; and by a madman! Insufferable
                   sting, that sanity should ground arms on such a field! But he drilled deep down,
                   and blasted all my reason out of me! I think I see his impious end; but feel that
                   I must help him to it. Will I, nill I, the ineffable thing has tied me to him;
@@ -6490,7 +6490,7 @@
                <head type="sub">FIRST NIGHT-WATCH.</head>
                <head type="sub">FORE-TOP.</head>
                <stage>(Stubb solus, and mending a brace.)</stage>
-               <p>HA! ha! ha! ha! hem! clear my throat!—I've been thinking over it ever since, and
+               <p><hi rend="small-caps">Ha!</hi> ha! ha! ha! hem! clear my throat!—I've been thinking over it ever since, and
                   that ha, ha's the final consequence. Why so? Because a laugh's the wisest, easiest
                   answer to all that's queer; and come what will, one comfort's always left—that
                   unfailing comfort is, it's all predestinated. I heard not all his talk with
@@ -6512,7 +6512,7 @@
                      </lg>
                   </q>
                </p>
-               <p>A brave stave that—who calls? Mr. Starbuck? Aye, aye, sir—(<hi rend="i"/>Aside)
+               <p>A brave stave that—who calls? Mr. Starbuck? Aye, aye, sir—(<hi rend="i">Aside</hi>)
                   he's my superior, he has his too, if I'm not mistaken.—Aye, aye, sir, just through
                   with this job—coming.</p>
             </div>
@@ -6819,7 +6819,7 @@
                <pb n="196-197" xml:id="VAC7237-00000111"/>
                <head>CHAPTER XLI.</head>
                <head type="sub">MOBY DICK.</head>
-               <p>I, ISHMAEL, was one of that crew; my shouts had gone up with the rest; my oath had
+               <p><hi rend="small-caps">I, Ishmael</hi>, was one of that crew; my shouts had gone up with the rest; my oath had
                   been welded with theirs; and stronger I shouted, and more did I hammer and clinch
                   my oath, because of the dread in my soul. A wild, mystical, sympathetical feeling
                   was in me; Ahab's quenchless feud seemed mine. With greedy ears I learned the
@@ -7117,7 +7117,8 @@
             <div type="chapter">
                <head>CHAPTER XLII.</head>
                <head type="sub">THE WHITENESS OF THE WHALE.</head>
-               <p>WHAT the white whale was to Ahab, has been hinted; what, at times, he was to me,
+	       <fw type="head" place="top-centre">WHITENESS OF THE WHALE.</fw>
+               <p><hi rend="small-caps">What</hi> the white whale was to Ahab, has been hinted; what, at times, he was to me,
                   as yet remains unsaid.</p>
                <p>Aside from those more obvious considerations touching Moby Dick, which could not
                   but occasionally awaken in any man's soul some alarm, there was another thought,
@@ -7426,7 +7427,7 @@
             <div type="chapter">
                <head>CHAPTER XLIII.</head>
                <head type="sub">HARK!</head>
-               <p>"HIST! Did you hear that noise, Cabaco?"</p>
+               <p><hi rend="small-caps">"Hist!</hi> Did you hear that noise, Cabaco?"</p>
                <p>It was the middle-watch: a fair moonlight; the seamen were standing in a cordon,
                   extending from one of the fresh-water butts in the waist, to the scuttle-butt near
                   the taffrail. In this manner, they passed the buckets to fill the scuttle-butt.
@@ -7515,12 +7516,12 @@
                </note>
                <p>Besides, when making a passage from one feeding-ground to another, the sperm
                   whales, guided by some infallible instinct—say, rather, secret intelligence from
-                  the Deity—mostly swim in <hi rend="i"/>veins, as they are called; continuing their
+                  the Deity—mostly swim in <hi rend="i">veins</hi>, as they are called; continuing their
                   way along a given ocean-line with such undeviating exactitude, that no ship ever
                   sailed her course, by any chart, with one tithe of such marvellous precision.
                   Though, in these cases, the direction taken by any one whale be straight as a
                   surveyor's parallel, and though the line of advance be strictly confined to its
-                  own unavoidable, straight wake, yet the arbitrary <hi rend="i"/>vein in which at
+                  own unavoidable, straight wake, yet the arbitrary <hi rend="i">vein</hi> in which at
                   these times he is said to swim, generally embraces some few miles in width (more
                   or less, as the vein is presumed to expand or contract); but never exceeds the
                   visual sweep from the whale-ship's mast-heads, when circumspectly gliding along
@@ -7628,7 +7629,7 @@
             <div type="chapter">
                <head>CHAPTER XLV.</head>
                <head type="sub">THE AFFIDAVIT.</head>
-               <p>SO far as what there may be of a narrative in this book; and, indeed, as
+               <p><hi rend="small-caps">So</hi> far as what there may be of a narrative in this book; and, indeed, as
                   indirectly touching one or two very interesting and curious particulars in the
                   habits of sperm whales, the foregoing chapter, in its earlier part, is as
                   important a one as will be found in this volume; but the leading matter of it
@@ -7897,7 +7898,7 @@
                   passes through the Dardanelles, hence a sperm whale could, by the same route, pass
                   out of the Mediterranean into the Propontis.</p>
                <p>In the Propontis, as far as I can learn, none of that peculiar substance called
-                     <hi rend="i"/>brit is to be found, the aliment of the right whale. But I have
+                     <hi rend="i">brit</hi> is to be found, the aliment of the right whale. But I have
                   every reason to believe that the food of the sperm whale—squid or
                   cuttle-fish—lurks at the bottom of that sea, because large creatures, but by no
                   means the largest of that sort, have been found at its surface. If, then, you
@@ -7909,7 +7910,7 @@
             <div type="chapter">
                <head>CHAPTER XLVI.</head>
                <head type="sub">SURMISES.</head>
-               <p>THOUGH, consumed with the hot fire of his purpose, Ahab in all his thoughts and
+               <p><hi rend="small-caps">Though</hi>, consumed with the hot fire of his purpose, Ahab in all his thoughts and
                   actions ever had in view the ultimate capture ture of Moby Dick; though he seemed
                   ready to sacrifice all mortal interests to that one passion; nevertheless it may
                   have been that he was by nature and long habituation far too wedded to a fiery
@@ -7991,7 +7992,7 @@
             <div type="chapter">
                <head>CHAPTER XLVII.</head>
                <head type="sub">THE MAT-MAKER.</head>
-               <p>IT was a cloudy, sultry afternoon; the seamen were lazily<pb n="238-239"
+               <p><hi rend="small-caps">It</hi> was a cloudy, sultry afternoon; the seamen were lazily<pb n="238-239"
                      xml:id="VAC7237-00000132"/> lounging about the decks, or vacantly gazing over
                   into the lead-colored waters. Queequeg and I were mildly employed weaving what is
                   called a sword-mat, for an additional lashing to our boat. So still and subdued
@@ -8072,7 +8073,7 @@
             <div type="chapter">
                <head>CHAPTER XLVIII.</head>
                <head type="sub">THE FIRST LOWERING.</head>
-               <p>THE phantoms, for so they then seemed, were flitting on the other side of the
+               <p><hi rend="small-caps">The</hi> phantoms, for so they then seemed, were flitting on the other side of the
                   deck, and, with a noiseless celerity, were casting loose the tackles and bands of
                   the boat which swung there. This boat had always been deemed one of the spare
                   boats, though technically called the captain's, on account of its hanging from the
@@ -8387,7 +8388,7 @@
             <div type="chapter">
                <head>CHAPTER XLIX.</head>
                <head type="sub">THE HYENA.</head>
-               <p>THERE are certain queer times and occasions in this strange mixed affair we call
+               <p><hi rend="small-caps">There</hi> are certain queer times and occasions in this strange mixed affair we call
                   life when a man takes this whole universe for a vast practical joke, though the
                   wit thereof he but dimly discerns, and more than suspects that the joke is at
                   nobody's expense but his own. However, nothing dispirits, and nothing seems worth
@@ -8454,7 +8455,7 @@
             <div type="chapter">
                <head>CHAPTER L.</head>
                <head type="sub">AHAB'S BOAT AND CREW. FEDALLAH.</head>
-               <p>"WHO would have thought it, Flask!" cried Stubb; "if I had but one leg you would
+               <p><hi rend="small-caps">"Who</hi> would have thought it, Flask!" cried Stubb; "if I had but one leg you would
                   not catch me in a boat, unless maybe to stop the plug-hole with my timber toe. Oh!
                   he's a wonderful old man!"</p>
                <p>"I don't think it so strange, after all, on that account," said Flask. "If his leg
@@ -8535,7 +8536,7 @@
                <pb n="258-259" xml:id="VAC7237-00000142"/>
                <head>CHAPTER LI.</head>
                <head type="sub">THE SPIRIT-SPOUT.</head>
-               <p>DAYS, weeks passed, and under easy sail, the ivory Pequod had slowly swept across
+               <p><hi rend="small-caps">Days</hi>, weeks passed, and under easy sail, the ivory Pequod had slowly swept across
                   four several cruising-grounds; that off the Azores; off the Cape de Verdes; on the
                   Plate (so called), being off the mouth of the Rio de la Plata; and the Carrol
                   Ground, an unstaked, watery locality, southerly from St. Helena.</p>
@@ -8661,7 +8662,7 @@
             <div type="chapter">
                <head>CHAPTER LII.</head>
                <head type="sub">THE ALBATROSS.</head>
-               <p>SOUTH-EASTWARD from the Cape, off the distant Crozetts, a good cruising ground for
+               <p><hi rend="small-caps">South-eastward</hi> from the Cape, off the distant Crozetts, a good cruising ground for
                   Right Whalemen, a sail loomed ahead, the Goney (Albatross) by name. As she slowly
                   drew nigh, from my lofty perch at the fore-mast-head, I had a good view of that
                   sight so remarkable to a tyro in the far ocean fisheries—a whaler at sea, and long
@@ -8722,7 +8723,7 @@
             <div type="chapter">
                <head>CHAPTER LIII.</head>
                <head type="sub">THE GAM.</head>
-               <p>THE ostensible reason why Ahab did not go on board of the whaler we had spoken was
+               <p><hi rend="small-caps">The</hi> ostensible reason why Ahab did not go on board of the whaler we had spoken was
                   this: the wind and sea betokened storms. But even had this not been the case, he
                   would not after all, perhaps, have boarded her—judging by his subsequent conduct
                   on similar occasions—if so it had been that, by the process of hailing, he had
@@ -8790,7 +8791,7 @@
                   other's villanous likenesses.</p>
                <p>But look at the godly, honest, unostentatious, hospitable, sociable, free-and-easy
                   whaler! What does the whaler do when she meets another whaler in any sort of
-                  decent weather? She has a "<hi rend="i"/>Gam," a thing so utterly unknown to all
+                  decent weather? She has a "<hi rend="i">Gam</hi>," a thing so utterly unknown to all
                   other ships that they never heard of the name even; and if by chance they should
                   hear of it, they only grin at it, and repeat gamesome stuff about "spouters" and
                   "blubber-boilers," and such like pretty exclamations. Why it is that all
@@ -8803,17 +8804,17 @@
                   for his superior altitude. Hence, I conclude, that in boasting himself to be high
                   lifted above a whaleman, in that assertion the pirate has no solid basis to stand
                   on.</p>
-               <p>But what is a <hi rend="i"/>Gam? You might wear out your index-finger running up
+               <p>But what is a <hi rend="i">Gam?</hi> You might wear out your index-finger running up
                   and down the columns of dictionaries, and never find the word. Dr. Johnson never
                   attained to that erudition;<pb n="268-269" xml:id="VAC7237-00000147"/> Noah
                   Webster's ark does not hold it. Nevertheless, this same expressive word has now
                   for many years been in constant use among some fifteen thousand true born Yankees.
                   Certainly, it needs a definition, and should be incorporated into the Lexicon.
                   With that view, let me learnedly define it.</p>
-               <p>GAM. NOUN—<hi rend="i"/>A social meeting of two (or more) Whaleships, generally on
+               <p>GAM. NOUN—<hi rend="i">A social meeting of two (or more) Whaleships, generally on
                   a cruising-ground; when, after exchanging hails, they exchange visits by boats'
                   crews: the two captains remaining, for the time, on board of one ship, and the two
-                  chief mates on the other.</p>
+                  chief mates on the other.</hi></p>
                <p>There is another little item about Gamming which must not be forgotten here. All
                   professions have their own little peculiarities of detail; so has the whale
                   fishery. In a pirate, man-of-war, or slave ship, when the captain is rowed
@@ -8850,7 +8851,7 @@
                <head>CHAPTER LIV.</head>
                <head type="sub">THE TOWN-HO'S STORY.</head>
                <head type="sub">(As told at the Golden Inn.)</head>
-               <p>THE Cape of Good Hope, and all the watery region round about there, is much like
+               <p><hi rend="small-caps">The</hi> Cape of Good Hope, and all the watery region round about there, is much like
                   some noted four corners of a great highway, where you meet more travellers than in
                   any other part.</p>
                <p>It was not very long after speaking the Goney that another homeward-bound
@@ -9484,7 +9485,8 @@
             <div type="chapter">
                <head>CHAPTER LV.</head>
                <head type="sub">OF THE MONSTROUS PICTURES OF WHALES.</head>
-               <p>I SHALL ere long paint to you as well as one can without canvas, something like
+               <fw type="head" place="top-centre">MONSTROUS PICTURES OF WHALES.</fw>
+               <p><hi rend="small-caps">I shall</hi> ere long paint to you as well as one can without canvas, something like
                   the true form of the whale as he actually appears to the eye of the whaleman when
                   in his own absolute body the whale is moored alongside the whale-ship so that he
                   can be fairly stepped upon there. It may be worth while, therefore, previously to
@@ -9635,7 +9637,8 @@
                <head>CHAPTER LVI.</head>
                <head type="sub">OF THE LESS ERRONEOUS PICTURES OF WHALES, AND THE TRUE PICTURES OF
                   WHALING SCENES.</head>
-               <p>IN connexion with the monstrous pictures of whales, I am strongly tempted here to
+               <fw type="head" place="top-centre">LESS ERRONEOUS PICTURES.</fw>
+               <p><hi rend="small-caps">In</hi> connexion with the monstrous pictures of whales, I am strongly tempted here to
                   enter upon those still more monstrous stories of them which are to be found in
                   certain books, both ancient and modern, especially in Pliny, Purchas, Hackluyt,
                   Harris, Cuvier, &amp;c. But I pass that matter by.</p>
@@ -9738,8 +9741,9 @@
                <head>CHAPTER LVII.</head>
                <head type="sub">OF WHALES IN PAINT; IN TEETH; IN WOOD; IN SHEET-IRON; IN STONE; IN
                   MOUNTAINS; IN STARS.</head>
-               <p>ON Tower-hill, as you go down to the London docks, you may have seen a crippled
-                  beggar (or <hi rend="i"/>kedger, as the sailors say) holding a painted board
+               <fw type="head" place="top-centre">WHALES VARIOUSLY REPRESENTED.</fw>
+               <p><hi rend="small-caps">On</hi> Tower-hill, as you go down to the London docks, you may have seen a crippled
+                  beggar (or <hi rend="i">kedger</hi>, as the sailors say) holding a painted board
                   before him, representing the tragic scene in which he lost his leg. There are
                   three whales and three boats; and one of the boats (presumed to contain the
                   missing leg in all its original integrity) is being crunched by the jaws of the
@@ -9818,7 +9822,7 @@
             <div type="chapter">
                <head>CHAPTER LVIII.</head>
                <head type="sub">BRIT.</head>
-               <p>STEERING north-eastward from the Crozetts, we fell in with vast meadows of brit,
+               <p><hi rend="small-caps">Steering</hi> north-eastward from the Crozetts, we fell in with vast meadows of brit,
                   the minute, yellow substance, upon which the Right Whale largely feeds. For
                   leagues and leagues it undulated round us, so that we seemed to be sailing through
                   boundless fields of ripe and golden wheat.</p>
@@ -9907,7 +9911,7 @@
             <div type="chapter">
                <head>CHAPTER LIX.</head>
                <head type="sub">SQUID.</head>
-               <p>SLOWLY wading through the meadows of brit, the Pequod still held on her way
+               <p><hi rend="small-caps">Slowly</hi> wading through the meadows of brit, the Pequod still held on her way
                   north-eastward towards the island of Java; a gentle air impelling her keel, so
                   that in the surrounding serenity her three tall tapering masts mildly waved to
                   that languid breeze, as three mild palms on a plain. And still, at wide intervals
@@ -9985,7 +9989,7 @@
             <div type="chapter">
                <head>CHAPTER LX.</head>
                <head type="sub">THE LINE.</head>
-               <p>WITH reference to the whaling scene shortly to be described, as well as for the
+               <p><hi rend="small-caps">With</hi> reference to the whaling scene shortly to be described, as well as for the
                   better understanding of all similar scenes elsewhere presented, I have here to
                   speak of the magical, sometimes horrible whale-line.</p>
                <p>The line originally used in the fishery was of the best hemp, slightly vapored
@@ -10098,7 +10102,7 @@
             <div type="chapter">
                <head>CHAPTER LXI.</head>
                <head type="sub">STUBB KILLS A WHALE.</head>
-               <p>IF to Starbuck the apparition of the Squid was a thing of portents, to Queequeg it
+               <p><hi rend="small-caps">If</hi> to Starbuck the apparition of the Squid was a thing of portents, to Queequeg it
                   was quite a different object.</p>
                <p>"When you see him 'quid," said the savage, honing his harpoon in the bow of his
                   hoisted boat, "then you quick see him 'parm whale."</p>
@@ -10266,7 +10270,7 @@
             <div type="chapter">
                <head>CHAPTER LXII.</head>
                <head type="sub">THE DART.</head>
-               <p>A WORD concerning an incident in the last chapter.</p>
+               <p><hi rend="small-caps">A word</hi> concerning an incident in the last chapter.</p>
                <p>According to the invariable usage of the fishery, the whale-boat pushes off from
                   the ship, with the headsman or whale-killer as temporary steersman, and the
                   harpooneer or whale-fastener pulling the foremost oar, the one known as the
@@ -10312,7 +10316,7 @@
             <div type="chapter">
                <head>CHAPTER LXIII.</head>
                <head type="sub">THE CROTCH.</head>
-               <p>OUT of the trunk, the branches grow; out of them, the twigs. So, in productive
+               <p><hi rend="small-caps">Out</hi> of the trunk, the branches grow; out of them, the twigs. So, in productive
                   subjects, grow the chapters.</p>
                <p>The crotch alluded to on a previous page deserves independent mention. It is a
                   notched stick of a peculiar form, some two feet in length, which is
@@ -10354,7 +10358,7 @@
             <div type="chapter">
                <head>CHAPTER LXIV.</head>
                <head type="sub">STUBB'S SUPPER.</head>
-               <p>STUBB'S whale had been killed some distance from the ship. It was a calm; so,
+               <p><hi rend="small-caps">Stubb's</hi> whale had been killed some distance from the ship. It was a calm; so,
                   forming a tandem of three boats, we commenced the slow business of towing the
                   trophy to the Pequod. And now, as we eighteen men with our thirty-six arms, and
                   one hundred and eighty thumbs and fingers, slowly toiled hour after hour upon that
@@ -10605,7 +10609,7 @@
             <div type="chapter">
                <head>CHAPTER LXV.</head>
                <head type="sub">THE WHALE AS A DISH.</head>
-               <p>THAT mortal man should feed upon the creature that feeds his lamp, and, like
+               <p><hi rend="small-caps">That</hi> mortal man should feed upon the creature that feeds his lamp, and, like
                   Stubb, eat him by his own light, as you may say; this seems so outlandish a thing
                   that one must needs go a little into the history and philosophy of it.</p>
                <p>It is upon record, that three centuries ago the tongue of the Right Whale was
@@ -10680,7 +10684,7 @@
                <pb n="336-337" xml:id="VAC7237-00000181"/>
                <head>CHAPTER LXVI.</head>
                <head type="sub">THE SHARK MASSACRE.</head>
-               <p>WHEN in the Southern Fishery, a captured Sperm Whale, after long and weary toil,
+               <p><hi rend="small-caps">When</hi> in the Southern Fishery, a captured Sperm Whale, after long and weary toil,
                   is brought alongside late at night, it is not, as a general thing at least,
                   customary to proceed at once to the business of cutting him in. For that business
                   is an exceedingly laborious one; is not very soon completed; and requires all
@@ -10737,7 +10741,7 @@
                <pb n="338-339" xml:id="VAC7237-00000182"/>
                <head>CHAPTER LXVII.</head>
                <head type="sub">CUTTING IN.</head>
-               <p>IT was a Saturday night, and such a Sabbath as followed! Ex officio professors of
+               <p><hi rend="small-caps">It</hi> was a Saturday night, and such a Sabbath as followed! Ex officio professors of
                   Sabbath breaking are all whalemen. The ivory Pequod was turned into what seemed a
                   shamble; every sailor a butcher. You would have thought we were offering up ten
                   thousand red oxen to the sea gods.</p>
@@ -10795,7 +10799,7 @@
             <div type="chapter">
                <head>CHAPTER LXVIII.</head>
                <head type="sub">THE BLANKET.</head>
-               <p>I HAVE given no small attention to that not unvexed subject, the skin of the
+               <p><hi rend="small-caps">I have</hi> given no small attention to that not unvexed subject, the skin of the
                   whale. I have had controversies about it with experienced whalemen afloat, and
                   learned naturalists ashore. My original opinion remains unchanged; but it is only
                   an opinion.</p>
@@ -10889,7 +10893,7 @@
             <div type="chapter">
                <head>CHAPTER LXIX.</head>
                <head type="sub">THE FUNERAL.</head>
-               <p>"HAUL in the chains! Let the carcase go astern!"</p>
+               <p><hi rend="small-caps">"Haul</hi> in the chains! Let the carcase go astern!"</p>
                <p>The vast tackles have now done their duty. The peeled white body of the beheaded
                   whale flashes like a marble sepulchre<pb n="344-345" xml:id="VAC7237-00000185"/>
                   chre; though changed in hue, it has not perceptibly lost anything in bulk. It is
@@ -10912,8 +10916,8 @@
                   discovery-vessel from afar, when the distance obscuring the swarming fowls,
                   nevertheless still shows the white mass floating in the sun, and the white spray
                   heaving high against it; straightway the whale's unharming corpse, with trembling
-                  fingers is set down in the log—<hi rend="i"/>shoals, rocks, and breakers
-                  hereabouts: beware! And for years afterwards, perhaps, ships shun the place;
+                  fingers is set down in the log—<hi rend="i">shoals, rocks, and breakers
+                  hereabouts: beware!</hi> And for years afterwards, perhaps, ships shun the place;
                   leaping over it as silly sheep leap over a vacuum, because their leader originally
                   leaped there when a stick was held. There's your law of precedents; there's your
                   utility of traditions; there's the story of your obstinate survival of old beliefs
@@ -10927,7 +10931,7 @@
             <div type="chapter">
                <head>CHAPTER LXX.</head>
                <head type="sub">THE SPHYNX.</head>
-               <p>IT should not have been omitted that previous to completely stripping the body of
+               <p><hi rend="small-caps">It</hi> should not have been omitted that previous to completely stripping the body of
                   the leviathan, he was beheaded. Now, the beheading of the Sperm Whale is a
                   scientific anatomical feat, upon which experienced whale surgeons very much pride
                   themselves: and not without reason.</p>
@@ -11000,7 +11004,7 @@
                <pb n="348-349" xml:id="VAC7237-00000187"/>
                <head>CHAPTER LXXI.</head>
                <head type="sub">THE JEROBOAM'S STORY.</head>
-               <p>HAND in hand, ship and breeze blew on; but the breeze came faster than the ship,
+               <p><hi rend="small-caps">Hand</hi> in hand, ship and breeze blew on; but the breeze came faster than the ship,
                   and soon the Pequod began to rock.</p>
                <p>By and by, through the glass the strangers' boats and manned mast-heads proved her
                   a whale-ship. But as she was so far to windward, and shooting by, apparently
@@ -11186,7 +11190,7 @@
             <div type="chapter">
                <head>CHAPTER LXXII.</head>
                <head type="sub">THE MONKEY-ROPE.</head>
-               <p>IN the tumultuous business of cutting-in and attending to a whale, there is much
+               <p><hi rend="small-caps">In</hi> the tumultuous business of cutting-in and attending to a whale, there is much
                   running backwards and forwards among the crew. Now hands are wanted here, and then
                   again hands are wanted there. There is no staying in any one place; for at one and
                   the same time everything has to be done everywhere. It is much the same with him
@@ -11324,7 +11328,7 @@
                <head>CHAPTER LXXIII.</head>
                <head type="sub">STUBB AND FLASK KILL A RIGHT WHALE; AND THEN HAVE A TALK OVER
                   HIM.</head>
-               <p>IT must be borne in mind that all this time we have a Sperm Whale's prodigious
+               <p><hi rend="small-caps">It</hi> must be borne in mind that all this time we have a Sperm Whale's prodigious
                   head hanging to the Pequod's side. But we must let it continue hanging there a
                   while till we can get a chance to attend to it. For the present other matters
                   press, and the best we can do now for the head, is to pray heaven the tackles may
@@ -11495,7 +11499,7 @@
             <div type="chapter">
                <head>CHAPTER LXXIV.</head>
                <head type="sub">THE SPERM WHALE'S HEAD—CONTRASTED VIEW.</head>
-               <p>HERE, now, are two great whales, laying their heads together; let us join them,
+               <p><hi rend="small-caps">Here</hi>, now, are two great whales, laying their heads together; let us join them,
                   and lay together our own.</p>
                <p>Of the grand order of folio leviathans, the Sperm Whale and the Right Whale are by
                   far the most noteworthy. They are the only whales regularly hunted by man. To the
@@ -11621,7 +11625,7 @@
             <div type="chapter">
                <head>CHAPTER LXXV.</head>
                <head type="sub">THE RIGHT WHALE'S HEAD.—CONTRASTED VIEW.</head>
-               <p>CROSSING the deck, let us now have a good long look at the Right Whale's head.</p>
+               <p><hi rend="small-caps">Crossing</hi> the deck, let us now have a good long look at the Right Whale's head.</p>
                <p>As in general shape the noble Sperm Whale's head may be compared to a Roman
                   war-chariot (especially in front, where it is so broadly rounded); so, at a broad
                   view, the Right Whale's head bears a rather inelegant resemblance to a gigantic
@@ -11631,7 +11635,7 @@
                   all her progeny.</p>
                <p>But as you come nearer to this great head it begins to assume different aspects,
                   according to your point of view. If you stand on its summit and look at these two
-                     <hi rend="i"/>f-shaped spout-holes, you would take the whole head for an
+                     <hi rend="i">f</hi>-shaped spout-holes, you would take the whole head for an
                   enormous bass-viol, and these spiracles, the apertures in its sounding-board.
                   Then, again, if you fix your eye upon this strange, crested, comb-like
                   incrustation on the top of the mass—this green, barnacled thing, which the
@@ -11722,7 +11726,7 @@
             <div type="chapter">
                <head>CHAPTER LXXVI.</head>
                <head type="sub">THE BATTERING-RAM.</head>
-               <p>ERE quitting, for the nonce, the Sperm Whale's head, I would have you, as a
+               <p><hi rend="small-caps">Ere</hi> quitting, for the nonce, the Sperm Whale's head, I would have you, as a
                   sensible physiologist, simply—particularly remark its front aspect, in all its
                   compacted collectedness. I would have you investigate it now with the sole view of
                   forming to yourself some unexaggerated, intelligent estimate of whatever
@@ -11791,7 +11795,7 @@
             <div type="chapter">
                <head>CHAPTER LXXVII.</head>
                <head type="sub">THE GREAT HEIDELBURGH TUN.</head>
-               <p>NOW comes the Baling of the Case. But to comprehend it aright, you must know
+               <p><hi rend="small-caps">Now</hi> comes the Baling of the Case. But to comprehend it aright, you must know
                   something of the curious internal structure of the thing operated upon.</p>
                <p>Regarding the Sperm Whale's head as a solid oblong, you may, on an inclined plane,
                   sideways divide it into two quoins,<ref rend="super" target="#note_018"
@@ -11850,7 +11854,7 @@
             <div type="chapter">
                <head>CHAPTER LXXVIII.</head>
                <head type="sub">CISTERN AND BUCKETS.</head>
-               <p>NIMBLE as a cat, Tashtego mounts aloft; and without altering his erect posture,
+               <p><hi rend="small-caps">Nimble</hi> as a cat, Tashtego mounts aloft; and without altering his erect posture,
                   runs straight out upon the overhanging main-yard-arm, to the part where it exactly
                   projects over the hoisted Tun. He has carried with him a light tackle called a
                   whip, consisting of only two parts, travelling through a single-sheaved block.
@@ -11982,7 +11986,7 @@
             <div type="chapter">
                <head>CHAPTER LXXIX.</head>
                <head type="sub">THE PRAIRE.</head>
-               <p>TO scan the lines of his face, or feel the bumps on the head of this Leviathan;
+               <p><hi rend="small-caps">To</hi> scan the lines of his face, or feel the bumps on the head of this Leviathan;
                   this is a thing which no Physiognomist or Phrenologist has as yet undertaken. Such
                   an enterprise would seem almost as hopeful as for Lavater to have scrutinized the
                   wrinkles on the Rock of Gibraltar, or for Gall to have mounted a ladder and
@@ -12057,7 +12061,7 @@
             <div type="chapter">
                <head>CHAPTER LXXX.</head>
                <head type="sub">THE NUT.</head>
-               <p>IF the Sperm Whale be physiognomically a Sphinx, to the phrenologist his brain
+               <p><hi rend="small-caps">If</hi> the Sperm Whale be physiognomically a Sphinx, to the phrenologist his brain
                   seems that geometrical circle which it is impossible to square.</p>
                <p>In the full-grown creature the skull will measure at least twenty feet in length.
                   Unhinge the lower jaw, and the side view of this skull is as the side view of a
@@ -12130,7 +12134,8 @@
                <pb n="390-391" xml:id="VAC7237-00000208"/>
                <head>CHAPTER LXXXI.</head>
                <head type="sub">THE PEQUOD MEETS THE VIRGIN.</head>
-               <p>THE predestinated day arrived, and we duly met the ship Jungfrau, Derick De Deer,
+	       <fw type="head" place="top-centre">THE VIRGIN.</fw>
+               <p><hi rend="small-caps">The</hi> predestinated day arrived, and we duly met the ship Jungfrau, Derick De Deer,
                   master, of Bremen.</p>
                <p>At one time the greatest whaling people in the world, the Dutch and Germans are
                   now among the least; but here and there at very wide intervals of latitude and
@@ -12159,7 +12164,7 @@
                   hammock at night in profound darkness—his last drop of Bremen oil being gone, and
                   not a single flying-fish yet captured to supply the deficiency; concluding by
                   hinting that his ship was indeed what in the Fishery is technically called a <hi
-                     rend="i"/>clean one (that is, an empty one), well deserving the name of
+                     rend="i">clean one</hi> (that is, an empty one), well deserving the name of
                   Jungfrau or the Virgin.</p>
                <p>His necessities supplied, Derick departed; but he had not gained his ship's side,
                   when whales were almost simultaneously raised from the mast-heads of both vessels;
@@ -12368,7 +12373,7 @@
                   pitiable to see. But pity there was none. For all his old age, and his one arm,
                   and his blind eyes, he must die the death and be murdered, in order to light the
                   gay bridals and other merry-makings of men, and also to illuminate the solemn
-                  churches that preach unconditional ditional inoffensiveness by all to all. Still
+                  churches that preach unconditional inoffensiveness by all to all. Still
                   rolling in his blood, at last he partially disclosed a strangely discolored bunch
                   or protuberance, the size of a bushel, low down on the flank.</p>
                <p>"A nice spot," cried Flask; "just let me prick him there once."</p>
@@ -12468,7 +12473,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXII.</head>
                <head type="sub">THE HONOR AND GLORY OF WHALING.</head>
-               <p>THERE are some enterprises in which a careful disorderliness is the true
+               <p><hi rend="small-caps">There</hi> are some enterprises in which a careful disorderliness is the true
                   method.</p>
                <p>The more I dive into this matter of whaling, and push my researches up to the very
                   spring-head of it, so much the more am I impressed with its great honorableness
@@ -12560,7 +12565,7 @@
                <pb n="406-407" xml:id="VAC7237-00000216"/>
                <head>CHAPTER LXXXIII.</head>
                <head type="sub">JONAH HISTORICALLY REGARDED.</head>
-               <p>REFERENCE was made to the historical story of Jonah and the whale in the preceding
+               <p><hi rend="small-caps">Reference</hi> was made to the historical story of Jonah and the whale in the preceding
                   chapter. Now some Nantucketers rather distrust this historical story of Jonah and
                   the whale. But then there were some sceptical Greeks and Romans, who, standing out
                   from the orthodox pagans of their times, equally doubted the story of Hercules and
@@ -12624,7 +12629,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXIV.</head>
                <head type="sub">PITCHPOLING.</head>
-               <p>TO make them run easily and swiftly, the axles of carriages are anointed; and for
+               <p><hi rend="small-caps">To</hi> make them run easily and swiftly, the axles of carriages are anointed; and for
                   much the same purpose, some whalers perform an analogous operation upon their
                   boat; they grease the bottom. Nor is it to be doubted that as such a procedure can
                   do no harm, it may possibly be of no contemptible advantage; considering that oil
@@ -12692,7 +12697,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXV.</head>
                <head type="sub">THE FOUNTAIN.</head>
-               <p>THAT for six thousand years—and no one knows how many millions of ages before—the
+               <p><hi rend="small-caps">That</hi> for six thousand years—and no one knows how many millions of ages before—the
                   great whales should have been spouting all over the sea, and sprinkling and
                   mistifying the gardens of the deep, as with so many sprinkling or mistifying pots;
                   and that for some centuries back, thousands of hunters should have been close by
@@ -12849,7 +12854,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXVI.</head>
                <head type="sub">THE TAIL.</head>
-               <p>OTHER poets have warbled the praises of the soft eye of the antelope, and the
+               <p><hi rend="small-caps">Other</hi> poets have warbled the praises of the soft eye of the antelope, and the
                   lovely plumage of the bird that never alights; less celestial, I celebrate a
                   tail.</p>
                <p>Reckoning the largest sized Sperm Whale's tail to begin at that point of the trunk
@@ -12999,7 +13004,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXVII.</head>
                <head type="sub">THE GRAND ARMADA.</head>
-               <p>THE long and narrow peninsula of Malacca, extending south-eastward from the
+               <p><hi rend="small-caps">The</hi> long and narrow peninsula of Malacca, extending south-eastward from the
                   territories of Birmah, forms the most southerly point of all Asia. In a continuous
                   line from that peninsula stretch the long islands of Sumatra, Java, Bally, and
                   Timor; which, with many others, form a vast mole, or rampart, lengthwise
@@ -13375,7 +13380,7 @@
             <div type="chapter">
                <head>CHAPTER LXXXVIII.</head>
                <head type="sub">SCHOOLS AND SCHOOLMASTERS.</head>
-               <p>THE previous chapter gave account of an immense body or herd of Sperm Whales, and
+               <p><hi rend="small-caps">The</hi> previous chapter gave account of an immense body or herd of Sperm Whales, and
                   there was also then given the probable cause inducing those vast aggregations.</p>
                <p>Now, though such great bodies are at times encountered, yet, as must have been
                   seen, even at the present day, small detached bands are occasionally observed,
@@ -13474,7 +13479,7 @@
                <pb n="440-441" xml:id="VAC7237-00000233"/>
                <head>CHAPTER LXXXIX.</head>
                <head type="sub">FAST-FISH AND LOOSE-FISH.</head>
-               <p>THE allusion to the waifs and waif-poles in the last chapter but one, necessitates
+               <p><hi rend="small-caps">The</hi> allusion to the waifs and waif-poles in the last chapter but one, necessitates
                   some account of the laws and regulations of the whale fishery, of which the waif
                   may be deemed the grand symbol and badge.</p>
                <p>It frequently happens that when several ships are cruising in company, a whale may
@@ -13599,7 +13604,7 @@
                         <abbr>l.</abbr> 3, <abbr>c.</abbr> 3.</bibl>
                   </cit>
                </epigraph>
-               <p>LATIN from the books of the Laws of England, which taken along with the context,
+               <p><hi rend="small-caps">Latin</hi> from the books of the Laws of England, which taken along with the context,
                   means, that of all whales captured by anybody on the coast of that land, the King,
                   as Honorary Grand Harpooneer, must have the head, and the Queen be respectfully
                   presented with the tail. A division which, in the whale, is much like halving an
@@ -13691,6 +13696,7 @@
             <div type="chapter">
                <head>CHAPTER XCI.</head>
                <head type="sub">THE PEQUOD MEETS THE ROSE-BUD.</head>
+               <fw type="head" place="top-centre">THE ROSE-BUD.</fw>
                <epigraph>
                   <cit>
                      <q>
@@ -13702,7 +13708,7 @@
                      </bibl>
                   </cit>
                </epigraph>
-               <p>IT was a week or two after the last whaling scene recounted, and when we were
+               <p><hi rend="small-caps">It</hi> was a week or two after the last whaling scene recounted, and when we were
                   slowly sailing over a sleepy, vapory, mid-day<pb n="448-449"
                      xml:id="VAC7237-00000237"/> sea, that the many noses on the Pequod's deck
                   proved more vigilant discoverers than the three pairs of eyes aloft. A peculiar
@@ -13762,8 +13768,8 @@
                      xml:id="VAC7237-00000238"/> Upon her head boards, in large gilt letters, he
                   read "Bouton de Rose,"—Rose-button, or Rose-bud; and this was the romantic name of
                   this aromatic ship.</p>
-               <p>Though Stubb did not understand the <hi rend="i"/>Bouton part of the inscription,
-                  yet the word <hi rend="i"/>rose, and the bulbous figure-head put together,
+               <p>Though Stubb did not understand the <hi rend="i">Bouton</hi> part of the inscription,
+                  yet the word <hi rend="i">rose</hi>, and the bulbous figure-head put together,
                   sufficiently explained the whole to him.</p>
                <p>"A wooden rose-bud, eh?" he cried with his hand to his nose, "that will do very
                   well; but how like all creation it smells!"</p>
@@ -13818,7 +13824,7 @@
                   Captain's round-house abaft; and looking in that direction saw a fiery face thrust
                   from behind the door, which was held ajar from within. This was the tormented
                   surgeon, who, after in vain remonstrating against the proceedings of the day, had
-                  betaken himself to the Captain's round-house (<hi rend="i"/>cabinet he called it)
+                  betaken himself to the Captain's round-house (<hi rend="i">cabinet</hi> he called it)
                   to avoid the pest; but still, could not help yelling out his entreaties and
                   indignations at times.</p>
                <p>Marking all this, Stubb argued well for his scheme, and turning to the
@@ -13909,7 +13915,7 @@
             <div type="chapter">
                <head>CHAPTER XCII.</head>
                <head type="sub">AMBERGRIS.</head>
-               <p>NOW this ambergris is a very curious substance, and so important as an article of
+               <p><hi rend="small-caps">Now</hi> this ambergris is a very curious substance, and so important as an article of
                   commerce, that in 1791 a certain Nantucket-born Captain Coffin was examined at the
                   bar of the English House of Commons on that subject. For at that time, and indeed
                   until a comparatively late day, the precise origin of ambergris remained, like
@@ -13987,7 +13993,7 @@
             <div type="chapter">
                <head>CHAPTER XCIII.</head>
                <head type="sub">THE CASTAWAY.</head>
-               <p>IT was but some few days after encountering the Frenchman, that a most significant
+               <p><hi rend="small-caps">It</hi> was but some few days after encountering the Frenchman, that a most significant
                   event befell the most insignificant of the Pequod's crew; an event most
                   lamentable; and which ended in providing the sometimes madly merry and
                   predestinated craft with a living and ever accompanying prophecy of whatever
@@ -14117,7 +14123,7 @@
             <div type="chapter">
                <head>CHAPTER XCIV.</head>
                <head type="sub">A SQUEEZE OF THE HAND.</head>
-               <p>THAT whale of Stubb's, so dearly purchased, was duly brought to the Pequod's side,
+               <p><hi rend="small-caps">That</hi> whale of Stubb's, so dearly purchased, was duly brought to the Pequod's side,
                   where all those cutting and hoisting operations previously detailed, were
                   regularly gone through, even to the baling of the Heidelburgh Tun, or Case.</p>
                <p>While some were occupied with this latter duty, others were employed in dragging
@@ -14221,7 +14227,7 @@
             <div type="chapter">
                <head>CHAPTER XCV.</head>
                <head type="sub">THE CASSOCK.</head>
-               <p>HAD you stepped on board the Pequod at a certain juncture of this post-mortemizing
+               <p><hi rend="small-caps">Had</hi> you stepped on board the Pequod at a certain juncture of this post-mortemizing
                   of the whale; and had you strolled forward nigh the windlass, pretty sure am I
                   that you would have scanned with no small curiosity a very strange, enigmatical
                   object, which you would have seen there, lying along lengthwise in the lee
@@ -14269,7 +14275,7 @@
             <div type="chapter">
                <head>CHAPTER XCVI.</head>
                <head type="sub">THE TRY-WORKS.</head>
-               <p>BESIDES her hoisted boats, an American whaler is outwardly distinguished by her
+               <p><hi rend="small-caps">Besides</hi> her hoisted boats, an American whaler is outwardly distinguished by her
                   try-works. She presents the curious anomaly of the most solid masonry joining with
                   oak and hemp in constituting the completed ship. It is as if from the open field a
                   brick-kiln were transported to her planks.</p>
@@ -14409,7 +14415,7 @@
                <pb n="474-475" xml:id="VAC7237-00000250"/>
                <head>CHAPTER XCVII.</head>
                <head type="sub">THE LAMP.</head>
-               <p>HAD you descended from the Pequod's try-works to the Pequod's forecastle, where
+               <p><hi rend="small-caps">Had</hi> you descended from the Pequod's try-works to the Pequod's forecastle, where
                   the off duty watch were sleeping, for one single moment you would have almost
                   thought you were standing in some illuminated shrine of canonized kings and
                   counsellors. There they lay in their triangular oaken vaults, each mariner a
@@ -14431,7 +14437,7 @@
             <div type="chapter">
                <head>CHAPTER XCVIII.</head>
                <head type="sub">STOWING DOWN AND CLEARING UP.</head>
-               <p>ALREADY has it been related how the great leviathan is afar off descried from the
+               <p><hi rend="small-caps">Already</hi> has it been related how the great leviathan is afar off descried from the
                   mast-head; how he is chased over the watery moors, and slaughtered in the valleys
                   of the deep; how he is then towed alongside and beheaded; and how (on the
                   principle which entitled the headsman of old to the garments in which the beheaded
@@ -14519,7 +14525,7 @@
                <pb n="478-479" xml:id="VAC7237-00000252"/>
                <head>CHAPTER XCIX.</head>
                <head type="sub">THE DOUBLOON.</head>
-               <p>ERE now it has been related how Ahab was wont to pace his quarter-deck, taking
+               <p><hi rend="small-caps">Ere</hi> now it has been related how Ahab was wont to pace his quarter-deck, taking
                   regular turns at either limit, the binnacle and mainmast; but in the multiplicity
                   of other things requiring narration it has not been added how that sometimes in
                   these walks, when most plunged in his mood, he was wont to pause in turn at each
@@ -14704,7 +14710,7 @@
                <head type="sub">LEG AND ARM.</head>
                <head type="sub">THE PEQUOD, OF NANTUCKET, MEETS THE SAMUEL ENDERBY, OF
                   LONDON.</head>
-               <p>"SHIP, ahoy! Hast seen the White Whale?"</p>
+               <p><hi rend="small-caps">"Ship</hi>, ahoy! Hast seen the White Whale?"</p>
                <p>So cried Ahab, once more hailing a ship showing English colors, bearing down under
                   the stern. Trumpet to mouth, the old man was standing in his hoisted quarter-boat,
                   his ivory leg plainly revealed to the stranger captain, who was carelessly
@@ -14915,7 +14921,7 @@
             <div type="chapter">
                <head>CHAPTER CI.</head>
                <head type="sub">THE DECANTER.</head>
-               <p>ERE the English ship fades from sight, be it set down here, that she hailed from
+               <p><hi rend="small-caps">Ere</hi> the English ship fades from sight, be it set down here, that she hailed from
                   London, and was named after the late Samuel Enderby, merchant of that city, the
                   original of the famous whaling house of Enderby &amp; Sons; a house which in my
                   poor whaleman's opinion, comes not far behind the united royal houses of the
@@ -15059,7 +15065,7 @@
             <div type="chapter">
                <head>CHAPTER CII.</head>
                <head type="sub">A BOWER IN THE ARSACIDES.</head>
-               <p>HITHERTO, in descriptively treating of the Sperm Whale, I have chiefly dwelt upon
+               <p><hi rend="small-caps">Hitherto</hi>, in descriptively treating of the Sperm Whale, I have chiefly dwelt upon
                   the marvels of his outer aspect; or separately and in detail upon some few
                   interior structural features. But to a large and thorough sweeping comprehension
                   of him, it behoves me now to unbutton him still further, and untagging the points
@@ -15184,7 +15190,7 @@
             <div type="chapter">
                <head>CHAPTER CIII.</head>
                <head type="sub">MEASUREMENT OF THE WHALE'S SKELETON.</head>
-               <p>IN the first place, I wish to lay before you a particular, plain statement,
+               <p><hi rend="small-caps">In</hi> the first place, I wish to lay before you a particular, plain statement,
                   touching the living bulk of this leviathan, whose skeleton we are briefly to
                   exhibit. Such a statement may prove useful here.</p>
                <p>According to a careful calculation I have made, and which I partly base upon
@@ -15260,7 +15266,7 @@
                <pb n="506-507" xml:id="VAC7237-00000266"/>
                <head>CHAPTER CIV.</head>
                <head type="sub">THE FOSSIL WHALE.</head>
-               <p>FROM his mighty bulk the whale affords a most congenial theme whereon to enlarge,
+               <p><hi rend="small-caps">From</hi> his mighty bulk the whale affords a most congenial theme whereon to enlarge,
                   amplify, and generally expatiate. Would you, you could not compress him. By good
                   rights he should only be treated of in imperial folio. Not to tell over again his
                   furlongs from spiracle to tail, and the yards he measures about the waist; only
@@ -15375,7 +15381,8 @@
             <div type="chapter">
                <head>CHAPTER CV.</head>
                <head type="sub">DOES THE WHALE'S MAGNITUDE DIMINISH?—WILL HE PERISH?</head>
-               <p>INASMUCH, then, as this Leviathan comes floundering down upon us from the
+	       <fw type="head" place="top-centre">WILL HE PERISH?</fw>
+               <p><hi rend="small-caps">Inasmuch</hi>, then, as this Leviathan comes floundering down upon us from the
                   head-waters of the Eternities, it may be fitly inquired, whether, in the long
                   course of his generations, he has not degenerated from the original bulk of his
                   sires.</p>
@@ -15501,7 +15508,7 @@
             <div type="chapter">
                <head>CHAPTER CVI.</head>
                <head type="sub">AHAB'S LEG.</head>
-               <p>THE precipitating manner in which Captain Ahab had quitted the Samuel Enderby of
+               <p><hi rend="small-caps">The</hi> precipitating manner in which Captain Ahab had quitted the Samuel Enderby of
                   London, had not been unattended with some small violence to his own person. He had
                   lighted with such energy upon a thwart of his boat that his ivory leg had received
                   a half-splintering shock. And when after gaining his own deck, and his own
@@ -15578,7 +15585,7 @@
                <pb n="518-519" xml:id="VAC7237-00000272"/>
                <head>CHAPTER CVII.</head>
                <head type="sub">THE CARPENTER.</head>
-               <p>SEAT thyself sultanically among the moons of Saturn, and take high abstracted man
+               <p><hi rend="small-caps">Seat</hi> thyself sultanically among the moons of Saturn, and take high abstracted man
                   alone; and he seems a wonder, a grandeur, and a woe. But from the same point, take
                   mankind in mass, and for the most part, they seem a mob of unnecessary duplicates,
                   both contemporary and hereditary. But most humble though he was, and far from
@@ -15670,22 +15677,22 @@
                   vice. Slabs of ivory, leather straps, pads, screws, and various tools of all sorts
                   lying about the bench. Forward, the red flame of the forge is seen, where the
                   blacksmith is at work.)</stage>
-               <p>DRAT the file, and drat the bone! That is hard which should be soft, and that is
+               <p><hi rend="small-caps">Drat</hi> the file, and drat the bone! That is hard which should be soft, and that is
                   soft which should be hard. So we go, who file old jaws and shinbones. Let's try
-                  another. Aye, now, this works better (<hi rend="i"/>sneezes). Halloa, this bone
-                  dust is (<hi rend="i"/>sneezes)—why it's (<hi rend="i"/>sneezes)—yes it's (<hi
-                     rend="i"/>sneezes)—bless my soul, it won't let me speak! This is what an old
+                  another. Aye, now, this works better (<hi rend="i">sneezes</hi>). Halloa, this bone
+                  dust is (<hi rend="i">sneezes</hi>)—why it's (<hi rend="i">sneezes</hi>)—yes it's (<hi
+                     rend="i">sneezes</hi>)—bless my soul, it won't let me speak! This is what an old
                   fellow gets now for working in dead lumber. Saw a live tree, and you don't get
-                  this dust; amputate a live bone, and you don't get it (<hi rend="i"/>sneezes).
+                  this dust; amputate a live bone, and you don't get it (<hi rend="i">sneezes</hi>).
                   Come, come, you old Smut, there, bear a hand, and let's have that ferule and
-                  buckle-screw; I'll be ready for them presently. Lucky now (<hi rend="i"/>sneezes)
+                  buckle-screw; I'll be ready for them presently. Lucky now (<hi rend="i">sneezes</hi>)
                   there's no knee-joint to make; that might puzzle a little; but a mere shinbone—why
                   it's easy as making hop-poles; only I should like to put a good finish on. Time,
                   time; if I but only had the time, I could turn him out as neat<pb n="522-523"
-                     xml:id="VAC7237-00000274"/> a leg now as ever (<hi rend="i"/>sneezes) scraped
+                     xml:id="VAC7237-00000274"/> a leg now as ever (<hi rend="i">sneezes</hi>) scraped
                   to a lady in a parlor. Those buckskin legs and calves of legs I've seen in shop
                   windows wouldn't compare at all. They soak water, they do; and of course get
-                  rheumatic, and have to be doctored (<hi rend="i"/>sneezes) with washes and
+                  rheumatic, and have to be doctored (<hi rend="i">sneezes</hi>) with washes and
                   lotions, just like live legs. There; before I saw it off, now, I must call his old
                   Mogulship, and see whether the length will be all right; too short, if anything, I
                   guess. Ha! that's the heel; we are in luck; here he comes, or it's somebody else,
@@ -15725,7 +15732,7 @@
                   but put a sky-light on top of his head to illuminate inwards. There, take the
                   order, and away.</p>
                <p>Now, what's he speaking about, and who's he speaking to, I should like to know?
-                  Shall I keep standing here? (<hi rend="i"/>aside.)</p>
+                  Shall I keep standing here? (<hi rend="i">aside</hi>.)</p>
                <p>'Tis but indifferent architecture to make a blind dome; here's one. No, no, no; I
                   must have a lantern.</p>
                <p>Ho, ho! That's it, hey? Here are two, sir; one will serve my turn.</p>
@@ -15766,7 +15773,7 @@
                <p>Look ye, pudding-heads should never grant premises.—How long before the leg is
                   done?</p>
                <p>Perhaps an hour, sir.</p>
-               <p>Bungle away at it then, and bring it to me (<hi rend="i"/>turns to go). Oh, Life!
+               <p>Bungle away at it then, and bring it to me (<hi rend="i">turns to go</hi>). Oh, Life!
                   Here I am, proud as Greek god, and yet standing debtor to this blockhead for a
                   bone to stand on! Cursed be that mortal inter-indebtedness which will not do away
                   with ledgers. I would be free as air; and I'm down in the whole world's books. I
@@ -15807,7 +15814,7 @@
             <div type="chapter">
                <head>CHAPTER CIX.</head>
                <head type="sub">AHAB AND STARBUCK IN THE CABIN.</head>
-               <p>ACCORDING to usage they were pumping the ship next morning; and lo! no
+               <p><hi rend="small-caps">According</hi> to usage they were pumping the ship next morning; and lo! no
                   inconsiderable oil came up with the water; the casks below must have sprung a bad
                   leak. Much concern was shown; and Starbuck went down into the cabin to report this
                   unfavorable affair.<ref rend="super" target="#note_022" xml:id="return_022"
@@ -15892,7 +15899,7 @@
             <div type="chapter">
                <head>CHAPTER CX.</head>
                <head type="sub">QUEEQUEG IN HIS COFFIN.</head>
-               <p>UPON searching, it was found that the casks last struck into the hold were
+               <p><hi rend="small-caps">Upon</hi> searching, it was found that the casks last struck into the hold were
                   perfectly sound, and that the leak must be further off. So, it being calm weather,
                   they broke out deeper and deeper, disturbing the slumbers of the huge ground-tier
                   butts; and from that black midnight sending those gigantic moles into the daylight
@@ -16063,7 +16070,7 @@
             <div type="chapter">
                <head>CHAPTER CXI.</head>
                <head type="sub">THE PACIFIC.</head>
-               <p>WHEN gliding by the Bashee isles we emerged at last upon the great South Sea; were
+               <p><hi rend="small-caps">When</hi> gliding by the Bashee isles we emerged at last upon the great South Sea; were
                   it not for other things, I could have greeted my dear Pacific with uncounted
                   thanks, for now the long supplication of my youth was answered; that serene ocean
                   rolled eastwards from me a thousand leagues of blue.</p>
@@ -16100,7 +16107,7 @@
             <div type="chapter">
                <head>CHAPTER CXII.</head>
                <head type="sub">THE BLACKSMITH.</head>
-               <p>AVAILING himself of the mild, summer-cool weather that now reigned in these
+               <p><hi rend="small-caps">Availing</hi> himself of the mild, summer-cool weather that now reigned in these
                   latitudes, and in preparation for the peculiarly active pursuits shortly to be
                   anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his
                   portable forge to the hold again, after concluding his contributory work for
@@ -16180,7 +16187,7 @@
                <pb n="540-541" xml:id="VAC7237-00000283"/>
                <head>CHAPTER CXIII.</head>
                <head type="sub">THE FORGE.</head>
-               <p>WITH matted beard, and swathed in a bristling shark-skin apron, about mid-day,
+               <p><hi rend="small-caps">With</hi> matted beard, and swathed in a bristling shark-skin apron, about mid-day,
                   Perth was standing between his forge and anvil, the latter placed upon an
                   iron-wood log, with one hand holding a pike-head in the coals, and with the other
                   at his forge's lungs, when Captain Ahab came along, carrying in his hand a small
@@ -16288,7 +16295,7 @@
                <pb n="544-545" xml:id="VAC7237-00000285"/>
                <head>CHAPTER CXIV.</head>
                <head type="sub">THE GILDER.</head>
-               <p>PENETRATING further and further into the heart of the Japanese cruising ground,
+               <p><hi rend="small-caps">Penetrating</hi> further and further into the heart of the Japanese cruising ground,
                   the Pequod was soon all astir in the fishery. Often, in mild, pleasant weather,
                   for twelve, fifteen, eighteen, and twenty hours on the stretch, they were engaged
                   in the boats, steadily pulling, or sailing, or paddling after the whales, or for
@@ -16345,7 +16352,7 @@
             <div type="chapter">
                <head>CHAPTER CXV.</head>
                <head type="sub">THE PEQUOD MEETS THE BACHELOR.</head>
-               <p>AND jolly enough were the sights and the sounds that came bearing down before the
+               <p><hi rend="small-caps">And</hi> jolly enough were the sights and the sounds that came bearing down before the
                   wind, some few weeks after Ahab's harpoon had been welded.</p>
                <p>It was a Nantucket ship, the Bachelor, which had just wedged in her last cask of
                   oil, and bolted down her bursting hatches; and now, in glad holiday apparel, was
@@ -16421,7 +16428,7 @@
             <div type="chapter">
                <head>CHAPTER CXVI.</head>
                <head type="sub">THE DYING WHALE</head>
-               <p>NOT seldom in this life, when, on the right side, fortune's favorites sail close
+               <p><hi rend="small-caps">Not</hi> seldom in this life, when, on the right side, fortune's favorites sail close
                   by us, we, though all adroop before, catch somewhat of the rushing breeze, and
                   joyfully feel our bagging sails fill out. So seemed it with the Pequod. For next
                   day after encountering the gay Bachelor, whales were seen and four were slain; and
@@ -16466,7 +16473,7 @@
             <div type="chapter">
                <head>CHAPTER CXVII.</head>
                <head type="sub">THE WHALE WATCH.</head>
-               <p>THE four whales slain that evening had died wide apart; one, far to windward; one,
+               <p><hi rend="small-caps">The</hi> four whales slain that evening had died wide apart; one, far to windward; one,
                   less distant, to leeward; one ahead; one astern. These last three were brought
                   alongside ere nightfall; but the windward one could not be reached till morning;
                   and the boat that had killed it lay by its side all night; and that boat was
@@ -16510,7 +16517,7 @@
             <div type="chapter">
                <head>CHAPTER CXVIII.</head>
                <head type="sub">THE QUADRANT.</head>
-               <p>THE season for the Line at length drew near; and every day when Ahab, coming from
+               <p><hi rend="small-caps">The</hi> season for the Line at length drew near; and every day when Ahab, coming from
                   his cabin, cast his eyes aloft, the vigilant helmsman would ostentatiously handle
                   his spokes, and the eager mariners quickly run to the braces, and would stand
                   there with all their eyes centrally fixed on the nailed doubloon; impatient for
@@ -16582,7 +16589,7 @@
             <div type="chapter">
                <head>CHAPTER CXIX.</head>
                <head type="sub">THE CANDLES.</head>
-               <p>WARMEST climes but nurse the cruellest fangs: the tiger of Bengal crouches in
+               <p><hi rend="small-caps">Warmest</hi> climes but nurse the cruellest fangs: the tiger of Bengal crouches in
                   spiced groves of ceaseless verdure. Skies the most effulgent but basket the
                   deadliest thunders: gorgeous Cuba knows tornadoes that never swept tame northern
                   lands. So, too, it is, that in these resplendent Japanese seas the mariner
@@ -16607,7 +16614,7 @@
                   has such a great long start before it leaps, all round the world it runs, and then
                   comes the spring! But as for me, all the start I have to meet it, is just across
                   the deck here. But never mind; it's all in fun: so the old song says;"—(<hi
-                     rend="i"/>sings.) <q>
+                     rend="i">sings.</hi>) <q>
                      <lg type="stanza">
                         <l rend="ti-2">Oh! jolly is the gale,</l>
                         <l rend="ti-2">And a joker is the whale,</l>
@@ -16799,8 +16806,9 @@
             <div type="chapter">
                <head>CHAPTER CXX.</head>
                <head type="sub">THE DECK TOWARDS THE END OF THE FIRST NIGHT WATCH.</head>
+               <fw type="head" place="top-centre">THE DECK.</fw>
                <stage>Ahab standing by the helm. Starbuck approaching him.</stage>
-               <p>"WE must send down the main-top-sail yard, sir. The band is working loose, and the
+               <p><hi rend="small-caps">"We</hi> must send down the main-top-sail yard, sir. The band is working loose, and the
                   lee lift is half-stranded. Shall I strike it, sir?"</p>
                <p>"Strike nothing; lash it. If I had sky-sail poles, I'd sway them up now."</p>
                <p>"Sir?—in God's name!—sir?"</p>
@@ -16818,9 +16826,10 @@
             <div type="chapter">
                <head>CHAPTER CXXI.</head>
                <head type="sub">MIDNIGHT.—THE FORECASTLE BULWARKS.</head>
+               <fw type="head" place="top-centre">MIDNIGHT.</fw>
                <stage>Stubb and Flask mounted on them, and passing additional lashings over the
                   anchors there hanging.</stage>
-               <p>"NO, Stubb; you may pound that knot there as much as you please, but you will
+               <p><hi rend="small-caps">"No</hi>, Stubb; you may pound that knot there as much as you please, but you will
                   never pound into me what you were just now saying. And how long ago is it since
                   you said the very contrary? Didn't you once say that whatever ship Ahab sails in,
                   that ship should pay something extra on its insurance policy, just as though it
@@ -16870,15 +16879,17 @@
             <div type="chapter">
                <head>CHAPTER CXXII.</head>
                <head type="sub">MIDNIGHT ALOFT.—THUNDER AND LIGHTNING.</head>
+	       <!-- NOT in First Edition. -->
+               <fw type="head" place="top-centre">MIDNIGHT ALOFT.</fw>
                <stage>The Main-top-sail yard.—Tashtego passing new lashings around it.</stage>
-               <p>"UM, um, um. Stop that thunder! Plenty too much thunder up here. What's the use of
+               <p><hi rend="small-caps">"Um</hi>, um, um. Stop that thunder! Plenty too much thunder up here. What's the use of
                   thunder? Um, um, um. We don't want thunder; we want rum; give us a glass of rum.
                   Um, um, um!"</p>
             </div>
             <div type="chapter">
                <head>CHAPTER CXXIII.</head>
                <head type="sub">THE MUSKET.</head>
-               <p>DURING the most violent shocks of the Typhoon, the man at the Pequod's jaw-bone
+               <p><hi rend="small-caps">During</hi> the most violent shocks of the Typhoon, the man at the Pequod's jaw-bone
                   tiller had several times been reelingly hurled to the deck by its spasmodic
                   motions, even though preventer<pb n="566-567" xml:id="VAC7237-00000296"/> venter
                   tackles had been attached to it—for they were slack—because some play to the
@@ -16974,7 +16985,7 @@
             <div type="chapter">
                <head>CHAPTER CXXIV.</head>
                <head type="sub">THE NEEDLE.</head>
-               <p>NEXT morning the not-yet-subsided sea rolled in long slow billows of mighty bulk,
+               <p><hi rend="small-caps">Next</hi> morning the not-yet-subsided sea rolled in long slow billows of mighty bulk,
                   and striving in the Pequod's gurgling track, pushed her on like giants' palms
                   outspread. The strong, unstaggering breeze abounded so, that sky and air seemed
                   vast outbellying sails; the whole world boomed before the wind. Muffled in the
@@ -17076,7 +17087,7 @@
             <div type="chapter">
                <head>CHAPTER CXXV.</head>
                <head type="sub">THE LOG AND LINE.</head>
-               <p>WHILE now the fated Pequod had been so long afloat this voyage, the log and line
+               <p><hi rend="small-caps">While</hi> now the fated Pequod had been so long afloat this voyage, the log and line
                   had but very seldom been in use. Owing to a confident reliance upon other means of
                   determining the vessel's place, some merchantmen, and many whalemen, especially
                   when cruising, wholly neglect to heave the log; though at the same time, and
@@ -17176,7 +17187,7 @@
             <div type="chapter">
                <head>CHAPTER CXXVI.</head>
                <head type="sub">THE LIFE-BUOY.</head>
-               <p>STEERING now south-eastward by Ahab's levelled steel, and her progress solely
+               <p><hi rend="small-caps">Steering</hi> now south-eastward by Ahab's levelled steel, and her progress solely
                   determined by Ahab's level log and line; the Pequod held on her path towards the
                   Equator. Making so long a passage through such unfrequented waters, descrying no
                   ships, and ere long, sideways impelled by unvarying trade winds, over waves
@@ -17292,7 +17303,7 @@
                      <sic>aud</sic>
                      <corr>and</corr>
                   </choice> hears Pip following him.</stage>
-               <p>"BACK, lad; I will be with ye again presently. He goes! Not this hand complies
+               <p><hi rend="small-caps">"Back</hi>, lad; I will be with ye again presently. He goes! Not this hand complies
                   with my humor more genially than that boy.—Middle aisle of a church! What's
                   here?"</p>
                <p>"Life-buoy, sir. Mr. Starbuck's orders. Oh, look, sir! Beware the hatchway!"</p>
@@ -17351,7 +17362,7 @@
             <div type="chapter">
                <head>CHAPTER CXXVIII.</head>
                <head type="sub">THE PEQUOD MEETS THE RACHEL.</head>
-               <p>NEXT day, a large ship, the Rachel, was descried, bearing directly down upon the
+               <p><hi rend="small-caps">Next</hi> day, a large ship, the Rachel, was descried, bearing directly down upon the
                   Pequod, all her spars thickly clustering with men. At the time the Pequod was
                   making good speed through the water; but as the broad-winged windward stranger
                   shot nigh to her, the boastful sails all fell together as blank bladders that are
@@ -17466,7 +17477,7 @@
                <head>CHAPTER CXXIX.</head>
                <head type="sub">THE CABIN.</head>
                <stage>(Ahab moving to go on deck; Pip catches him by the hand to follow.)</stage>
-               <p>"LAD, lad, I tell thee thou must not follow Ahab now. The hour is coming when Ahab
+               <p><hi rend="small-caps">"Lad</hi>, lad, I tell thee thou must not follow Ahab now. The hour is coming when Ahab
                   would not scare thee from him, yet<pb n="588-589" xml:id="VAC7237-00000307"/>
                   would not have thee by him. There is that in thee, poor lad, which I feel too
                   curing to my malady. Like cures like; and for this hunt, my malady becomes my most
@@ -17513,7 +17524,7 @@
             <div type="chapter">
                <head>CHAPTER CXXX.</head>
                <head type="sub">THE HAT.</head>
-               <p>AND now that at the proper time and place, after so long and wide a preliminary
+               <p><hi rend="small-caps">And</hi> now that at the proper time and place, after so long and wide a preliminary
                   cruise, Ahab,—all other whaling waters swept—seemed to have chased his foe into an
                   ocean-fold, to slay him the more securely there; now, that he found himself hard
                   by the very latitude and longitude where his tormenting wound had been inflicted;
@@ -17645,7 +17656,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXI.</head>
                <head type="sub">THE PEQUOD MEETS THE DELIGHT.</head>
-               <p>THE intense Pequod sailed on; the rolling waves and days went by; the
+               <p><hi rend="small-caps">The</hi> intense Pequod sailed on; the rolling waves and days went by; the
                   life-buoy-coffin still lightly swung; and another ship, most miserably misnamed
                   the Delight, was descried. As she drew nigh, all eyes were fixed <choice>
                      <sic>upom</sic>
@@ -17690,7 +17701,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXII.</head>
                <head type="sub">THE SYMPHONY.</head>
-               <p>IT was a clear steel-blue day. The firmaments of air and sea were hardly separable
+               <p><hi rend="small-caps">It</hi> was a clear steel-blue day. The firmaments of air and sea were hardly separable
                   in that all-pervading azure; only, the pensive air was transparently pure and
                   soft, with a woman's look, and the robust and man-like sea heaved with long,
                   strong, lingering swells, as Samson's chest in his sleep.</p>
@@ -17817,7 +17828,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXIII.</head>
                <head type="sub">THE CHASE—FIRST DAY.</head>
-               <p>THAT night, in the mid-watch, when the old man—as his wont at intervals—stepped
+               <p><hi rend="small-caps">That</hi> night, in the mid-watch, when the old man—as his wont at intervals—stepped
                   forth from the scuttle in which he leaned, and went to his pivot-hole, he suddenly
                   thrust out his face fiercely, snuffing up the sea air as a sagacious ship's dog
                   will, in drawing nigh to some barbarous isle. He declared that a whale must be
@@ -18109,7 +18120,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXIV.</head>
                <head type="sub">THE CHASE—SECOND DAY.</head>
-               <p>AT day-break, the three mast-heads were punctually manned afresh.</p>
+               <p><hi rend="small-caps">At</hi> day-break, the three mast-heads were punctually manned afresh.</p>
                <pb n="612-613" xml:id="VAC7237-00000319"/>
                <p>"D'ye see him?" cried Ahab, after allowing a little space for the light to
                   spread.</p>
@@ -18372,7 +18383,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXV.</head>
                <head type="sub">THE CHASE.—THIRD DAY.</head>
-               <p>THE morning of the third day dawned fair and fresh, and once more the solitary
+               <p><hi rend="small-caps">The</hi> morning of the third day dawned fair and fresh, and once more the solitary
                   night-man at the fore-mast-head was relieved by crowds of the daylight look-outs,
                   who dotted every mast and almost every spar.</p>
                <p>"D'ye see him?" cried Ahab; but the whale was not yet in sight.</p>
@@ -18731,16 +18742,16 @@
                <epigraph>
                   <cit>
                      <q>
-                        <l>"AND I ONLY AM ESCAPED ALONE TO TELL THEE."</l>
+                        <l>"<hi rend="all-small-caps">AND I ONLY AM ESCAPED ALONE TO TELL THEE.</hi>"</l>
                      </q>
                      <bibl>Job.</bibl>
                   </cit>
                </epigraph>
                <p>
-                  <hi rend="i"/>The drama's done. Why then here does any one step forth?—Because one
-                  did survive the wreck.</p>
+                  <hi rend="i">The drama's done. Why then here does any one step forth?—Because one
+                  did survive the wreck.</hi></p>
                <p>
-                  <hi rend="i"/>It so chanced, that after the Parsee's disappearance, I was he whom
+                  <hi rend="i">It so chanced, that after the Parsee's disappearance, I was he whom
                   the Fates ordained to take the place of Ahab's bowsman, when that bowsman assumed
                   the vacant post; the same, who, when on the last day the three men were tossed
                   from out the rocking boat, was dropped astern. So, floating on the margin of the
@@ -18757,7 +18768,7 @@
                   mouths; the savage sea-hawks sailed with sheathed beaks. On the second day, a sail
                   drew near, nearer, and picked me up at last. It was the devious-cruising Rachel,
                   that in her retracing search after her missing children, only found another
-                  orphan.</p>
+                  orphan.</hi></p>
             </div>
             <closer>FINIS.</closer>
          </div>
@@ -18769,7 +18780,7 @@
             <head>WHITE-JACKET.</head>
             <head type="sub">BY HERMAN MELVILLE.</head>
             <p>
-               <hi rend="i"/>One Volume, 12mo, Paper, $1 00; Muslin, $1 25.</p>
+               <hi rend="i">One Volume, 12mo, Paper, $1 00; Muslin, $1 25.</hi></p>
             <p>White-Jacket will find (since it deserves to find) many animated and interested
                readers. Mr. Melville stands as far apart from any past or present marine painter in
                pen and ink as Turner does from Vandervelde. We can not recall another novelist or
@@ -18826,7 +18837,7 @@
             <head>OMOO.</head>
             <head type="sub">BY HERMAN MELVILLE.</head>
             <p>
-               <hi rend="i"/>One Volume, 12mo, Muslin, $1 25; Paper, $1 00.</p>
+               <hi rend="i">One Volume, 12mo, Muslin, $1 25; Paper, $1 00.</hi></p>
             <p>After the pungent and admirably written narrative of that accomplished, able seaman,
                Herman Melville, few books of the same class but must appear flat and unprofitable.
                Omoo would have found readers at any time; and that although twenty publishers had
@@ -18896,18 +18907,18 @@
             <head>MARDI.</head>
             <head type="sub">BY HERMAN MELVILLE.</head>
             <p>
-               <hi rend="i"/>2 Volumes, 12mo, Muslin, $1 75; Paper, $1 50.</p>
+               <hi rend="i">2 Volumes, 12mo, Muslin, $1 75; Paper, $1 50.</hi></p>
             <p>A work such as was never heard of before. You might accumulate upon it all the
                epithets which Madame de Sevigné affectionated. Fancy Daphnis and Chloe dancing I
                know not what strange <foreign xml:lang="FRA">gavotte</foreign> with Aristotle and
                Spinoza, escorted by Gargantua and Gargamelle. Mardi is the modern political world.
                This part is the most piquant of the book. The colossal machine invented by Mr.
                Melville might be compared to the American Panorama now placarded on the walls of
-               London in these terms: "<hi rend="i"/>Gigantic original American Panorama, now on
+               London in these terms: "<hi rend="i">Gigantic original American Panorama, now on
                exhibition in the great American Hall; the prodigious moving Panorama of the Gulf of
                Mexico, the Falls of St. Anthony, and of the Mississippi, covering an extent of
                canvass four miles long, and representing more than 4000 miles of scenery."
-               Translated from the "Revue de Deux Mondes."</p>
+               Translated from the "Revue de Deux Mondes.</hi>"</p>
             <p>From the first chapter of the book to the last, where the hero is swept from our
                sight in a cloud of spray, the book is a magnificent drama.—<title>Bentley's
                   Miscellany</title>
@@ -18961,7 +18972,7 @@
             <head>TYPEE.</head>
             <head type="sub">BY HERMAN MELVILLE.</head>
             <p>
-               <hi rend="i"/>One Volume, 12mo, Muslin, 87½ cents; Paper, 75 cents.</p>
+               <hi rend="i">One Volume, 12mo, Muslin, 87½ cents; Paper, 75 cents.</hi></p>
             <p>"Why I never chanced upon Mr. Melville's work before, is one of the inscrutable
                mysteries of my fate. While luxuriating in its perusal, I looked back upon myself in
                my ante-Typee-cal existence, with positive commiseration. There are those, I am
@@ -19015,7 +19026,7 @@
             <head>REDBURN.</head>
             <head type="sub">BY HERMAN MELVILLE.</head>
             <p>
-               <hi rend="i"/>One Volume, 12mo, Muslin, $1 00; Paper, 75 cents.</p>
+               <hi rend="i">One Volume, 12mo, Muslin, $1 00; Paper, 75 cents.</hi></p>
             <p>Ships and the sea, and those who plow it, with their belongings on shore—these
                subjects are identified with Herman Melville's name, for he has most unquestionably
                made them his own. No writer, not even Marryat himself, has observed them more
