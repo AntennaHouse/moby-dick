@@ -132,34 +132,150 @@
 <xsl:template match="docTitle | div[@type = 'fly_title']/head"
               priority="5">
   <fo:block
-      font-size="20pt"
-      letter-spacing="0.33em"
-      line-height="40pt"
+      font-size="24pt"
+      letter-spacing="0.37em"
+      line-height="1"
       text-align="center"
-      font-stretch="condensed">
+      font-stretch="extra-condensed">
     <xsl:analyze-string
         select="normalize-space(.)"
         regex="OR,">
       <xsl:matching-substring>
         <fo:block
             font-size="8pt" font-variant="all-small-caps"
-            letter-spacing="0">
+            font-stretch="normal"
+            letter-spacing="0.125em" space-before="30pt">
           <xsl:value-of select="." />
         </fo:block>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
-        <xsl:analyze-string
-            select="."
-            regex="\.|;">
-          <xsl:matching-substring>
-            <fo:inline letter-spacing="0">
+        <fo:block axf:letter-spacing-side="start">
+          <xsl:if test="contains(., 'THE WHALE.')">
+            <xsl:attribute name="space-before" select="'30pt'" />
+            <xsl:attribute name="letter-spacing" select="'0.9em'" />
+          </xsl:if>
+          <xsl:analyze-string
+              select="."
+              regex="\.| ">
+            <xsl:matching-substring>
+              <fo:inline letter-spacing="0.3em">
+                <xsl:value-of select="." />
+              </fo:inline>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
               <xsl:value-of select="." />
-            </fo:inline>
-          </xsl:matching-substring>
-          <xsl:non-matching-substring>
-            <xsl:value-of select="." />
-          </xsl:non-matching-substring>
-        </xsl:analyze-string>
+            </xsl:non-matching-substring>
+          </xsl:analyze-string>
+        </fo:block>
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="byline">
+  <fo:block text-align="center" hyphenate="false"
+            font-variant="all-small-caps">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="byline/text()">
+  <!-- Provide structure that is not in the source XML. -->
+  <xsl:analyze-string select="normalize-space(ahf:text(.))"
+                      regex="AUTHOR OF">
+    <xsl:matching-substring>
+      <fo:block space-before="9pt" font-size="6pt">
+        <xsl:value-of select="." />
+      </fo:block>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:analyze-string select="."
+                          regex="BY">
+        <xsl:matching-substring>
+          <fo:block space-before="30pt" font-stretch="normal">
+            <xsl:value-of select="normalize-space(.)" />
+          </fo:block>
+        </xsl:matching-substring>
+        <xsl:non-matching-substring>
+          <fo:block space-before="5pt" font-size="6pt"
+                    font-variant="all-small-caps">
+            <xsl:value-of select="normalize-space(.)" />
+          </fo:block>
+        </xsl:non-matching-substring>
+      </xsl:analyze-string>
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
+</xsl:template>
+
+<xsl:template
+    match="docAuthor">
+  <fo:block  space-before="23pt" font-size="15pt"
+             font-stretch="extra-condensed" letter-spacing="0.35em"
+             axf:letter-spacing-side="start">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex=" ">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0.5em">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="docImprint">
+  <fo:block text-align="center" hyphenate="false" font-size="8pt" letter-spacing="0.24em" axf:letter-spacing-side="start">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="pubPlace[1]">
+  <fo:block font-size="10pt" space-before="101pt" letter-spacing="0.33em">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="pubPlace[2]">
+    <xsl:apply-templates />
+    <xsl:text> </xsl:text>
+</xsl:template>
+
+<xsl:template
+    match="publisher[1]">
+  <fo:block space-before="6pt" space-after="5pt" font-size="8pt"
+            letter-spacing="0.25em" axf:letter-spacing-side="start">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex="\.|,">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="docDate">
+  <fo:block text-align="center" hyphenate="false" font-size="10pt"
+            space-before="6pt" letter-spacing="0.2em"
+            axf:letter-spacing-side="start">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex="\.">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </fo:block>
@@ -176,6 +292,8 @@
 
 <xsl:template name="declarations">
   <fo:declarations>
+    <axf:font-face src="url('harrowgate/harrowgate.regular.ttf')"
+                 font-family="harrowgate" />
     <axf:font-face src="url('SourceSerifPro/SourceSerifPro-Regular.otf')"
                  font-family="source-serif-pro" />
     <axf:font-face src="url('SourceSerifPro/SourceSerifPro-It.otf')"
@@ -197,13 +315,45 @@
 </xsl:template>
 
 <xsl:template
-    match="titlePage |
-           div[@type = ('contents', 'intro_text')]">
+    match="titlePage | div[@type = 'intro_text']">
   <fo:page-sequence
       master-reference="CoverFrontMaster"
-      initial-page-number="{if (@type = 'contents')
-                              then 'auto-odd'
-                              else 'auto'}">
+      format="lower-roman">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')]/p[1] |
+           div[@type = 'intro_text'][head[1] = 'EXTRACTS.']/p[1]"
+    priority="5">
+  <fo:block text-indent="0" text-align="center">
+    <fo:external-graphic src="images/separator.svg" />
+  </fo:block>
+  <xsl:next-match />
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][head[1] = 'ETYMOLOGY.'][1]/p |
+           div[@type = 'intro_text'][head[1] = 'EXTRACTS.'][1]/p">
+  <fo:block font-size="7pt"
+            axf:hyphenate-hyphenated-word="false"
+            hyphenation-push-character-count="4"
+            hyphenation-remain-character-count="4"
+            word-spacing.minimum="-0.04em"
+            xsl:use-attribute-sets="p">
+      <xsl:apply-templates />
+    </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'contents']">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster"
+      initial-page-number="auto-odd"
+      format="lower-roman">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
       <xsl:apply-templates />
@@ -225,14 +375,12 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template
-    match="body | back">
+<!-- Page numbers restart (with format '1') for body. -->
+<xsl:template match="body">
   <fo:page-sequence
       master-reference="PageMaster"
       writing-mode="from-page-master-region()"
-      initial-page-number="{if (self::front or self::body)
-                              then 1
-                              else 'auto-odd'}"
+      initial-page-number="1"
       force-page-count="{if (self::back)
                            then 'document 16'
                          else 'auto'}">
@@ -247,21 +395,13 @@
 <xsl:template match="div[@type = 'book']/head" />
 
 <xsl:template
-    match="docAuthor | pubPlace[1] | publisher[1]">
-  <fo:block>
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template
-    match="byline | docDate | docImprint">
-  <fo:block text-align="center" hyphenate="false">
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template
     match="div[@type = 'chapter'][exists(head[@type = 'sub'] | fw[@type = 'head'])]">
+  <xsl:if test="exists(preceding-sibling::div[@type = current()/@type])">
+    <fo:block axf:suppress-if-first-on-page="true" text-align="center"
+              padding-top="0.125in">
+      <fo:external-graphic src="images/separator.svg" />
+    </fo:block>
+  </xsl:if>
   <fo:block
       id="{@type}-{count(preceding::div[@type = current()/@type]) + 1}">
     <fo:marker marker-class-name="Chapter-Title">
@@ -292,9 +432,11 @@
 <xsl:template
     match="div[@type = ('fly_title', 'intro_text', 'chapter')]/head">
   <fo:block
-      padding-before="0.75in"
-      space-after.precedence="1"
       text-align="center"
+      padding-top="{if (exists(../preceding-sibling::div
+                                    [@type = 'chapter']))
+                      then '0.125in'
+                    else '0.75in'}"
       keep-with-next="always">
     <xsl:if
         test="exists(head[@type = 'sub'] | fw[@type = 'head'])">
@@ -316,6 +458,9 @@
       space-after.precedence="1"
       text-align="center"
       keep-with-next="always">
+    <fo:marker marker-class-name="Chapter-Title">
+      <xsl:apply-templates />
+    </fo:marker>
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -439,17 +584,32 @@
 
 
 <!-- ============================================================= -->
-<!-- Advertisement                                                 -->
+<!-- Back                                                          -->
 <!-- ============================================================= -->
+
+<!-- Final page sequence, so force page count to multiple of 16. -->
+<xsl:template match="back">
+  <fo:page-sequence
+      master-reference="PageMaster"
+      initial-page-number="auto-odd"
+      force-page-count="document 16">
+    <!-- No headers or footers. -->
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
 
 <xsl:template match="div[@type = 'advertisement']">
   <fo:block-container
-      break-before="page"
       line-height="1em"
       height="100%" keep-together.within-page="always"
       overflow="condense" axf:overflow-condense="font-size"
       text-align-last="left">
-    <xsl:apply-templates />
+    <xsl:apply-templates
+        select="head[@type = 'sub'], head[empty(@type)]" />
+    <xsl:apply-templates select="p" />
   </fo:block-container>
 </xsl:template>
 
@@ -459,6 +619,13 @@
       space-after.precedence="1"
       text-align="center"
       keep-with-next="always">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'advertisement']/p[1]">
+  <fo:block text-align="center">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -479,10 +646,26 @@
 </xsl:template>
 
 <xsl:template match="q/p">
-  <fo:block>
+  <fo:block widows="3" orphans="3">
     <xsl:apply-templates />
+    <xsl:if test="position() = last() and
+                  exists(../following-sibling::*[1][self::bibl])">
+      <fo:leader leader-pattern="space"/>
+      <fo:leader leader-pattern="space" leader-length.optimum="100%"/>
+      <fo:inline-container padding-left="2em" padding-right="2em"
+                           max-width="80%" text-indent="0">
+        <fo:block text-align="right">
+          <xsl:apply-templates
+              select="../following-sibling::*[1]/node()" />
+        </fo:block>
+      </fo:inline-container>
+    </xsl:if>
   </fo:block>
 </xsl:template>
+
+<xsl:template
+    match="bibl[exists(preceding-sibling::*[1][self::q[p]])]"
+    priority="5" />
 
 <xsl:template match="p">
   <fo:block xsl:use-attribute-sets="p">
@@ -509,6 +692,42 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template match="div[@type = 'fly_title']/bibl">
+  <fo:block text-align="center" hyphenate="false" font-size="6pt">
+    <!-- Provide structure that is not in the source XML. -->
+    <xsl:analyze-string select="ahf:text(edition/text())"
+                        regex="HERMAN MELVILLE,">
+      <xsl:matching-substring>
+        <fo:block>
+          <xsl:value-of select="." />
+        </fo:block>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <fo:block>
+          <xsl:value-of select="normalize-space(.)" />
+        </fo:block>
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="div[@type = 'dedication']/p">
+  <fo:block text-align="center">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="div[@type = 'dedication']/p/lb" />
+
+<xsl:template match="div[@type = 'dedication']/p/text()">
+  <fo:block>
+    <xsl:if test="contains(., 'This Book is Inscribed')">
+      <xsl:attribute name="font-family" select="'harrowgate'" />
+    </xsl:if>
+    <xsl:value-of select="normalize-space(ahf:text(.))" />
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="lg">
   <fo:block text-align="center"
             space-before="1em">
@@ -518,7 +737,7 @@
     <fo:inline-container
         axf:hanging-punctuation="start allow-end">
       <xsl:if test="exists(ancestor::div[@type = 'chapter'])">
-        <xsl:attribute name="font-size" select="'0.8em'" />
+        <xsl:attribute name="font-size" select="'7pt'" />
       </xsl:if>
       <fo:block text-align="start">
         <xsl:apply-templates />
