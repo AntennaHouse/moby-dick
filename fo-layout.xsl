@@ -12,16 +12,13 @@
 
 <!-- Page dimensions are in inches because it was 1850. -->
 
-<!-- 7 3/8 x 4 7/8 inches book size from:
-
-     http://web.archive.org/web/20200917105448/https://www.donaldheald.com/pages/books/36148/herman-melville/moby-dick-or-the-whale
-
-     Page size would have been slightly smaller, so assume boards are
-     0.125in larger in each direction.
-
+<!-- Using page size of 7 3/8 x 4.8 inches after using scanned page as
+     background in AH Formatter and adjusting sizes until page lined
+     up with scan.
 -->
+
 <xsl:param name="page-height" select="7.375"/>
-<xsl:param name="page-width" select="4.875"/>
+<xsl:param name="page-width" select="4.78"/>
 
 <xsl:param name="text-block-width" select="3.125"/>
 
@@ -109,23 +106,73 @@
           extent="{$inside-extent}in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="PageMaster-CoverFront"
-                           margin-top="15mm"
-                           margin-bottom="15mm"
-                           margin-right="5mm"
-                           margin-left="10mm"
                            page-height="{$page-height}in"
                            page-width="{$page-width}in">
       <fo:region-body
-          margin-top="8mm"
-          margin-right="8mm"
-          margin-bottom="8mm"
-          margin-left="8mm"/>
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-inside}in"
+          margin-left="{$body-outside}in" />
+      <fo:region-before
+          extent="{$before-extent}in"
+          display-align="after"
+          region-name="Odd-Header"/>
       <fo:region-after
-          extent="150mm"
-          precedence="false"
-          padding-right="8mm"
-          padding-left="8mm"
-          display-align="after"/>
+          extent="{$after-extent}in"
+          display-align="before"
+          region-name="Odd-Footer"/>
+      <fo:region-start
+          reference-orientation="270"
+          extent="{$outside-extent}in"/>
+      <fo:region-end
+          region-name="Odd-Outside"
+          reference-orientation="180"
+          extent="{$inside-extent}in"/>
+    </fo:simple-page-master>
+    <fo:simple-page-master master-name="Front-Odd-PageMaster"
+                           page-height="{$page-height}in"
+                           page-width="{$page-width}in">
+      <fo:region-body
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-inside}in"
+          margin-left="{$body-outside}in" />
+      <fo:region-before
+          extent="{$before-extent}in"
+          display-align="after"
+          region-name="Odd-Header"/>
+      <fo:region-after
+          extent="{$after-extent}in"
+          display-align="before"
+          region-name="Odd-Footer"/>
+      <fo:region-start
+          reference-orientation="270"
+          extent="{$outside-extent}in"/>
+      <fo:region-end
+          region-name="Odd-Outside"
+          reference-orientation="180"
+          extent="{$inside-extent}in"/>
+    </fo:simple-page-master>
+    <fo:simple-page-master master-name="Front-Even-PageMaster"
+                           page-height="{$page-height}in"
+                           page-width="{$page-width}in">
+      <fo:region-body
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-inside}in"
+          margin-left="{$body-outside}in" />
+      <fo:region-before
+          extent="{$before-extent}in"
+          display-align="after"
+          region-name="Even-Header"/>
+      <fo:region-after
+          region-name="Even-Footer"
+          extent="{$after-extent}in"
+          display-align="before"/>
+      <fo:region-start
+          extent="{$outside-extent}in"/>
+      <fo:region-end
+          extent="{$inside-extent}in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="PageMaster-Cover"
                            margin-top="15mm"
@@ -135,16 +182,22 @@
                            page-height="{$page-height}in"
                            page-width="{$page-width}in">
       <fo:region-body
-          margin-top="8mm"
-          margin-right="8mm"
-          margin-bottom="8mm"
-          margin-left="8mm"/>
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-inside}in"
+          margin-left="{$body-outside}in" />
+      <fo:region-before
+          extent="{$before-extent}in"
+          display-align="after"
+          region-name="Even-Header"/>
       <fo:region-after
-          extent="180mm"
-          precedence="false"
-          padding-right="8mm"
-          padding-left="8mm"
-          display-align="after"/>
+          region-name="Even-Footer"
+          extent="{$after-extent}in"
+          display-align="before"/>
+      <fo:region-start
+          extent="{$outside-extent}in"/>
+      <fo:region-end
+          extent="{$inside-extent}in"/>
     </fo:simple-page-master>
     <fo:simple-page-master master-name="PageMaster-CoverBlank"
                            margin-top="15mm"
@@ -154,10 +207,10 @@
                            page-height="{$page-height}in"
                            page-width="{$page-width}in">
       <fo:region-body
-          margin-top="8mm"
-          margin-right="8mm"
-          margin-bottom="8mm"
-          margin-left="8mm"/>
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-inside}in"
+          margin-left="{$body-outside}in" />
     </fo:simple-page-master>
     <fo:page-sequence-master master-name="CoverFrontMaster">
       <fo:repeatable-page-master-alternatives>
@@ -165,8 +218,11 @@
             master-reference="PageMaster-CoverFront"
             page-position="first"/>
         <fo:conditional-page-master-reference
-            master-reference="PageMaster-CoverFront"
-            page-position="rest"/>
+            master-reference="Front-Odd-PageMaster"
+            odd-or-even="odd"/>
+        <fo:conditional-page-master-reference
+            master-reference="Front-Even-PageMaster"
+            odd-or-even="even"/>
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
     <fo:page-sequence-master master-name="PageMaster">
@@ -209,8 +265,10 @@
     <xsl:call-template name="Even-Header" />
   </fo:static-content>
   <fo:static-content flow-name="First-Outside">
+    <xsl:call-template name="First-Outside" />
   </fo:static-content>
   <fo:static-content flow-name="Odd-Outside">
+    <xsl:call-template name="Odd-Outside" />
   </fo:static-content>
   <fo:static-content flow-name="Odd-Header">
     <xsl:call-template name="Odd-Header" />
@@ -240,7 +298,11 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template name="First-Outside" />
+
 <xsl:template name="Odd-Footer" />
+
+<xsl:template name="Odd-Outside" />
 
 <xsl:template name="Even-Footer" />
 
