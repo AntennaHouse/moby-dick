@@ -473,7 +473,7 @@
                            ignorance, the letter H, which almost alone maketh up the signification
                            of the word, you deliver that which is not true."</p>
                      </q>
-                     <bibl>Hackluyt.</bibl>
+                     <bibl><hi rend="i">Hackluyt</hi>.</bibl>
                   </cit>
                   <cit>
                      <q>
@@ -578,7 +578,7 @@
 
                <head>EXTRACTS.</head>
                <head type="sub">(Supplied by a Sub-Sub-Librarian.)</head>
-               <p>IT will be seen that this mere painstaking burrower and grub-worm of a poor devil
+               <p><hi rend="small-caps">It</hi> will be seen that this mere painstaking burrower and grub-worm of a poor devil
                   of a Sub-Sub appears to have gone through the long Vaticans and street-stalls of
                   the earth, picking up whatever random allusions to whales he could anyways find in
                   any book whatsoever, sacred or profane. Therefore you must not, in every case at
@@ -602,10 +602,13 @@
                   hearts together—there, ye shall strike unsplinterable glasses!</p>
             </div>
             <div type="intro_text">
+               <head>EXTRACTS.</head>
                <p>
                   <cit>
                      <q>
-                        <p>"And God created great whales."</p>
+                        <lg type="quotation">
+                           <l>"And God created great whales."</l>
+			</lg>
                      </q>
                      <bibl>
                         <title>Genesis.</title>
