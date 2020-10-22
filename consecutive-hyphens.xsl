@@ -32,7 +32,7 @@
 <!-- IMPORTS                                                       -->
 <!-- ============================================================= -->
 
-<xsl:import href="paragraph-widow-2.xsl"/>
+<xsl:import href="line-start-end.xsl"/>
 
 
 <!-- ============================================================= -->
@@ -40,7 +40,6 @@
 <!-- ============================================================= -->
 
 <!-- Additional hyphenation exceptions. -->
-<!--
 <xsl:template match="axf:hyphenation-info"
               mode="axf:hyphenation-info">
   <xsl:apply-imports />
@@ -52,44 +51,28 @@
     </axh:exceptions>
   </axf:hyphenation-info>
 </xsl:template>
--->
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[3]/p[45]/text()">
-  <xsl:value-of
-      select="replace(ahf:text(.), 'to be', 'to&nbsp;be')" />
-</xsl:template>
 
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[11]/p[2]/text()">
-  <xsl:value-of
-      select="replace(ahf:text(.), 'you feel', 'you&nbsp;feel')" />
-</xsl:template>
-
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[13]/p[5]">
-  <fo:block word-spacing.minimum="0.03em"
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[62]/p[2]">
+  <fo:block axf:hyphenate-hyphenated-word="false"
             xsl:use-attribute-sets="p">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
 
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[54]">
-  <fo:block word-spacing.minimum="0.01em"
-            xsl:use-attribute-sets="p">
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[81]/p[29]/text()">
-  <xsl:value-of
-      select="replace(ahf:text(.), 'of the thing', 'of&nbsp;the thing')" />
-</xsl:template>
-
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[96]/p[3]/text()">
-  <xsl:value-of
-      select="replace(ahf:text(.), 'the rear', 'the&nbsp;rear')" />
-</xsl:template>
-
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[107]/p[5]/text()">
-  <xsl:value-of
-      select="replace(ahf:text(.), 'by any', 'by&nbsp;any')" />
+<xsl:template
+    match="/TEI/text[1]/body[1]/div[1]/div[133]/note[1]/p[1]/text()">
+  <xsl:analyze-string
+      select="ahf:text(.)"
+      regex="comprehensively">
+    <xsl:matching-substring>
+      <fo:wrapper hyphenate="false">
+        <xsl:value-of select="." />
+      </fo:wrapper>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="." />
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
 </xsl:template>
 
 </xsl:stylesheet>
