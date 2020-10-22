@@ -70,13 +70,13 @@
     as="xs:string" />
 
 <xsl:param
-    name="lang"
-    select="'en'"
+    name="line-height"
+    select="'11pt'"
     as="xs:string" />
 
 <xsl:param
-    name="line-height"
-    select="'11pt'"
+    name="lang"
+    select="'en'"
     as="xs:string" />
 
 <xsl:param
@@ -84,15 +84,62 @@
     select="'source-serif-pro, Century, ''Times New Roman'', serif'"
     as="xs:string" />
 
-<xsl:param
-    name="font-family-monospace"
-    select="'TiredOfCourier, Courier, Courier New, opensymbol, symbol, ZapfDingbats, Lucida Sans Unicode'"
-    as="xs:string" />
-
 
 <!-- ============================================================= -->
 <!-- TEMPLATES                                                     -->
 <!-- ============================================================= -->
+
+<!-- axf:hyphenation-info -->
+<!-- This template is just a convenience feature to allow any
+     stylesheet(s) that import this stylesheet to add additional
+     hyphenation information.
+
+     Any stylesheet that imports this stylesheet and adds hyphenation
+     information should use xsl:apply-imports to also use this
+     template.  For example:
+
+       <xsl:template match="axf:hyphenation-info"
+                     mode="axf:hyphenation-info">
+         <xsl:apply-imports />
+         <axf:hyphenation-info
+             language="eng"
+             xmlns:axh="http://www.antennahouse.com/names/XSL/Hyphenations">
+           <axh:exceptions>
+             Phædon
+           </axh:exceptions>
+         </axf:hyphenation-info>
+       </xsl:template>
+
+     This template is necessary only because the corrections for
+     errors found by the automated analysis have been broken into
+     multiple stages that each can add additional hyphenation
+     exceptions.  If this was one stylesheet, or if all the
+     hyphenation exceptions were handled together, then this template
+     would not be necessary.
+-->
+<xsl:template match="axf:hyphenation-info"
+              mode="axf:hyphenation-info">
+  <xsl:copy-of select="." />
+</xsl:template>
+
+<xsl:template name="declarations">
+  <fo:declarations>
+    <axf:font-face src="url('harrowgate/harrowgate.regular.ttf')"
+                   font-family="harrowgate" />
+    <axf:font-face src="url('SourceSerifPro/SourceSerifPro-Regular.otf')"
+                   font-family="source-serif-pro" />
+    <axf:font-face src="url('SourceSerifPro/SourceSerifPro-It.otf')"
+                   font-family="source-serif-pro"
+                   font-style="italic" />
+    <xsl:variable name="axf:hyphenation-info"
+                  as="element(axf:hyphenation-info)">
+      <axf:hyphenation-info language="eng" src="exceptions.xml" />
+    </xsl:variable>
+    <xsl:apply-templates
+        select="$axf:hyphenation-info"
+        mode="axf:hyphenation-info" />
+  </fo:declarations>
+</xsl:template>
 
 <xsl:template match="TEI">
   <fo:root font-size="{$font-size}"
@@ -282,49 +329,37 @@
 </xsl:template>
 
 <xsl:attribute-set name="p">
-  <xsl:attribute name="text-indent" select="'1em'" />
+  <xsl:attribute name="text-indent" select="'1.5em'" />
 </xsl:attribute-set>
 
-<xsl:template match="axf:hyphenation-info"
-              mode="axf:hyphenation-info">
-  <xsl:copy-of select="." />
-</xsl:template>
-
-<xsl:template name="declarations">
-  <fo:declarations>
-    <axf:font-face src="url('harrowgate/harrowgate.regular.ttf')"
-                 font-family="harrowgate" />
-    <axf:font-face src="url('SourceSerifPro/SourceSerifPro-Regular.otf')"
-                 font-family="source-serif-pro" />
-    <axf:font-face src="url('SourceSerifPro/SourceSerifPro-It.otf')"
-                   font-family="source-serif-pro"
-                   font-style="italic" />
-    <xsl:variable name="axf:hyphenation-info"
-                  as="element(axf:hyphenation-info)">
-      <axf:hyphenation-info language="eng" src="exceptions.xml" />
-    </xsl:variable>
-    <xsl:apply-templates
-        select="$axf:hyphenation-info"
-        mode="axf:hyphenation-info" />
-    <!--
-    <axf:formatter-config xmlns:axs="http://www.antennahouse.com/names/XSL/Settings">
-      <axs:formatter-settings bpil-penalty-hyphenation="1" bpil-highlight="#FF8" />
-    </axf:formatter-config>
-    -->
-  </fo:declarations>
-</xsl:template>
-
-<xsl:template
-    match="titlePage | div[@type = 'intro_text']">
+<xsl:template match="titlePage">
   <fo:page-sequence
       master-reference="CoverFrontMaster"
-      format="lower-roman">
+      format="i">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
 </xsl:template>
+
+<xsl:template match="div[@type = 'intro_text']">
+  <fo:page-sequence
+      master-reference="ExtractsMaster"
+      format="i">
+    <xsl:call-template name="Extracts-static-content" />
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <fo:marker marker-class-name="Chapter-Title">
+        <xsl:apply-templates
+            select="(fw[@type = 'head'], head)[1]/node()"
+            mode="marker" />
+      </fo:marker>
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
 <xsl:template
     match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')]/p[1] |
            div[@type = 'intro_text'][head[1] = 'EXTRACTS.']/p[1]"
@@ -362,15 +397,38 @@
 </xsl:template>
 
 <xsl:template
-    match="div[@type = ('fly_title', 'dedication')]">
+    match="div[@type = 'fly_title']">
   <fo:page-sequence
       master-reference="CoverFrontMaster">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
       <fo:block-container display-align="center"
-                          height="80%">
+                          height="100%">
         <xsl:apply-templates />
       </fo:block-container>
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'fly_title'][1]"
+    priority="5">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'dedication']">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
 </xsl:template>
@@ -381,9 +439,7 @@
       master-reference="PageMaster"
       writing-mode="from-page-master-region()"
       initial-page-number="1"
-      force-page-count="{if (self::back)
-                           then 'document 16'
-                         else 'auto'}">
+      axf:baseline-grid="root">
     <xsl:call-template name="PageMaster-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
@@ -392,13 +448,16 @@
   </fo:page-sequence>
 </xsl:template>
 
+<!-- The TEI XML has another copy of the title that is not in the
+     first edition. -->
 <xsl:template match="div[@type = 'book']/head" />
 
 <xsl:template
     match="div[@type = 'chapter'][exists(head[@type = 'sub'] | fw[@type = 'head'])]">
   <xsl:if test="exists(preceding-sibling::div[@type = current()/@type])">
     <fo:block axf:suppress-if-first-on-page="true" text-align="center"
-              padding-top="0.125in">
+              padding-top="0.125in"
+              space-after="1rlh" space-after.precedence="force">
       <fo:external-graphic src="images/separator.svg" />
     </fo:block>
   </xsl:if>
@@ -429,14 +488,15 @@
   </fo:page-sequence>
 </xsl:template>
 
+<!-- Chapter I, Loomings, has larger chapter-drop. -->
 <xsl:template
     match="div[@type = ('fly_title', 'intro_text', 'chapter')]/head">
   <fo:block
       text-align="center"
-      padding-top="{if (exists(../preceding-sibling::div
-                                    [@type = 'chapter']))
-                      then '0.125in'
-                    else '0.75in'}"
+      space-before="{if (exists(preceding::*[1][@type = 'chapter']))
+                       then '3rlh'
+                     else '5rlh'}"
+      space-before.conditionality="retain"
       keep-with-next="always">
     <xsl:if
         test="exists(head[@type = 'sub'] | fw[@type = 'head'])">
@@ -453,15 +513,18 @@
 <xsl:template
     match="div[@type = 'contents']/head">
   <fo:block
-      padding-before="0.3in"
-      padding-after="0.3in"
-      space-after.precedence="1"
+      padding-before="0.16in"
+      padding-after="0.24in" font-size="13pt"
+      font-stretch="condensed" letter-spacing="0.28em"
       text-align="center"
       keep-with-next="always">
     <fo:marker marker-class-name="Chapter-Title">
       <xsl:apply-templates />
     </fo:marker>
     <xsl:apply-templates />
+  </fo:block>
+  <fo:block text-indent="0" text-align="center">
+    <fo:external-graphic src="images/separator.svg"/>
   </fo:block>
 </xsl:template>
 
@@ -473,6 +536,10 @@
       padding-after="1em"
       font-variant="all-small-caps"
       keep-with-next="always">
+    <xsl:if test="contains(., 'Sub-Sub')">
+      <xsl:attribute name="font-family" select="'harrowgate'" />
+      <xsl:attribute name="font-variant" select="'normal'" />
+    </xsl:if>
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -481,15 +548,16 @@
 
 <xsl:template match="div[@type = 'contents']/list">
   <fo:block-container
-      column-count="2" column-gap="5pt"
+      column-count="2" column-gap="4pt"
       axf:column-rule-width="thin"
       axf:column-rule-style="solid"
       axf:column-rule-color="black"
       axf:column-rule-display="all"
       axf:column-rule-align="before"
-      font-size="7pt" line-height="7.75pt">
+      font-size="7pt" line-height="7.75pt"
+      space-before="0.22in">
     <fo:table>
-      <fo:table-column text-align="—" />
+      <fo:table-column font-size="6pt" />
       <fo:table-header>
         <fo:table-row font-size="6pt" font-style="italic">
           <fo:table-cell
@@ -499,11 +567,11 @@
           <fo:table-cell>
             <fo:block>&#xA0;</fo:block>
           </fo:table-cell>
-          <fo:table-cell>
+          <!--<fo:table-cell>
             <fo:block>&#xA0;</fo:block>
-          </fo:table-cell>
+          </fo:table-cell>-->
           <fo:table-cell
-              text-align="center">
+              text-align="right" number-columns-spanned="2">
             <fo:block>Page</fo:block>
           </fo:table-cell>
         </fo:table-row>
@@ -529,7 +597,7 @@
   <fo:table-row>
     <fo:table-cell
         text-align="right"
-        font-variant="all-small-caps">
+        font-variant="all-small-caps" font-size="from-table-column()">
       <fo:block>
         <fo:basic-link
               internal-destination="{$target}">
@@ -552,7 +620,7 @@
           <xsl:choose>
             <xsl:when test="contains(., '—')">
               <xsl:value-of
-                  select="replace(normalize-space(substring-after(text(), '—')),
+                  select="replace(normalize-space(substring-after(ahf:text(text()), '—')),
                           '\.$', '')" />
             </xsl:when>
             <xsl:otherwise>
@@ -569,7 +637,8 @@
     </fo:table-cell>
     <fo:table-cell
         text-align="right"
-        display-align="after">
+        display-align="after"
+        padding-left="4pt">
       <fo:block>
         <xsl:if test="exists(ref)">
           <fo:basic-link
@@ -693,7 +762,9 @@
 </xsl:template>
 
 <xsl:template match="div[@type = 'fly_title']/bibl">
-  <fo:block text-align="center" hyphenate="false" font-size="6pt">
+  <fo:block text-align="center" hyphenate="false" font-size="5pt"
+            line-height="10.5pt"
+            space-before="2.33in" space-before.conditionality="retain">
     <!-- Provide structure that is not in the source XML. -->
     <xsl:analyze-string select="ahf:text(edition/text())"
                         regex="HERMAN MELVILLE,">
@@ -711,20 +782,82 @@
   </fo:block>
 </xsl:template>
 
+
+<!-- ============================================================= -->
+<!-- DEDICATION                                                    -->
+<!-- ============================================================= -->
+
 <xsl:template match="div[@type = 'dedication']/p">
-  <fo:block text-align="center">
+  <fo:block text-align="center" hyphenate="false" font-size="8pt"
+	    line-height="10.5pt"
+            space-before="1.53in" space-before.conditionality="retain"
+            letter-spacing="0.25em" axf:letter-spacing-side="start">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
 
 <xsl:template match="div[@type = 'dedication']/p/lb" />
 
-<xsl:template match="div[@type = 'dedication']/p/text()">
-  <fo:block>
-    <xsl:if test="contains(., 'This Book is Inscribed')">
-      <xsl:attribute name="font-family" select="'harrowgate'" />
-    </xsl:if>
+<xsl:template
+    match="div[@type = 'dedication']/p/
+             text()[contains(., 'IN TOKEN')]">
+  <fo:block font-variant="all-small-caps">
     <xsl:value-of select="normalize-space(ahf:text(.))" />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'dedication']/p/
+             text()[contains(., 'OF MY ADMIRATION')]">
+  <fo:block font-variant="all-small-caps" space-before="0.4in">
+    <xsl:analyze-string
+        select="normalize-space(.)"
+        regex=",">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'dedication']/p/
+             text()[contains(., 'This Book is Inscribed')]">
+  <fo:block font-size="13pt" font-family="'harrowgate'"
+            space-before="0.36in" letter-spacing="0.167em">
+    <xsl:value-of select="normalize-space(ahf:text(.))" />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'dedication']/p/
+             text()[normalize-space(.) = 'TO']">
+  <fo:block space-before="0.23in" font-variant="all-small-caps">
+    <xsl:value-of select="normalize-space(.)" />
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="div[@type = 'dedication']/p/
+                       text()[contains(., 'NATHANIEL HAWTHORNE')]">
+  <fo:block space-before="0.23in" font-size="12pt"
+            font-stretch="condensed" letter-spacing="0.28em">
+    <xsl:analyze-string
+        select="."
+        regex="\.">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
   </fo:block>
 </xsl:template>
 
