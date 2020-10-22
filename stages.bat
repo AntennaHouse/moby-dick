@@ -240,7 +240,39 @@ java -jar %SAXON% %SOURCE% line-start-end.xsl > stage4_line-start-end.fo
 
 :stage_4_fo_done
 
-call %ANALYZER_BAT% -d stage4_line-start-end.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD%
+call %ANALYZER_BAT% -d stage4_line-start-end.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
+
+echo %echo%
+
+echo.
+echo Stage 5: Consecutive Hyphens
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage5_consecutive-hyphens.fo" "consecutive-hyphens.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage5_consecutive-hyphens.fo" goto stage_5_fo_do
+
+echo 'stage5_consecutive-hyphens.fo' is up to date
+
+goto stage_5_fo_done
+
+:stage_5_fo_do
+
+if exist "stage5_consecutive-hyphens.fo" del "stage5_consecutive-hyphens.fo"
+if exist "stage5_consecutive-hyphens.fo" (
+   echo Unable to replace 'stage5_consecutive-hyphens.fo'
+   goto error
+)
+
+echo Generating 'stage5_consecutive-hyphens.fo'
+
+java -jar %SAXON% %SOURCE% consecutive-hyphens.xsl > stage5_consecutive-hyphens.fo
+
+:stage_5_fo_done
+
+call %ANALYZER_BAT% -d stage5_consecutive-hyphens.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD%
 
 echo %echo%
 
