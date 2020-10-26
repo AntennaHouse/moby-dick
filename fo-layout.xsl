@@ -106,7 +106,7 @@
       <fo:region-end
           extent="{$inside-extent}in"/>
     </fo:simple-page-master>
-    <fo:simple-page-master master-name="PageMaster-CoverFront"
+    <fo:simple-page-master master-name="CoverFront-Even-PageMaster"
                            page-height="{$page-height}in"
                            page-width="{$page-width}in">
       <fo:region-body
@@ -114,6 +114,15 @@
           margin-bottom="{$body-after}in"
           margin-right="{$body-inside}in"
           margin-left="{$body-outside}in" />
+    </fo:simple-page-master>
+    <fo:simple-page-master master-name="CoverFront-Odd-PageMaster"
+                           page-height="{$page-height}in"
+                           page-width="{$page-width}in">
+      <fo:region-body
+          margin-top="{$body-before}in"
+          margin-bottom="{$body-after}in"
+          margin-right="{$body-outside}in"
+          margin-left="{$body-inside}in" />
     </fo:simple-page-master>
     <fo:simple-page-master master-name="Front-Odd-PageMaster"
                            page-height="{$page-height}in"
@@ -199,10 +208,16 @@
           margin-left="{$body-outside}in" />
     </fo:simple-page-master>
     <fo:page-sequence-master master-name="CoverFrontMaster">
+      <fo:repeatable-page-master-alternatives
+          maximum-repeats="1">
+        <fo:conditional-page-master-reference
+            master-reference="CoverFront-Odd-PageMaster"
+            odd-or-even="odd" />
+        <fo:conditional-page-master-reference
+            master-reference="CoverFront-Even-PageMaster"
+            odd-or-even="even" />
+      </fo:repeatable-page-master-alternatives>
       <fo:repeatable-page-master-alternatives>
-        <!--<fo:conditional-page-master-reference
-            master-reference="PageMaster-CoverFront"
-            page-position="first" />-->
         <fo:conditional-page-master-reference
             master-reference="Front-Odd-PageMaster"
             odd-or-even="odd" />
@@ -212,11 +227,18 @@
       </fo:repeatable-page-master-alternatives>
     </fo:page-sequence-master>
     <fo:page-sequence-master master-name="ExtractsMaster">
-      <fo:single-page-master-reference
-            master-reference="PageMaster-CoverFront" />
+      <fo:repeatable-page-master-alternatives
+          maximum-repeats="1">
+        <fo:conditional-page-master-reference
+            master-reference="CoverFront-Odd-PageMaster"
+            odd-or-even="odd" />
+        <fo:conditional-page-master-reference
+            master-reference="CoverFront-Even-PageMaster"
+            odd-or-even="even" />
+      </fo:repeatable-page-master-alternatives>
       <fo:repeatable-page-master-alternatives>
         <fo:conditional-page-master-reference
-            master-reference="PageMaster-CoverFront"
+            master-reference="PageMaster-CoverBlank"
             blank-or-not-blank="blank" />
         <fo:conditional-page-master-reference
             master-reference="Front-Odd-PageMaster"
@@ -306,6 +328,24 @@
   </fo:static-content>
 </xsl:template>
 
+<xsl:template name="Contents-static-content">
+  <fo:static-content flow-name="Even-Header">
+    <xsl:call-template name="Even-Header-No-Rule" />
+  </fo:static-content>
+  <fo:static-content flow-name="Odd-Outside">
+    <xsl:call-template name="Odd-Outside" />
+  </fo:static-content>
+  <fo:static-content flow-name="Odd-Header">
+    <xsl:call-template name="Odd-Header-No-Rule" />
+  </fo:static-content>
+  <fo:static-content flow-name="Even-Footer">
+    <xsl:call-template name="Even-Footer" />
+  </fo:static-content>
+  <fo:static-content flow-name="xsl-footnote-separator">
+    <xsl:call-template name="xsl-footnote-separator" />
+  </fo:static-content>
+</xsl:template>
+
 <xsl:template name="First-Footer">
   <fo:block
       keep-together.within-line="always"
@@ -327,14 +367,35 @@
   <fo:block
       keep-together.within-line="always"
       text-align="center"
-      font-size="small"
+      font-size="8pt"
       border-bottom="1pt solid black"
       axf:leader-expansion="force"
-      padding-bottom="4pt"
+      padding-bottom="5pt"
       margin-bottom="4pt">
     <fo:page-number color="transparent"/>
     <fo:leader />
-    <fo:inline letter-spacing="0.1em">
+    <fo:inline letter-spacing="0.22em">
+      <fo:retrieve-marker
+          retrieve-class-name="Chapter-Title"
+          retrieve-position="last-starting-within-page" />
+    </fo:inline>
+    <fo:leader />
+    <fo:page-number />
+  </fo:block>
+</xsl:template>
+
+<xsl:template name="Odd-Header-No-Rule">
+  <fo:block
+      keep-together.within-line="always"
+      text-align="center"
+      font-size="6pt"
+      border-bottom="1pt solid transparent"
+      axf:leader-expansion="force"
+      padding-bottom="5pt"
+      margin-bottom="4pt">
+    <fo:page-number color="transparent"/>
+    <fo:leader />
+    <fo:inline letter-spacing="0.2em">
       <fo:retrieve-marker
           retrieve-class-name="Chapter-Title"
           retrieve-position="first-starting-within-page" />
@@ -347,14 +408,34 @@
 <xsl:template name="Even-Header">
   <fo:block
       keep-together.within-line="always"
-      font-size="small"
+      font-size="8pt"
       border-bottom="1pt solid black"
       axf:leader-expansion="force"
-      padding-bottom="4pt"
+      padding-bottom="5pt"
       margin-bottom="4pt">
     <fo:page-number />
     <fo:leader />
-    <fo:inline letter-spacing="0.2em">
+    <fo:inline letter-spacing="0.22em">
+      <fo:retrieve-marker
+          retrieve-class-name="Chapter-Title"
+          retrieve-position="first-starting-within-page" />
+    </fo:inline>
+    <fo:leader />
+    <fo:page-number color="transparent" />
+  </fo:block>
+</xsl:template>
+
+<xsl:template name="Even-Header-No-Rule">
+  <fo:block
+      keep-together.within-line="always"
+      font-size="6pt"
+      border-bottom="1pt solid transparent"
+      axf:leader-expansion="force"
+      padding-bottom="5pt"
+      margin-bottom="4pt">
+    <fo:page-number />
+    <fo:leader />
+    <fo:inline font-variant="all-small-caps">
       <fo:retrieve-marker
           retrieve-class-name="Chapter-Title"
           retrieve-position="first-starting-within-page" />
