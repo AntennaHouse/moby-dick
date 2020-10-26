@@ -71,7 +71,7 @@
 
 <xsl:param
     name="line-height"
-    select="'11pt'"
+    select="'11.5pt'"
     as="xs:string" />
 
 <xsl:param
@@ -172,10 +172,10 @@
 <!-- tei:titlePage                                                 -->
 <!-- ============================================================= -->
 
-<!-- 'MOBY-DICK; OR, THE WHALE' have different markup on the title
-     page and the second fly title but have the same formatting.
-     Ignore the <titlePart> markup, which doesn't accurately describe
-     the text anyway, and process the text. -->
+<!-- 'MOBY-DICK; OR, THE WHALE' has different markup on the title page
+     and the second fly title but has the same formatting.  Ignore the
+     <titlePart> markup, which doesn't accurately describe the text
+     anyway, and process the text. -->
 <xsl:template match="docTitle | div[@type = 'fly_title']/head"
               priority="5">
   <fo:block
@@ -217,6 +217,19 @@
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'fly_title']">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <fo:block-container padding-top="1.6in">
+        <xsl:apply-templates />
+      </fo:block-container>
+    </fo:flow>
+  </fo:page-sequence>
 </xsl:template>
 
 <xsl:template match="byline">
@@ -343,171 +356,23 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="div[@type = 'intro_text']">
-  <fo:page-sequence
-      master-reference="ExtractsMaster"
-      format="i">
-    <xsl:call-template name="Extracts-static-content" />
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <fo:marker marker-class-name="Chapter-Title">
-        <xsl:apply-templates
-            select="(fw[@type = 'head'], head)[1]/node()"
-            mode="marker" />
-      </fo:marker>
-      <xsl:apply-templates />
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
 
-<xsl:template
-    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')]/p[1] |
-           div[@type = 'intro_text'][head[1] = 'EXTRACTS.']/p[1]"
-    priority="5">
-  <fo:block text-indent="0" text-align="center">
-    <fo:external-graphic src="images/separator.svg" />
-  </fo:block>
-  <xsl:next-match />
-</xsl:template>
-
-<xsl:template
-    match="div[@type = 'intro_text'][head[1] = 'ETYMOLOGY.'][1]/p |
-           div[@type = 'intro_text'][head[1] = 'EXTRACTS.'][1]/p">
-  <fo:block font-size="7pt"
-            axf:hyphenate-hyphenated-word="false"
-            hyphenation-push-character-count="4"
-            hyphenation-remain-character-count="4"
-            word-spacing.minimum="-0.04em"
-            xsl:use-attribute-sets="p">
-      <xsl:apply-templates />
-    </fo:block>
-</xsl:template>
+<!-- ============================================================= -->
+<!-- TABLE OF CONTENTS                                             -->
+<!-- ============================================================= -->
 
 <xsl:template
     match="div[@type = 'contents']">
   <fo:page-sequence
       master-reference="CoverFrontMaster"
       initial-page-number="auto-odd"
-      format="lower-roman">
+      format="i">
+    <xsl:call-template name="Contents-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
-</xsl:template>
-
-<xsl:template
-    match="div[@type = 'fly_title']">
-  <fo:page-sequence
-      master-reference="CoverFrontMaster">
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <fo:block-container display-align="center"
-                          height="100%">
-        <xsl:apply-templates />
-      </fo:block-container>
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
-
-<xsl:template
-    match="div[@type = 'fly_title'][1]"
-    priority="5">
-  <fo:page-sequence
-      master-reference="CoverFrontMaster">
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <xsl:apply-templates />
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
-
-<xsl:template
-    match="div[@type = 'dedication']">
-  <fo:page-sequence
-      master-reference="CoverFrontMaster">
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <xsl:apply-templates />
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
-
-<!-- Page numbers restart (with format '1') for body. -->
-<xsl:template match="body">
-  <fo:page-sequence
-      master-reference="PageMaster"
-      writing-mode="from-page-master-region()"
-      initial-page-number="1"
-      axf:baseline-grid="root">
-    <xsl:call-template name="PageMaster-static-content" />
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <xsl:apply-templates />
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
-
-<!-- The TEI XML has another copy of the title that is not in the
-     first edition. -->
-<xsl:template match="div[@type = 'book']/head" />
-
-<xsl:template
-    match="div[@type = 'chapter'][exists(head[@type = 'sub'] | fw[@type = 'head'])]">
-  <xsl:if test="exists(preceding-sibling::div[@type = current()/@type])">
-    <fo:block axf:suppress-if-first-on-page="true" text-align="center"
-              padding-top="0.125in"
-              space-after="1rlh" space-after.precedence="force">
-      <fo:external-graphic src="images/separator.svg" />
-    </fo:block>
-  </xsl:if>
-  <fo:block
-      id="{@type}-{count(preceding::div[@type = current()/@type]) + 1}">
-    <fo:marker marker-class-name="Chapter-Title">
-      <xsl:apply-templates
-          select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
-          mode="marker" />
-    </fo:marker>
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template
-    match="div[@type = 'chapter'][exists(head[. = 'EPILOGUE.'])]"
-    priority="5">
-  <fo:page-sequence
-      master-reference="PageMaster"
-      id="epilogue">
-    <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
-      <fo:marker marker-class-name="Chapter-Title" />
-      <xsl:apply-templates />
-      <xsl:apply-templates select="following-sibling::closer"
-                           mode="epilogue" />
-    </fo:flow>
-  </fo:page-sequence>
-</xsl:template>
-
-<!-- Chapter I, Loomings, has larger chapter-drop. -->
-<xsl:template
-    match="div[@type = ('fly_title', 'intro_text', 'chapter')]/head">
-  <fo:block
-      text-align="center"
-      space-before="{if (exists(preceding::*[1][@type = 'chapter']))
-                       then '3rlh'
-                     else '5rlh'}"
-      space-before.conditionality="retain"
-      keep-with-next="always">
-    <xsl:if
-        test="exists(head[@type = 'sub'] | fw[@type = 'head'])">
-        <fo:marker marker-class-name="Chapter-Title">
-          <xsl:apply-templates
-              select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
-              mode="marker" />
-        </fo:marker>
-    </xsl:if>
-    <xsl:apply-templates />
-  </fo:block>
 </xsl:template>
 
 <xsl:template
@@ -527,24 +392,6 @@
     <fo:external-graphic src="images/separator.svg"/>
   </fo:block>
 </xsl:template>
-
-<xsl:template match="head[@type = 'sub']"
-              priority="5">
-  <fo:block
-      text-align="center"
-      padding-before="1em"
-      padding-after="1em"
-      font-variant="all-small-caps"
-      keep-with-next="always">
-    <xsl:if test="contains(., 'Sub-Sub')">
-      <xsl:attribute name="font-family" select="'harrowgate'" />
-      <xsl:attribute name="font-variant" select="'normal'" />
-    </xsl:if>
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="fw" />
 
 <xsl:template match="div[@type = 'contents']/list">
   <fo:block-container
@@ -624,7 +471,8 @@
                           '\.$', '')" />
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="." />
+              <!-- 'Epilogue.', only. -->
+              <xsl:apply-templates />
             </xsl:otherwise>
           </xsl:choose>
         </fo:basic-link>
@@ -651,6 +499,338 @@
   </fo:table-row>
 </xsl:template>
 
+
+<!-- ============================================================= -->
+<!-- ETYMOLOGY AND EXTRACTS                                        -->
+<!-- ============================================================= -->
+
+<xsl:template match="div[@type = 'intro_text']">
+  <xsl:param name="font-size" select="'inherit'" as="xs:string" />
+  <xsl:param name="line-height" select="'1rlh'" as="xs:string" />
+  <xsl:param name="space-before" select="'0'" as="xs:string" />
+
+  <fo:page-sequence
+      master-reference="ExtractsMaster"
+      format="i">
+    <xsl:call-template name="Extracts-static-content" />
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <fo:marker marker-class-name="Chapter-Title">
+        <xsl:apply-templates
+            select="(fw[@type = 'head'], head)[1]/node()"
+            mode="marker" />
+      </fo:marker>
+      <xsl:apply-templates select="head" />
+      <fo:block text-indent="0" text-align="center"
+                line-height="1rlh">
+        <fo:external-graphic src="images/separator.svg" />
+      </fo:block>
+      <fo:block text-indent="0"
+                font-size="{$font-size}"
+                line-height="{$line-height}"
+                space-before="{$space-before}">
+        <xsl:apply-templates select="* except head" />
+      </fo:block>
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'EXTRACTS.')][2]"
+    priority="5">
+  <xsl:next-match>
+    <xsl:with-param name="font-size" select="'8.9pt'" as="xs:string" />
+    <xsl:with-param name="line-height" select="'9.4pt'" as="xs:string" />
+    <xsl:with-param name="space-before" select="'0.26in'" as="xs:string" />
+  </xsl:next-match>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')][1]/head"
+    priority="5">
+  <fo:block
+      text-align="center"
+      space-before="1.37in" letter-spacing="0.35em" font-size="10pt"
+      font-stretch="condensed"
+      space-before.conditionality="retain"
+      keep-with-next="always">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')][2]/head"
+    priority="5">
+  <fo:block
+      text-align="center"
+      space-before="0.4in" space-after="0.2in" letter-spacing="0.35em" font-size="10pt"
+      space-before.conditionality="retain"
+      keep-with-next="always">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text']/head">
+  <fo:block
+      text-align="center"
+      space-before="1.37in" letter-spacing="0.35em" font-size="10pt"
+      font-stretch="condensed"
+      space-before.conditionality="retain"
+      keep-with-next="always">
+    <xsl:if
+        test="exists(head[@type = 'sub'] | fw[@type = 'head'])">
+        <fo:marker marker-class-name="Chapter-Title">
+          <xsl:apply-templates
+              select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
+              mode="marker" />
+        </fo:marker>
+    </xsl:if>
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')]/head[@type = 'sub']"
+    priority="10">
+  <fo:block
+      text-align="center"
+      space-before="0.18in"
+      space-after="0.14in" line-height="12pt"
+      font-variant="all-small-caps" font-size="6pt" letter-spacing="0.3em"
+      keep-with-next="always">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex="\(([^)]+)\.\)">
+      <xsl:matching-substring>
+        <xsl:text>(</xsl:text>
+        <fo:inline font-variant="all-small-caps"
+                   axf:letter-spacing-side="start">
+          <xsl:value-of select="regex-group(1)" />
+        </fo:inline>
+        <fo:inline letter-spacing="0">.</fo:inline>
+        <xsl:text>)</xsl:text>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][head[1] = 'ETYMOLOGY.']/p">
+  <fo:block font-size="7pt" line-height="12pt"
+            space-before="0.14in"
+            axf:hyphenate-hyphenated-word="false"
+            hyphenation-push-character-count="4"
+            hyphenation-remain-character-count="4"
+            xsl:use-attribute-sets="p">
+      <xsl:apply-templates />
+    </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][head[1] = 'ETYMOLOGY']/p[1]">
+  <fo:block space-before="0.2in"
+            xsl:use-attribute-sets="p">
+      <xsl:apply-templates />
+    </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'EXTRACTS')][1]/head[1]"
+    priority="10">
+  <fo:block
+      text-align="center" font-size="12pt"
+		   font-stretch="condensed"
+		   letter-spacing="0.4em"
+		   axf:letter-spacing-side="start"
+                   space-before="0.69in"
+space-before.conditionality="retain"
+keep-with-next="always">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex="\.">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">.</fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'EXTRACTS')][2]/head[1]"
+    priority="10">
+  <fo:block
+      text-align="center" font-size="11pt"
+		   letter-spacing="0.26em"
+		   axf:letter-spacing-side="start"
+                   space-before="56pt" space-after="0.23in"
+		   font-stretch="condensed"
+space-before.conditionality="retain"
+keep-with-next="always">
+    <xsl:analyze-string select="normalize-space(.)"
+                        regex="\.">
+      <xsl:matching-substring>
+        <fo:inline letter-spacing="0">.</fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="head[@type = 'sub'][contains(., 'Sub-Sub')]"
+              priority="10">
+  <fo:block
+      text-align="center"      
+                   padding-before="0.15in"
+                   padding-after="0.17in" font-stretch="expanded"
+      font-family="harrowgate">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'intro_text'][head[1] = 'EXTRACTS.'][1]/p">
+  <fo:block font-size="7pt" line-height="9.8pt"
+            axf:hyphenate-hyphenated-word="false"
+            hyphenation-push-character-count="4"
+            hyphenation-remain-character-count="4"
+            word-spacing.minimum="-0.01em"
+            xsl:use-attribute-sets="p">
+      <xsl:apply-templates />
+    </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'fly_title'][1]"
+    priority="5">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'dedication']">
+  <fo:page-sequence
+      master-reference="CoverFrontMaster">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<!-- Page numbers restart (with format '1') for body. -->
+<xsl:template match="body">
+  <fo:page-sequence
+      master-reference="PageMaster"
+      writing-mode="from-page-master-region()"
+      initial-page-number="1"
+      axf:baseline-grid="root">
+    <xsl:call-template name="PageMaster-static-content" />
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <xsl:apply-templates />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<!-- The TEI XML has another copy of the title that is not in the
+     printed first edition. -->
+<xsl:template match="div[@type = 'book']/head" />
+
+<xsl:template
+    match="div[@type = 'chapter'][exists(head[@type = 'sub'] | fw[@type = 'head'])]">
+  <xsl:if test="exists(preceding-sibling::div[@type = current()/@type])">
+    <fo:block axf:suppress-if-first-on-page="true" text-align="center"
+              padding-top="0.125in"
+              space-after="0.2in" space-after.precedence="force"
+              axf:baseline-block-snap="none">
+      <fo:external-graphic src="images/separator.svg" />
+    </fo:block>
+  </xsl:if>
+  <fo:block
+      id="{@type}-{count(preceding::div[@type = current()/@type]) + 1}">
+    <fo:marker marker-class-name="Chapter-Title">
+      <xsl:apply-templates
+          select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
+          mode="marker" />
+    </fo:marker>
+    <fo:block-container
+        axf:baseline-grid="none"
+        axf:baseline-block-snap="none"
+        keep-together.within-page="always"
+        keep-with-next.within-page="always"
+        space-before="{if (exists(preceding::div[1][@type = 'chapter']))
+                         then '0.5in'
+                       else '0.72in'}"
+      space-before.conditionality="retain">
+      <xsl:apply-templates select="head" />
+    </fo:block-container>
+    <xsl:apply-templates select="* except head" />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'chapter'][exists(head[. = 'EPILOGUE.'])]"
+    priority="5">
+  <fo:page-sequence
+      master-reference="PageMaster"
+      id="epilogue">
+    <fo:flow flow-name="xsl-region-body" hyphenate="true"
+             text-align="justify">
+      <fo:marker marker-class-name="Chapter-Title" />
+      <xsl:apply-templates />
+      <xsl:apply-templates select="following-sibling::closer"
+                           mode="epilogue" />
+    </fo:flow>
+  </fo:page-sequence>
+</xsl:template>
+
+<!-- Chapter I, Loomings, has larger chapter-drop. -->
+<xsl:template
+    match="div[@type = 'chapter']/head">
+  <fo:block
+      text-align="center"
+      word-spacing="0.2em"
+      font-size="10pt"
+      keep-with-next="always">
+    <xsl:if
+        test="exists(head[@type = 'sub'] | fw[@type = 'head'])">
+        <fo:marker marker-class-name="Chapter-Title">
+          <xsl:apply-templates
+              select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
+              mode="marker" />
+        </fo:marker>
+    </xsl:if>
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="fw" />
+
+
+<xsl:template match="head[@type = 'sub']"
+              priority="5">
+  <fo:block
+      text-align="center"
+      word-spacing="0.2em"
+      padding-before="0.02in"
+      padding-after="1em"
+      font-variant="all-small-caps"
+      keep-with-next="always">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
 
 <!-- ============================================================= -->
 <!-- Back                                                          -->
@@ -708,6 +888,7 @@
 
 <xsl:template match="body//q">
   <fo:block text-align="center"
+            text-indent="0"
             space-before="1em"
             space-after="1em">
     <xsl:apply-templates />
@@ -721,7 +902,7 @@
                   exists(../following-sibling::*[1][self::bibl])">
       <fo:leader leader-pattern="space"/>
       <fo:leader leader-pattern="space" leader-length.optimum="100%"/>
-      <fo:inline-container padding-left="2em" padding-right="2em"
+      <fo:inline-container padding-left="2em" padding-right="0.125in"
                            max-width="80%" text-indent="0">
         <fo:block text-align="right">
           <xsl:apply-templates
@@ -736,13 +917,54 @@
     match="bibl[exists(preceding-sibling::*[1][self::q[p]])]"
     priority="5" />
 
+<xsl:template match="table">
+  <fo:table-and-caption text-align="center" space-before="0.11in" font-size="10pt">
+    <fo:table text-align="start">
+      <fo:table-body>
+        <xsl:apply-templates />
+      </fo:table-body>
+    </fo:table>
+  </fo:table-and-caption>
+</xsl:template>
+
+<xsl:template match="row">
+  <fo:table-row>
+    <xsl:apply-templates />
+  </fo:table-row>
+</xsl:template>
+
+<xsl:template match="cell">
+  <fo:table-cell padding="0.25pt">
+    <!-- Second column is in italics. -->
+    <xsl:if test="position() = 2">
+      <xsl:attribute name="font-style" select="'italic'" />
+    </xsl:if>
+    <!-- BPIL does not apply to right-to-left scripts. -->
+    <xsl:if test="exists(foreign[lang('HEB')])">
+      <xsl:attribute name="axf:line-break" select="'line'" />
+    </xsl:if>
+    <fo:block>
+      <xsl:apply-templates />
+    </fo:block>
+  </fo:table-cell>
+</xsl:template>
+
 <xsl:template match="p">
   <fo:block xsl:use-attribute-sets="p">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
 
+<!-- In second 'EXTRACTS.'. -->
 <xsl:template match="cit">
+  <fo:block space-before="0.16in" space-after="0.16in">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<!-- At start of a chapter. -->
+<xsl:template match="epigraph/cit"
+              priority="5">
   <fo:block space-before="1em" space-after="1em">
     <xsl:apply-templates />
   </fo:block>
@@ -760,6 +982,11 @@
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
+
+
+<!-- ============================================================= -->
+<!-- COPYRIGHT                                                     -->
+<!-- ============================================================= -->
 
 <xsl:template match="div[@type = 'fly_title']/bibl">
   <fo:block text-align="center" hyphenate="false" font-size="5pt"
@@ -863,7 +1090,8 @@
 
 <xsl:template match="lg">
   <fo:block text-align="center"
-            space-before="1em">
+            space-before="0.16in"
+            text-indent="0">
     <xsl:if test="not(parent::q)">
       <xsl:attribute name="space-after" select="'1em'" />
     </xsl:if>
@@ -1067,37 +1295,6 @@
 <xsl:template match="figure">
   <fo:external-graphic src="images/mark.jpg"
                        alignment-baseline="middle" />
-</xsl:template>
-
-<xsl:template match="table">
-  <fo:table-and-caption text-align="center">
-    <fo:table text-align="start">
-      <fo:table-body>
-        <xsl:apply-templates />
-      </fo:table-body>
-    </fo:table>
-  </fo:table-and-caption>
-</xsl:template>
-
-<xsl:template match="row">
-  <fo:table-row>
-    <xsl:apply-templates />
-  </fo:table-row>
-</xsl:template>
-
-<xsl:template match="cell">
-  <fo:table-cell>
-    <xsl:if test="empty(foreign)">
-      <xsl:attribute name="font-style" select="'italic'" />
-    </xsl:if>
-    <!-- BPIL does not work for right-to-left scripts. -->
-    <xsl:if test="exists(foreign[lang('HEB')])">
-      <xsl:attribute name="axf:line-break" select="'line'" />
-    </xsl:if>
-    <fo:block>
-      <xsl:apply-templates />
-    </fo:block>
-  </fo:table-cell>
 </xsl:template>
 
 </xsl:stylesheet>
