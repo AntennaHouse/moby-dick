@@ -27,3 +27,7 @@ Specify the full path of `saxon9he.jar` with the `-saxon` option.
 `stages.bat` can be slow: 'Moby-Dick' formats as more than 650 pages. It is formatted eight times, and four analysis reports are also produced.
 
 The types of corrections that are made are discussed in `doc/automated-analysis-example.docx`.
+
+## Page Images
+
+Images of the first American edition are available from the Wright American Fiction project and also from the Herman Melville Electronic Library at https://melville.electroniclibrary.org/moby-dick-the-whale-proofs.html.
