@@ -448,7 +448,7 @@
                <item>CXXXV.—The Chase. Third Day. <ref target="VAC7237-00000324" rend="right"
                      >621</ref>
                </item>
-               <item>EPILOGUE.</item>
+               <item><hi rend="small-caps">Epilogue</hi>.</item>
             </list>
          </div>
          <div type="fly_title">
@@ -11331,6 +11331,7 @@
                <head>CHAPTER LXXIII.</head>
                <head type="sub">STUBB AND FLASK KILL A RIGHT WHALE; AND THEN HAVE A TALK OVER
                   HIM.</head>
+               <fw type="head" place="top-centre">A RIGHT WHALE KILLED.</fw>
                <p><hi rend="small-caps">It</hi> must be borne in mind that all this time we have a Sperm Whale's prodigious
                   head hanging to the Pequod's side. But we must let it continue hanging there a
                   while till we can get a chance to attend to it. For the present other matters
@@ -11502,6 +11503,7 @@
             <div type="chapter">
                <head>CHAPTER LXXIV.</head>
                <head type="sub">THE SPERM WHALE'S HEAD—CONTRASTED VIEW.</head>
+               <fw type="head" place="top-centre">THE SPERM WHALE'S HEAD.</fw>
                <p><hi rend="small-caps">Here</hi>, now, are two great whales, laying their heads together; let us join them,
                   and lay together our own.</p>
                <p>Of the grand order of folio leviathans, the Sperm Whale and the Right Whale are by
@@ -11628,6 +11630,7 @@
             <div type="chapter">
                <head>CHAPTER LXXV.</head>
                <head type="sub">THE RIGHT WHALE'S HEAD.—CONTRASTED VIEW.</head>
+               <fw type="head" place="top-centre">THE RIGHT WHALE'S HEAD.</fw>
                <p><hi rend="small-caps">Crossing</hi> the deck, let us now have a good long look at the Right Whale's head.</p>
                <p>As in general shape the noble Sperm Whale's head may be compared to a Roman
                   war-chariot (especially in front, where it is so broadly rounded); so, at a broad
@@ -18386,6 +18389,7 @@
             <div type="chapter">
                <head>CHAPTER CXXXV.</head>
                <head type="sub">THE CHASE.—THIRD DAY.</head>
+               <fw type="head" place="top-centre">THE CHASE—THIRD DAY.</fw>
                <p><hi rend="small-caps">The</hi> morning of the third day dawned fair and fresh, and once more the solitary
                   night-man at the fore-mast-head was relieved by crowds of the daylight look-outs,
                   who dotted every mast and almost every spar.</p>
