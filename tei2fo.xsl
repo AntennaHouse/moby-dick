@@ -9,8 +9,9 @@
 <!ENTITY times '&#xD7;' >
 ]>
 
+<!-- Copyright 2020 Antenna House, Inc. -->
 <!-- 'Moby-Dick' first edition. -->
-<!-- http://webapp1.dlib.indiana.edu/TEIgeneral/view?docId=wright/VAC7237.xml -->
+<!-- http://purl.dlib.indiana.edu/iudl/wright/VAC7237 -->
 
 <xsl:stylesheet
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
@@ -124,6 +125,14 @@
 
 <xsl:template name="declarations">
   <fo:declarations>
+    <axf:document-info
+        name="document-title"
+        value="{/TEI/teiHeader/fileDesc/titleStmt/title}" />
+    <axf:document-info
+        name="author"
+        value="{/TEI/teiHeader/fileDesc/titleStmt/author}" />
+    <axf:document-info name="displaydoctitle" value="true" />
+    <axf:document-info name="pagelayout" value="TwoPageRight" />
     <axf:font-face src="url('harrowgate/harrowgate.regular.ttf')"
                    font-family="harrowgate" />
     <axf:font-face src="url('SourceSerifPro/SourceSerifPro-Regular.otf')"
@@ -146,6 +155,7 @@
            font-family="{$font-family-default}"
            font-selection-strategy="character-by-character"
            line-height="{$line-height}"
+           hyphenation-keep="page"
            xml:lang="en">
     <xsl:call-template
         name="layout-master-set" />
@@ -224,7 +234,7 @@
   <fo:page-sequence
       master-reference="CoverFrontMaster">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             text-align="justify" line-height="11pt">
       <fo:block-container padding-top="1.6in">
         <xsl:apply-templates />
       </fo:block-container>
@@ -546,6 +556,14 @@
 </xsl:template>
 
 <xsl:template
+    match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')][2]"
+    priority="5">
+  <xsl:next-match>
+    <xsl:with-param name="line-height" select="'11pt'" as="xs:string" />
+  </xsl:next-match>
+</xsl:template>
+
+<xsl:template
     match="div[@type = 'intro_text'][starts-with(head[1], 'ETYMOLOGY')][1]/head"
     priority="5">
   <fo:block
@@ -754,6 +772,7 @@ keep-with-next="always">
     <fo:block axf:suppress-if-first-on-page="true" text-align="center"
               padding-top="0.125in"
               space-after="0.2in" space-after.precedence="force"
+              axf:baseline-grid="none"
               axf:baseline-block-snap="none">
       <fo:external-graphic src="images/separator.svg" />
     </fo:block>
@@ -825,7 +844,7 @@ keep-with-next="always">
       text-align="center"
       word-spacing="0.2em"
       padding-before="0.02in"
-      padding-after="1em"
+      padding-after="0.05in"
       font-variant="all-small-caps"
       keep-with-next="always">
     <xsl:apply-templates />
@@ -879,18 +898,8 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
-
 <xsl:template match="sp">
   <fo:block>
-    <xsl:apply-templates />
-  </fo:block>
-</xsl:template>
-
-<xsl:template match="body//q">
-  <fo:block text-align="center"
-            text-indent="0"
-            space-before="1em"
-            space-after="1em">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -971,7 +980,7 @@ keep-with-next="always">
 </xsl:template>
 
 <xsl:template match="epigraph">
-  <fo:block>
+  <fo:block keep-with-next.within-page="always">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1088,6 +1097,21 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
+<xsl:template match="body//q">
+  <fo:block text-align="center"
+            text-indent="0"
+            space-before="0.25lh">
+      <xsl:attribute name="font-size" select="'7pt'" />
+      <xsl:attribute name="line-height" select="'9pt'" />
+      <xsl:attribute name="axf:baseline-block-snap"
+                     select="'before margin-box'" />
+      <xsl:attribute name="axf:baseline-grid" select="'new'" />
+      <!--<xsl:attribute name="space-before" select="'0'" />-->
+      <xsl:attribute name="space-after" select="'0'" />
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="lg">
   <fo:block text-align="center"
             space-before="0.16in"
@@ -1095,11 +1119,17 @@ keep-with-next="always">
     <xsl:if test="not(parent::q)">
       <xsl:attribute name="space-after" select="'1em'" />
     </xsl:if>
+    <xsl:if test="exists(ancestor::div[@type = 'chapter'])">
+      <xsl:attribute name="font-size" select="'7pt'" />
+      <xsl:attribute name="line-height" select="'9pt'" />
+      <xsl:attribute name="axf:baseline-block-snap"
+                     select="'before margin-box'" />
+      <xsl:attribute name="axf:baseline-grid" select="'new'" />
+      <xsl:attribute name="space-before" select="'0'" />
+      <xsl:attribute name="space-after" select="'0'" />
+    </xsl:if>
     <fo:inline-container
         axf:hanging-punctuation="start allow-end">
-      <xsl:if test="exists(ancestor::div[@type = 'chapter'])">
-        <xsl:attribute name="font-size" select="'7pt'" />
-      </xsl:if>
       <fo:block text-align="start">
         <xsl:apply-templates />
       </fo:block>
@@ -1125,9 +1155,9 @@ keep-with-next="always">
 </xsl:template>
 
 <xsl:template match="speaker">
-  <fo:block space-before="1em" space-after="1em"
-            text-align="center" font-variant="all-small-caps"
-            keep-with-next.within-page="always">
+  <fo:block text-align="center" font-variant="all-small-caps lining-nums"
+            keep-with-next.within-page="always"
+            space-before="0.5lh">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1258,13 +1288,18 @@ keep-with-next="always">
                 then replace($text, '&quot;$', '&rdquo;')
               else $text"
       as="xs:string" />
+  <!-- Moby-Dick uses broken English for speech from non-native
+       speakers of English.  The speech can include words with the
+       dropped initial vowel indicated by a right single-quote.
+       Handle those before replacing any &apos; with left
+       single-quotes. -->
   <xsl:variable
       name="text"
-      select="replace($text, '''(s?t?(&quot;|\s|[.,;:]|balmed\s|em\s|$))', '&rsquo;$1')"
+      select="replace($text, '''(s?t?(&quot;|\s|[.,;:]|(balmed|dention|em|gainst|ll|mong|parm|quid|specially|spose|stead|teak|till|[Tt]is|[Tt]was)(,|\.|\s)|$))', '&rsquo;$1')"
       as="xs:string" />
   <xsl:variable
       name="text"
-      select="replace($text, '(^|\s|&quot;)''', '$1&lsquo;')"
+      select="replace($text, '(^|\s|&quot;|—)''([^&quot;]|$)', '$1&lsquo;$2')"
       as="xs:string" />
   <xsl:variable
       name="text"
