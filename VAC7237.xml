@@ -1426,9 +1426,9 @@
                      <q>
                         <lg type="quotation">
                            <l>"Oh, the rare old Whale, mid storm and gale</l>
-                           <l>In his ocean home will be</l>
+                           <l rend="ti-1">In his ocean home will be</l>
                            <l>A giant in might, where might is right,</l>
-                           <l>And King of the boundless sea."</l>
+                           <l rend="ti-1">And King of the boundless sea."</l>
                         </lg>
                      </q>
                      <bibl>
