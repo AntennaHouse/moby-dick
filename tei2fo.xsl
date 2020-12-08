@@ -133,8 +133,13 @@
         value="{/TEI/teiHeader/fileDesc/titleStmt/author}" />
     <axf:document-info name="displaydoctitle" value="true" />
     <axf:document-info name="pagelayout" value="TwoPageRight" />
+    <axf:font-face src="url('bosox/BosoxFull-1ege.ttf')"
+                   font-family="bosox"
+                   font-weight="bold" />
     <axf:font-face src="url('harrowgate/harrowgate.regular.ttf')"
                    font-family="harrowgate" />
+    <axf:font-face src="url('pinewood/pinewood-g2a3.ttf')"
+                   font-family="pinewood" />
     <axf:font-face src="url('SourceSerifPro/SourceSerifPro-Regular.otf')"
                    font-family="source-serif-pro" />
     <axf:font-face src="url('SourceSerifPro/SourceSerifPro-It.otf')"
@@ -660,9 +665,9 @@
     priority="10">
   <fo:block
       text-align="center" font-size="12pt"
-		   font-stretch="condensed"
-		   letter-spacing="0.4em"
-		   axf:letter-spacing-side="start"
+                   font-stretch="condensed"
+                   letter-spacing="0.4em"
+                   axf:letter-spacing-side="start"
                    space-before="0.69in"
 space-before.conditionality="retain"
 keep-with-next="always">
@@ -683,10 +688,10 @@ keep-with-next="always">
     priority="10">
   <fo:block
       text-align="center" font-size="11pt"
-		   letter-spacing="0.26em"
-		   axf:letter-spacing-side="start"
+                   letter-spacing="0.26em"
+                   axf:letter-spacing-side="start"
                    space-before="56pt" space-after="0.23in"
-		   font-stretch="condensed"
+                   font-stretch="condensed"
 space-before.conditionality="retain"
 keep-with-next="always">
     <xsl:analyze-string select="normalize-space(.)"
@@ -882,18 +887,36 @@ keep-with-next="always">
 </xsl:template>
 
 <xsl:template
-    match="div[@type = 'advertisement']/head">
+    match="div[@type = 'advertisement']/head[empty(@type)]"
+    priority="15">
   <fo:block
       space-after.precedence="1"
       text-align="center"
-      keep-with-next="always">
+      text-align-last="center"
+      keep-with-next="always"
+      font-family="pinewood">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<xsl:template
+    match="div[@type = 'advertisement']/head"
+    priority="10">
+  <fo:block
+      space-after.precedence="1"
+      text-align="center"
+      text-align-last="center"
+      keep-with-next="always"
+      font-family="bosox"
+      font-weight="bold">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
 
 <xsl:template
     match="div[@type = 'advertisement']/p[1]">
-  <fo:block text-align="center">
+  <fo:block text-align="center"
+      text-align-last="center">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1025,7 +1048,7 @@ keep-with-next="always">
 
 <xsl:template match="div[@type = 'dedication']/p">
   <fo:block text-align="center" hyphenate="false" font-size="8pt"
-	    line-height="10.5pt"
+            line-height="10.5pt"
             space-before="1.53in" space-before.conditionality="retain"
             letter-spacing="0.25em" axf:letter-spacing-side="start">
     <xsl:apply-templates />
@@ -1038,7 +1061,7 @@ keep-with-next="always">
     match="div[@type = 'dedication']/p/
              text()[contains(., 'IN TOKEN')]">
   <fo:block font-variant="all-small-caps">
-    <xsl:value-of select="normalize-space(ahf:text(.))" />
+    <xsl:value-of select="normalize-space(.)" />
   </fo:block>
 </xsl:template>
 
@@ -1066,7 +1089,7 @@ keep-with-next="always">
              text()[contains(., 'This Book is Inscribed')]">
   <fo:block font-size="13pt" font-family="'harrowgate'"
             space-before="0.36in" letter-spacing="0.167em">
-    <xsl:value-of select="normalize-space(ahf:text(.))" />
+    <xsl:value-of select="normalize-space(.)" />
   </fo:block>
 </xsl:template>
 
@@ -1100,14 +1123,11 @@ keep-with-next="always">
 <xsl:template match="body//q">
   <fo:block text-align="center"
             text-indent="0"
-            space-before="0.25lh">
-      <xsl:attribute name="font-size" select="'7pt'" />
-      <xsl:attribute name="line-height" select="'9pt'" />
-      <xsl:attribute name="axf:baseline-block-snap"
-                     select="'before margin-box'" />
-      <xsl:attribute name="axf:baseline-grid" select="'new'" />
-      <!--<xsl:attribute name="space-before" select="'0'" />-->
-      <xsl:attribute name="space-after" select="'0'" />
+            space-before="0.25lh"
+            font-size="7pt"
+            line-height="9pt"
+            axf:baseline-block-snap="before margin-box"
+            axf:baseline-grid="new">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1228,7 +1248,7 @@ keep-with-next="always">
 <xsl:template match="note[@place = 'foot']" />
 
 <xsl:template match="ref[exists(key('footnote',
-                                        substring-after(@target, '#')))]"
+                                    substring-after(@target, '#')))]"
               priority="5">
   <fo:footnote
       id="{@xml:id}"
@@ -1265,11 +1285,10 @@ keep-with-next="always">
   </fo:basic-link>
 </xsl:template>
 
-<!-- Drop identified typos and leave corections from <corr>. -->
+<!-- Drop identified typos and leave corrections from <corr>. -->
 <xsl:template match="sic" />
 
-<!-- Convert single and double quotes to 'curly' quotes.
-     Exception for "'balmed" and "'em" in "The Spouter-Inn". -->
+<!-- Convert single and double quotes to 'curly' quotes. -->
 <xsl:template match="text()" name="ahf:text">
   <xsl:param name="text" select="." as="text()" />
 
