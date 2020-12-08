@@ -4,7 +4,7 @@ Source XML and stylesheet for transforming TEI of first American edition of 'Mob
 
 Source XML is based on files from 'Wright American Fiction' project:
 
-- http://webapp1.dlib.indiana.edu/TEIgeneral/view?docId=wright/VAC7237.xml
+- http://purl.dlib.indiana.edu/iudl/wright/VAC7237
 
 The source XML has multiple differences from the Wright version. In particular, the Wright version lacks markup for page headers and uses empty elements to mark the start of italic text rather than enclosing the text.
 
