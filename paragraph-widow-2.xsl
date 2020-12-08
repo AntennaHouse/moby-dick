@@ -12,7 +12,7 @@
 
 <!-- Copyright 2020 Antenna House, Inc. -->
 <!-- 'Moby-Dick' first edition. -->
-<!-- http://webapp1.dlib.indiana.edu/TEIgeneral/view?docId=wright/VAC7237.xml -->
+<!-- http://purl.dlib.indiana.edu/iudl/wright/VAC7237 -->
 
 <xsl:stylesheet
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"

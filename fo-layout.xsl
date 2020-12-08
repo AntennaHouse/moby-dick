@@ -27,7 +27,8 @@
            select="$page-width - $text-block-width - $body-outside"/>
 <xsl:param name="body-outside" select="0.905"/>
 <xsl:param name="body-before" select="0.875"/>
-<xsl:param name="body-after" select="1"/>
+<xsl:param name="body-after" select="1.1"/>
+<xsl:param name="front-after" select="1"/>
 
 <xsl:param name="after-extent" select="$body-after"/>
 <xsl:param name="before-extent" select="$body-before"/>
@@ -111,7 +112,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-inside}in"
           margin-left="{$body-outside}in" />
     </fo:simple-page-master>
@@ -120,7 +121,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-outside}in"
           margin-left="{$body-inside}in" />
     </fo:simple-page-master>
@@ -129,7 +130,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-outside}in"
           margin-left="{$body-inside}in" />
       <fo:region-before
@@ -153,7 +154,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-inside}in"
           margin-left="{$body-outside}in" />
       <fo:region-before
@@ -178,7 +179,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-inside}in"
           margin-left="{$body-outside}in" />
       <fo:region-before
@@ -203,7 +204,7 @@
                            page-width="{$page-width}in">
       <fo:region-body
           margin-top="{$body-before}in"
-          margin-bottom="{$body-after}in"
+          margin-bottom="{$front-after}in"
           margin-right="{$body-inside}in"
           margin-left="{$body-outside}in" />
     </fo:simple-page-master>
