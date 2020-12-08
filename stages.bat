@@ -11,7 +11,7 @@ set PWD=%cd%
 set SOURCE=VAC7237.xml
 set ANALYZER_BAT=../analysis-utility/analyzer.bat
 set USE_SAXON=E:/saxon/9.9/saxon9he.jar
-set USE_AHFCMD=E:/Projects/V70/Windows_X86_64E/AHFCmd.exe
+set USE_AHFCMD="%AHF70_64_HOME%/AHFCmd.exe"
 
 rem Command-line parameter defaults (possibly used in 'usage' message)
 set ahfcmd=
