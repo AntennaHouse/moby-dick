@@ -9,7 +9,7 @@
 <!ENTITY times '&#xD7;' >
 ]>
 
-<!-- Copyright 2020 Antenna House, Inc. -->
+<!-- Copyright 2020-2021 Antenna House, Inc. -->
 <!-- 'Moby-Dick' first edition. -->
 <!-- http://purl.dlib.indiana.edu/iudl/wright/VAC7237 -->
 
@@ -133,6 +133,7 @@
         value="{/TEI/teiHeader/fileDesc/titleStmt/author}" />
     <axf:document-info name="displaydoctitle" value="true" />
     <axf:document-info name="pagelayout" value="TwoPageRight" />
+    <axf:document-info name="pagemode" value="useNone" />
     <axf:font-face src="url('bosox/BosoxFull-1ege.ttf')"
                    font-family="bosox"
                    font-weight="bold" />
@@ -155,6 +156,42 @@
   </fo:declarations>
 </xsl:template>
 
+<xsl:template name="bookmark-tree">
+  <fo:bookmark-tree>
+    <fo:bookmark
+        internal-destination="{text/front/titlePage/pb[1]/@xml:id}"
+        font-weight="bold">
+      <fo:bookmark-title>
+        <xsl:value-of
+            select="teiHeader/fileDesc/titleStmt/title" />
+      </fo:bookmark-title>
+    </fo:bookmark>
+    <xsl:for-each select="text/front/div[@type = 'contents']/list/item">
+      <xsl:variable
+          name="target"
+          select="if (exists(ref))
+                  then concat('chapter-', position())
+                  else 'epilogue'"
+          as="xs:string" />
+      <fo:bookmark internal-destination="{$target}">
+        <fo:bookmark-title>
+          <xsl:choose>
+            <xsl:when test="contains(., '—')">
+              <xsl:value-of
+                  select="replace(normalize-space(ahf:text(text())),
+                                  '\.$', '')" />
+            </xsl:when>
+            <xsl:otherwise>
+              <!-- 'Epilogue.', only. -->
+              <xsl:value-of select="." />
+            </xsl:otherwise>
+          </xsl:choose>
+        </fo:bookmark-title>
+      </fo:bookmark>
+    </xsl:for-each>
+  </fo:bookmark-tree>
+</xsl:template>
+
 <xsl:template match="TEI">
   <fo:root font-size="{$font-size}"
            font-family="{$font-family-default}"
@@ -165,6 +202,7 @@
     <xsl:call-template
         name="layout-master-set" />
     <xsl:call-template name="declarations" />
+    <xsl:call-template name="bookmark-tree" />
     <!--
     <fo:page-sequence
         master-reference="PageMaster"
@@ -483,7 +521,7 @@
             <xsl:when test="contains(., '—')">
               <xsl:value-of
                   select="replace(normalize-space(substring-after(ahf:text(text()), '—')),
-                          '\.$', '')" />
+                                  '\.$', '')" />
             </xsl:when>
             <xsl:otherwise>
               <!-- 'Epilogue.', only. -->
