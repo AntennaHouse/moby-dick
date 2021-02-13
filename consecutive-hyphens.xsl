@@ -53,8 +53,11 @@
 </xsl:template>
 
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[62]/p[2]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <fo:block axf:hyphenate-hyphenated-word="false"
             xsl:use-attribute-sets="p">
+    <xsl:copy-of select="$atts" />
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
