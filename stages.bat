@@ -9,9 +9,9 @@ setlocal ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 rem Directory locations
 set PWD=%cd%
 set SOURCE=VAC7237.xml
-set ANALYZER_BAT=../analysis-utility/analyzer.bat
+set USE_ANALYZER_BAT=../analysis-utility/analyzer.bat
 set USE_SAXON=E:/saxon/9.9/saxon9he.jar
-set USE_AHFCMD="%AHF70_64_HOME%/AHFCmd.exe"
+set USE_AHFCMD="%AHF71_64_HOME%/AHFCmd.exe"
 
 rem Command-line parameter defaults (possibly used in 'usage' message)
 set ahfcmd=
@@ -32,7 +32,7 @@ set __short_param=
 rem List of names of recognized parameters that require a value.
 rem There must be at least one space (' ') at the beginning and end of
 rem the list and between parameter names.
-set __long_param= ahfcmd saxon 
+set __long_param= ahfcmd analyzer saxon 
 
 rem List of all recognized parameter names.
 rem There must be at least one space (' ') at the beginning and end of
@@ -104,6 +104,17 @@ if not "%ahfcmd%"=="" (
    )
 ) else (
    set ahfcmd=%USE_AHFCMD%
+)
+
+if not "%analyzer%"=="" (
+   if EXIST "%analyzer%" (
+      set ANALYZER_BAT="%analyzer%"
+   ) else (
+      echo Analyzer batch file does not exist: %analyzer%
+      goto error
+   )
+) else (
+   set ANALYZER_BAT=%USE_ANALYZER_BAT%
 )
 
 if not "%saxon%"=="" (
@@ -272,7 +283,39 @@ java -jar %SAXON% %SOURCE% consecutive-hyphens.xsl > stage5_consecutive-hyphens.
 
 :stage_5_fo_done
 
-call %ANALYZER_BAT% -d stage5_consecutive-hyphens.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD%
+call %ANALYZER_BAT% -d stage5_consecutive-hyphens.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
+
+echo %echo%
+
+echo.
+echo Stage 6: White-space
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage6_white-space.fo" "white-space.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-white-space-settings.xml"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage6_white-space.fo" goto stage_6_fo_do
+
+echo 'stage6_white-space.fo' is up to date
+
+goto stage_6_fo_done
+
+:stage_6_fo_do
+
+if exist "stage6_white-space.fo" del "stage6_white-space.fo"
+if exist "stage6_white-space.fo" (
+   echo Unable to replace 'stage6_white-space.fo'
+   goto error
+)
+
+echo Generating 'stage6_white-space.fo'
+
+java -jar %SAXON% %SOURCE% white-space.xsl > stage6_white-space.fo
+
+:stage_6_fo_done
+
+call %ANALYZER_BAT% -d stage6_white-space.fo -format report -opt "-x 4 -i paragraph-widow-white-space-settings.xml" -ahfcmd %AHFCMD%
 
 echo %echo%
 

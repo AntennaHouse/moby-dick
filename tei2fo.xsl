@@ -87,6 +87,18 @@
 
 
 <!-- ============================================================= -->
+<!-- ATTRIBUTE SETS                                                -->
+<!-- ============================================================= -->
+
+<!-- Table of Contents. -->
+<xsl:attribute-set name="contents" />
+
+<xsl:attribute-set name="p">
+  <xsl:attribute name="text-indent" select="'1.5em'" />
+</xsl:attribute-set>
+
+
+<!-- ============================================================= -->
 <!-- TEMPLATES                                                     -->
 <!-- ============================================================= -->
 
@@ -394,10 +406,6 @@
   </fo:block>
 </xsl:template>
 
-<xsl:attribute-set name="p">
-  <xsl:attribute name="text-indent" select="'1.5em'" />
-</xsl:attribute-set>
-
 <xsl:template match="titlePage">
   <fo:page-sequence
       master-reference="CoverFrontMaster"
@@ -419,7 +427,8 @@
   <fo:page-sequence
       master-reference="CoverFrontMaster"
       initial-page-number="auto-odd"
-      format="i">
+      format="i"
+      xsl:use-attribute-sets="contents">
     <xsl:call-template name="Contents-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
              text-align="justify">
@@ -747,7 +756,7 @@ keep-with-next="always">
 <xsl:template match="head[@type = 'sub'][contains(., 'Sub-Sub')]"
               priority="10">
   <fo:block
-      text-align="center"      
+      text-align="center"
                    padding-before="0.15in"
                    padding-after="0.17in" font-stretch="expanded"
       font-family="harrowgate">
@@ -966,7 +975,10 @@ keep-with-next="always">
 </xsl:template>
 
 <xsl:template match="q/p">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <fo:block widows="3" orphans="3">
+    <xsl:copy-of select="$atts" />
     <xsl:apply-templates />
     <xsl:if test="position() = last() and
                   exists(../following-sibling::*[1][self::bibl])">
@@ -1020,7 +1032,10 @@ keep-with-next="always">
 </xsl:template>
 
 <xsl:template match="p">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <fo:block xsl:use-attribute-sets="p">
+    <xsl:copy-of select="$atts" />
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
