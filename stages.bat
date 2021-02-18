@@ -291,7 +291,7 @@ echo.
 echo Stage 6: White-space
 
 rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage6_white-space.fo" "white-space.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-white-space-settings.xml"`) do (
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage6_white-space.fo" "white-space.xsl" "consecutive-hyphens.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml" "white-space-settings.xml"`) do (
     set NEWER=%%q
 )
 
@@ -315,7 +315,39 @@ java -jar %SAXON% %SOURCE% white-space.xsl > stage6_white-space.fo
 
 :stage_6_fo_done
 
-call %ANALYZER_BAT% -d stage6_white-space.fo -format report -opt "-x 4 -i paragraph-widow-white-space-settings.xml" -ahfcmd %AHFCMD%
+call %ANALYZER_BAT% -d stage6_white-space.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml" -ahfcmd %AHFCMD% -show no
+
+echo %echo%
+
+echo.
+echo Stage 7: river
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage7_river.fo" "river.xsl" "white-space.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml" "white-space-settings.xml" "river-settings.xml"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage7_river.fo" goto stage_7_fo_do
+
+echo 'stage7_river.fo' is up to date
+
+goto stage_7_fo_done
+
+:stage_7_fo_do
+
+if exist "stage7_river.fo" del "stage7_river.fo"
+if exist "stage7_river.fo" (
+   echo Unable to replace 'stage7_river.fo'
+   goto error
+)
+
+echo Generating 'stage7_river.fo'
+
+java -jar %SAXON% %SOURCE% river.xsl > stage7_river.fo
+
+:stage_7_fo_done
+
+call %ANALYZER_BAT% -d stage7_river.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD%
 
 echo %echo%
 

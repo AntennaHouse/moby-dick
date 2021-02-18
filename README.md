@@ -27,7 +27,8 @@ The types of corrections that are made are discussed in `doc/automated-analysis-
 - Stage 3: Paragraph Widow 2<br>Correct most of the remaining Paragraph Widows
 - Stage 4: Text Repeated at Line Start or Line End<br>Correct the paragraphs with text repeated at the start or end of consecutive lines
 - Stage 5: Consecutive Hyphens<br>Correct the paragraphs with too many consecutive hyphens
-- Stage 5: White-space<br>Correct wide white-space
+- Stage 6: White-space<br>Correct wide white-space
+- Stage 7: River<br>Correct rivers
 
 `stages.bat` expects the analysis-utility files (available from the GitHub repository at https://github.com/AntennaHouse/analysis-utility) to be in a sibling directory. I.e., in `../analysis-utility`.
 

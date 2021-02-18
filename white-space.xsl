@@ -157,9 +157,12 @@
 <!-- 'The schools composing...' (pg. 439) -->
 <xsl:template
     match="/TEI/text[1]/body[1]/div[1]/div[88]/p[9]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="axf:analyze-white-space" select="'none'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
