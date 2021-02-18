@@ -61,6 +61,28 @@
   </axf:hyphenation-info>
 </xsl:template>
 
+<!-- 'Finally, I always go to sea...' (pg. 5) -->
+<xsl:template
+    match="/TEI/text[1]/body[1]/div[1]/div[1]/p[11]">
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'But though the other boarders...' (pg. 19) -->
+<xsl:template
+    match="/TEI/text[1]/body[1]/div[1]/div[3]/p[31]">
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[15]/p[4]/text()">
   <xsl:value-of
       select="replace(ahf:text(.), ' ye!&rdquo;$', '&nbsp;ye!&rdquo;')" />
