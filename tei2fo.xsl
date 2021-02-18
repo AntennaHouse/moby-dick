@@ -521,8 +521,10 @@
     </fo:table-cell>
     <fo:table-cell
         text-align="justify"
-        start-indent="1em"
-        text-indent="-1em">
+        start-indent="1.5em"
+        text-indent="-1.5em"
+        word-spacing.minimum="-0.001em"
+        axf:flush-zone="0.2em">
       <fo:block axf:leader-expansion="force">
         <fo:basic-link
               internal-destination="{$target}">
@@ -980,6 +982,7 @@ keep-with-next="always">
   <fo:block widows="3" orphans="3">
     <xsl:copy-of select="$atts" />
     <xsl:apply-templates />
+    <!-- Process children of following <bibl> if it exists. -->
     <xsl:if test="position() = last() and
                   exists(../following-sibling::*[1][self::bibl])">
       <fo:leader leader-pattern="space"/>
@@ -995,6 +998,7 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
+<!-- Children of <bibl> handled by preceding q/p. -->
 <xsl:template
     match="bibl[exists(preceding-sibling::*[1][self::q[p]])]"
     priority="5" />
@@ -1291,6 +1295,11 @@ keep-with-next="always">
 <xsl:template match="pb[@xml:id]">
   <fo:wrapper xml:id="{@xml:id}" />
 </xsl:template>
+
+<!-- Drop row of '*' at end of chapter because page breaks are
+     different and the separator appears if room allows. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[40]/milestone[1]"
+              priority="5" />
 
 <xsl:template match="milestone[@unit = 'typography']">
   <fo:block text-align="center" white-space-collapse="false">
