@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="udhr" basedir="." default="pdf">
+<project name="moby-dick" basedir="." default="pdf">
   <description>Process "Moby-Dick" files.</description>
 
-  <dirname property="system.basedir" file="${ant.file.udhr}"/>
+  <dirname property="system.basedir" file="${ant.file.moby-dick}"/>
 
   <pathconvert property="system.basedir.converted" dirsep="/">
     <path location="${system.basedir}" />
@@ -48,10 +48,7 @@
   <property file="${system.properties}"/>
 
   <basename property="basename" file="${xml}" suffix=".xml" />
-  <!-- Filename of HTML output. -->
-  <property name="html" value="index.html" />
 
-  <property name="udhr.dir" value="${basedir.converted}/../udhr" />
   <property name="xsl.dir" value="${system.basedir.converted}" />
   <property name="fo.dir" value="${system.basedir.converted}" />
   <property name="html.dir" value="${basedir.converted}" />
@@ -73,64 +70,6 @@
     <os family="mac" />
   </condition>
   <property name="saxon.jar" value="${saxon.jar.unix}" />
-
-  <target name="init">
-    <mkdir dir="${html.dir}" />
-  </target>
-
-  <target name="html"
-	  depends="init">
-    <dependset>
-      <srcfileset dir="${udhr.dir}"
-		  includes="${xml}, udhr_*.xml" />
-      <srcfileset dir="${xsl.dir}"
-		  includes="${style.html}" />
-      <srcfileset file="${build.properties}" />
-      <srcfileset file="${system.properties}" />
-      <targetfileset file="${html.dir}/${html}" />
-    </dependset>
-    <xslt in="${xml}"
-	  out="${html.dir}/${html}"
-	  style="${xsl.dir}/${style.html}"
-	  classpath="${saxon.jar}">
-      <factory name="net.sf.saxon.TransformerFactoryImpl">
-	<attribute
-	   name="http://saxon.sf.net/feature/allow-external-functions" 
-	   value="true"/>
-	<attribute
-	   name="http://saxon.sf.net/feature/validation" 
-	   value="false"/>
-      </factory>
-      <param name="split-into" expression="#no"/>
-      <param name="full" expression="yes"/>
-    </xslt>
-  </target>
-
-  <target name="htmlfo">
-    <dependset>
-      <srcfileset dir="${fo.dir}" includes="${style.fo}, fo-layout.xsl" />
-      <targetfileset file="${basedir.converted}/${basename}.fo" />
-    </dependset>
-    <xslt in="3014_fol-JC.tei.html"
-	  out="${basedir.converted}/${basename}.html.fo"
-	  style="${fo.dir}/${style.fo}"
-	  classpath="${saxon.jar}">
-      <factory name="net.sf.saxon.TransformerFactoryImpl">
-	<attribute
-	   name="http://saxon.sf.net/feature/allow-external-functions" 
-	   value="true"/>
-	<attribute
-	   name="http://saxon.sf.net/feature/validation" 
-	   value="false"/>
-	<attribute
-	   name="http://saxon.sf.net/feature/version-warning" 
-	   value="false"/>
-      </factory>
-      <param name="lang" expression="${lang}" />
-      <param name="debug" expression="${debug}" if="debug" />
-      <param name="no-rule" expression="${no-rule}" if="no-rule" />
-    </xslt>
-  </target>
 
   <target name="fo">
     <dependset>
