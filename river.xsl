@@ -136,23 +136,27 @@
 </xsl:template>
 
 <!-- 'It was quite late in the evening...' (pg. 71) -->
-<xsl:template
-    match="/TEI/text[1]/body[1]/div[1]/div[15]/p[1]">
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[15]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
       <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
 
 <!-- 'Fishiest of all fishy places...' (pg. 74) -->
-<xsl:template
-    match="/TEI/text[1]/body[1]/div[1]/div[15]/p[14]">
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[15]/p[14]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
       <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
@@ -160,10 +164,13 @@
 <!-- 'So that there are instances...' (pg. 82) -->
 <xsl:template
     match="/TEI/text[1]/body[1]/div[1]/div[16]/p[43]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
       <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>

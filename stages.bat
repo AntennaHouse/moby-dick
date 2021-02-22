@@ -12,6 +12,7 @@ set SOURCE=VAC7237.xml
 set USE_ANALYZER_BAT=../analysis-utility/analyzer.bat
 set USE_SAXON=E:/saxon/9.9/saxon9he.jar
 set USE_AHFCMD="%AHF71_64_HOME%/AHFCmd.exe"
+set USE_STAGE=all
 
 rem Command-line parameter defaults (possibly used in 'usage' message)
 set ahfcmd=
@@ -32,7 +33,7 @@ set __short_param=
 rem List of names of recognized parameters that require a value.
 rem There must be at least one space (' ') at the beginning and end of
 rem the list and between parameter names.
-set __long_param= ahfcmd analyzer saxon 
+set __long_param= ahfcmd analyzer saxon stage
 
 rem List of all recognized parameter names.
 rem There must be at least one space (' ') at the beginning and end of
@@ -128,6 +129,16 @@ if not "%saxon%"=="" (
    set SAXON=%USE_SAXON%
 )
 
+if not "%stage%"=="" (
+      set STAGE=%stage%
+) else (
+   set STAGE=%USE_STAGE%
+)
+
+if "%STAGE%"=="all" goto stage_1_do
+if "%STAGE%"=="1" goto stage_1_do
+goto stage_1_done
+:stage_1_do
 echo Stage 1: Base
 
 rem Sort files by date. Newer file is last to set NEWER.
@@ -158,6 +169,13 @@ java -jar %SAXON% %SOURCE% tei2fo.xsl > stage1_base.fo
 call %ANALYZER_BAT% -d stage1_base.fo -format report -opt "-x 4" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
+
+:stage_1_done
+
+if "%STAGE%"=="all" goto stage_2_do
+if "%STAGE%"=="2" goto stage_2_do
+goto stage_2_done
+:stage_2_do
 
 echo.
 echo Stage 2: Paragraph Widow 1
@@ -191,6 +209,13 @@ call %ANALYZER_BAT% -d stage2_paragraph-widow-1.fo -format report -opt "-x 4 -i 
 
 echo %echo%
 
+:stage_2_done
+
+if "%STAGE%"=="all" goto stage_3_do
+if "%STAGE%"=="3" goto stage_3_do
+goto stage_3_done
+:stage_3_do
+
 echo.
 echo Stage 3: Paragraph Widow 2
 
@@ -222,6 +247,13 @@ java -jar %SAXON% %SOURCE% paragraph-widow-2.xsl > stage3_paragraph-widow-2.fo
 call %ANALYZER_BAT% -d stage3_paragraph-widow-2.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
+
+:stage_3_done
+
+if "%STAGE%"=="all" goto stage_4_do
+if "%STAGE%"=="4" goto stage_4_do
+goto stage_4_done
+:stage_4_do
 
 echo.
 echo Stage 4: Line Start and End
@@ -255,6 +287,13 @@ call %ANALYZER_BAT% -d stage4_line-start-end.fo -format report -opt "-x 4 -i par
 
 echo %echo%
 
+:stage_4_done
+
+if "%STAGE%"=="all" goto stage_5_do
+if "%STAGE%"=="5" goto stage_5_do
+goto stage_5_done
+:stage_5_do
+
 echo.
 echo Stage 5: Consecutive Hyphens
 
@@ -286,6 +325,13 @@ java -jar %SAXON% %SOURCE% consecutive-hyphens.xsl > stage5_consecutive-hyphens.
 call %ANALYZER_BAT% -d stage5_consecutive-hyphens.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
+
+:stage_5_done
+
+if "%STAGE%"=="all" goto stage_6_do
+if "%STAGE%"=="6" goto stage_6_do
+goto stage_6_done
+:stage_6_do
 
 echo.
 echo Stage 6: White-space
@@ -319,6 +365,13 @@ call %ANALYZER_BAT% -d stage6_white-space.fo -format report -opt "-x 4 -i paragr
 
 echo %echo%
 
+:stage_6_done
+
+if "%STAGE%"=="all" goto stage_7_do
+if "%STAGE%"=="7" goto stage_7_do
+goto stage_7_done
+:stage_7_do
+
 echo.
 echo Stage 7: river
 
@@ -347,9 +400,75 @@ java -jar %SAXON% %SOURCE% river.xsl > stage7_river.fo
 
 :stage_7_fo_done
 
-call %ANALYZER_BAT% -d stage7_river.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD%
+call %ANALYZER_BAT% -d stage7_river.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
+
+:stage_7_done
+
+if "%STAGE%"=="all" goto stage_8_do
+if "%STAGE%"=="8" goto stage_8_do
+goto stage_8_done
+:stage_8_do
+
+echo.
+echo Stage 8: lines before and after
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage8_lines.fo" "lines.xsl" "river.xsl" "white-space.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml" "white-space-settings.xml" "river-settings.xml"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage8_lines.fo" goto stage_8_fo_do
+
+echo 'stage8_lines.fo' is up to date
+
+goto stage_8_fo_done
+
+:stage_8_fo_do
+
+if exist "stage8_lines.fo" del "stage8_lines.fo"
+if exist "stage8_lines.fo" (
+   echo Unable to replace 'stage8_lines.fo'
+   goto error
+)
+
+echo Generating 'stage8_lines.fo'
+
+java -jar %SAXON% %SOURCE% lines.xsl > stage8_lines.fo
+
+:stage_8_fo_done
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage8_overrides.fo" "stage8_lines.fo" "show-overrides.xsl"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage8_overrides.fo" goto stage_8_overrides_do
+
+echo 'stage8_overrides.fo' is up to date
+
+goto stage_8_overrides_done
+
+:stage_8_overrides_do
+
+if exist "stage8_overrides.fo" del "stage8_overrides.fo"
+if exist "stage8_overrides.fo" (
+   echo Unable to replace 'stage8_overrides.fo'
+   goto error
+)
+
+echo Generating 'stage8_overrides.fo'
+
+java -jar %SAXON% stage8_lines.fo show-overrides.xsl > stage8_overrides.fo
+
+:stage_8_overrides_done
+
+call %ANALYZER_BAT% -d stage8_overrides.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD%
+
+echo %echo%
+
+:stage_8_done
 
 echo.
 
