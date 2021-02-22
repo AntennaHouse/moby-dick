@@ -372,10 +372,12 @@
       border-bottom="1pt solid black"
       axf:leader-expansion="force"
       padding-bottom="5pt"
-      margin-bottom="4pt">
+      margin-bottom="4pt"
+      axf:overflow-align="end">
     <fo:page-number color="transparent"/>
     <fo:leader />
-    <fo:inline letter-spacing="0.22em">
+    <fo:inline letter-spacing="0.22em"
+               axf:letter-spacing-side="start">
       <fo:retrieve-marker
           retrieve-class-name="Chapter-Title"
           retrieve-position="last-starting-within-page" />
@@ -396,7 +398,8 @@
       margin-bottom="4pt">
     <fo:page-number color="transparent"/>
     <fo:leader />
-    <fo:inline letter-spacing="0.2em">
+    <fo:inline letter-spacing="0.2em"
+               axf:letter-spacing-side="start">
       <fo:retrieve-marker
           retrieve-class-name="Chapter-Title"
           retrieve-position="first-starting-within-page" />
@@ -413,10 +416,12 @@
       border-bottom="1pt solid black"
       axf:leader-expansion="force"
       padding-bottom="5pt"
-      margin-bottom="4pt">
+      margin-bottom="4pt"
+      axf:overflow-align="start">
     <fo:page-number />
     <fo:leader />
-    <fo:inline letter-spacing="0.22em">
+    <fo:inline letter-spacing="0.22em"
+               axf:letter-spacing-side="start">
       <fo:retrieve-marker
           retrieve-class-name="Chapter-Title"
           retrieve-position="first-starting-within-page" />
