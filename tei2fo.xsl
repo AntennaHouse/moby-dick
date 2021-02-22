@@ -6,6 +6,7 @@
 <!ENTITY rdquo '&#x201D;' >
 <!ENTITY nbsp  '&#xA0;' >
 <!ENTITY ndash '&#x2013;' >
+<!ENTITY mdash '&#x2014;' >
 <!ENTITY times '&#xD7;' >
 ]>
 
@@ -36,7 +37,7 @@
 <xsl:output
     method="xml"
     omit-xml-declaration='yes'
-    indent="yes"
+    indent="no"
     encoding="UTF-8"/>
 
 
@@ -85,6 +86,16 @@
     select="'source-serif-pro, Century, ''Times New Roman'', serif'"
     as="xs:string" />
 
+<xsl:param
+    name="analyze-lines-before"
+    select="'3'"
+    as="xs:string" />
+
+<xsl:param
+    name="analyze-lines-after"
+    select="'3'"
+    as="xs:string" />
+
 
 <!-- ============================================================= -->
 <!-- ATTRIBUTE SETS                                                -->
@@ -95,6 +106,21 @@
 
 <xsl:attribute-set name="p">
   <xsl:attribute name="text-indent" select="'1.5em'" />
+</xsl:attribute-set>
+
+<xsl:attribute-set name="small-caps">
+  <xsl:attribute name="font-variant" select="'small-caps'" />
+  <!-- Letter-space by 5%. -->
+  <xsl:attribute name="letter-spacing" select="'0.04em'" />
+  <xsl:attribute name="word-spacing.maximum" select="'0.25em'" />
+</xsl:attribute-set>
+
+<xsl:attribute-set name="all-small-caps" use-attribute-sets="small-caps">
+  <xsl:attribute name="font-variant" select="'all-small-caps'" />
+</xsl:attribute-set>
+
+<xsl:attribute-set name="stage">
+  <xsl:attribute name="font-style" select="'italic'" />
 </xsl:attribute-set>
 
 
@@ -211,8 +237,7 @@
            line-height="{$line-height}"
            hyphenation-keep="page"
            xml:lang="en">
-    <xsl:call-template
-        name="layout-master-set" />
+    <xsl:call-template name="layout-master-set" />
     <xsl:call-template name="declarations" />
     <xsl:call-template name="bookmark-tree" />
     <!--
@@ -323,7 +348,7 @@
         </xsl:matching-substring>
         <xsl:non-matching-substring>
           <fo:block space-before="5pt" font-size="6pt"
-                    font-variant="all-small-caps">
+                    xsl:use-attribute-sets="all-small-caps">
             <xsl:value-of select="normalize-space(.)" />
           </fo:block>
         </xsl:non-matching-substring>
@@ -377,7 +402,7 @@
     <xsl:analyze-string select="normalize-space(.)"
                         regex="\.|,">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">
+        <fo:inline axf:letter-spacing-side="end">
           <xsl:value-of select="." />
         </fo:inline>
       </xsl:matching-substring>
@@ -395,7 +420,7 @@
     <xsl:analyze-string select="normalize-space(.)"
                         regex="\.">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">
+        <fo:inline axf:letter-spacing-side="end">
           <xsl:value-of select="." />
         </fo:inline>
       </xsl:matching-substring>
@@ -679,7 +704,7 @@
                    axf:letter-spacing-side="start">
           <xsl:value-of select="regex-group(1)" />
         </fo:inline>
-        <fo:inline letter-spacing="0">.</fo:inline>
+        <fo:inline axf:letter-spacing-side="end">.</fo:inline>
         <xsl:text>)</xsl:text>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
@@ -723,7 +748,7 @@ keep-with-next="always">
     <xsl:analyze-string select="normalize-space(.)"
                         regex="\.">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">.</fo:inline>
+        <fo:inline axf:letter-spacing-side="end">.</fo:inline>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
         <xsl:value-of select="." />
@@ -746,7 +771,7 @@ keep-with-next="always">
     <xsl:analyze-string select="normalize-space(.)"
                         regex="\.">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">.</fo:inline>
+        <fo:inline axf:letter-spacing-side="end">.</fo:inline>
       </xsl:matching-substring>
       <xsl:non-matching-substring>
         <xsl:value-of select="." />
@@ -827,7 +852,8 @@ keep-with-next="always">
               padding-top="0.125in"
               space-after="0.2in" space-after.precedence="force"
               axf:baseline-grid="none"
-              axf:baseline-block-snap="none">
+              axf:baseline-block-snap="none"
+              axf:analyze-lines-before="{$analyze-lines-before}">
       <fo:external-graphic src="images/separator.svg" />
     </fo:block>
   </xsl:if>
@@ -891,16 +917,35 @@ keep-with-next="always">
 
 <xsl:template match="fw" />
 
+<!-- Second 'sub' in Chapter LIV. -->
+<xsl:template match="head[@type = 'sub'][hi]"
+              priority="10">
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="font-variant" select="'normal'" />
+      <xsl:attribute name="letter-spacing" select="'0'" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
 
 <xsl:template match="head[@type = 'sub']"
               priority="5">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <fo:block
+      axf:baseline-block-snap="none"
       text-align="center"
       word-spacing="0.2em"
+      letter-spacing="0.05em"
       padding-before="0.02in"
       padding-after="0.05in"
       font-variant="all-small-caps"
       keep-with-next="always">
+    <xsl:if test="not(following-sibling::*[1][self::head][@type = 'sub'])">
+      <xsl:attribute name="axf:analyze-lines-after"
+                     select="$analyze-lines-after" />
+    </xsl:if>
+    <xsl:sequence select="$atts" />
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1130,7 +1175,7 @@ keep-with-next="always">
         select="normalize-space(.)"
         regex=",">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">
+        <fo:inline axf:letter-spacing-side="end">
           <xsl:value-of select="." />
         </fo:inline>
       </xsl:matching-substring>
@@ -1166,7 +1211,7 @@ keep-with-next="always">
         select="."
         regex="\.">
       <xsl:matching-substring>
-        <fo:inline letter-spacing="0">
+        <fo:inline axf:letter-spacing-side="end">
           <xsl:value-of select="." />
         </fo:inline>
       </xsl:matching-substring>
@@ -1216,9 +1261,17 @@ keep-with-next="always">
 
 <xsl:template match="l">
   <fo:block>
-    <xsl:if test="@rend = 'ti-1'">
-      <xsl:attribute name="text-indent" select="'2em'" />
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@rend = 'ti-1'">
+        <xsl:attribute name="text-indent" select="'2em'" />
+      </xsl:when>
+      <xsl:when test="@rend = 'ti-2'">
+        <xsl:attribute name="text-indent" select="'4em'" />
+      </xsl:when>
+      <xsl:when test="@rend = 'ti-3'">
+        <xsl:attribute name="text-indent" select="'6em'" />
+      </xsl:when>
+    </xsl:choose>
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
@@ -1239,18 +1292,58 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
-<xsl:template match="stage">
+<!-- Start of Chapter 40. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[40]/stage[1]">
   <fo:block
-      text-align="center" font-style="italic"
+      text-indent="1.5em" font-style="italic"
       keep-with-next.within-page="always">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
 
+<!-- Start of Chapter CVIII and Chapter CXXVII, in Chapter XL. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[108]/stage[1] |
+                     /TEI/text[1]/body[1]/div[1]/div[127]/stage[1] |
+                     /TEI/text[1]/body[1]/div[1]/div[40]/sp[12]/stage[2]">
+  <fo:block start-indent="1.5em" text-indent="-1.5em"
+            keep-with-next.within-page="always"
+            space-after="1lh"
+            xsl:use-attribute-sets="stage">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+
+<xsl:template match="stage">
+  <fo:block text-align="center" keep-with-next.within-page="always"
+            xsl:use-attribute-sets="stage">
+    <xsl:if test="starts-with(., '[')">
+      <!-- /TEI/text[1]/body[1]/div[1]/div[38]/stage[2] -->
+      <xsl:attribute name="text-align" select="'right'" />
+      <xsl:attribute name="end-indent" select="'1em'" />
+    </xsl:if>
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
 <xsl:template match="p/stage">
-  <fo:inline font-style="italic">
+  <fo:inline xsl:use-attribute-sets="stage">
     <xsl:apply-templates />
   </fo:inline>
+</xsl:template>
+
+<xsl:template match="stage/text()">
+  <xsl:analyze-string select="ahf:text(.)"
+                      regex="[\[()\]]">
+    <xsl:matching-substring>
+      <fo:wrapper font-style="normal">
+        <xsl:value-of select="." />
+      </fo:wrapper>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="." />
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
 </xsl:template>
 
 <xsl:template match="abbr | emph | hi[@rend eq 'i'] | title">
@@ -1261,14 +1354,14 @@ keep-with-next="always">
 
 <xsl:template
     match="hi[@rend eq 'all-small-caps']">
-  <fo:inline font-variant="all-small-caps">
+  <fo:inline font-variant="all-small-caps" letter-spacing="0.05em">
     <xsl:apply-templates />
   </fo:inline>
 </xsl:template>
 
 <xsl:template
     match="hi[@rend eq 'small-caps']">
-  <fo:inline font-variant="small-caps">
+  <fo:inline xsl:use-attribute-sets="small-caps">
     <xsl:apply-templates />
   </fo:inline>
 </xsl:template>
@@ -1281,11 +1374,23 @@ keep-with-next="always">
   </fo:inline>
 </xsl:template>
 
+<xsl:template match="list">
+  <fo:table axf:text-align-string="center" text-align="' '"
+             axf:baseline-block-snap="none">
+    <fo:table-body>
+      <xsl:apply-templates select="item" />
+    </fo:table-body>
+  </fo:table>
+</xsl:template>
+
 <xsl:template match="list/item">
-  <fo:block
-      text-align="center" font-style="italic">
-    <xsl:apply-templates />
-  </fo:block>
+  <fo:table-row height="1lh">
+    <fo:table-cell padding-top="1lh - 1em" axf:baseline-grid="root">
+      <fo:block>
+        <xsl:apply-templates />
+      </fo:block>
+    </fo:table-cell>
+  </fo:table-row>
 </xsl:template>
 
 <xsl:template match="lb">
@@ -1357,6 +1462,33 @@ keep-with-next="always">
   <xsl:value-of select="ahf:text($text)" />
 </xsl:template>
 
+
+<!-- ============================================================= -->
+<!-- 'marker' MODE                                                 -->
+<!-- ============================================================= -->
+
+<!-- Convert single and double quotes to 'curly' quotes. -->
+<xsl:template match="text()" mode="marker">
+  <xsl:variable name="text" select="ahf:text(.)" />
+  
+  <xsl:analyze-string
+      select="$text"
+      regex="\.">
+    <xsl:matching-substring>
+      <fo:inline axf:letter-spacing-side="end">
+        <xsl:value-of select="." />
+      </fo:inline>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="." />
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
+</xsl:template>
+
+<!-- ============================================================= -->
+<!-- FUNCTIONS                                                     -->
+<!-- ============================================================= -->
+
 <xsl:function name="ahf:text" as="xs:string">
   <xsl:param name="text" as="text()" />
 
@@ -1403,6 +1535,18 @@ keep-with-next="always">
   <xsl:variable
       name="text"
       select="replace($text, '\* ', '*&#xA0;&#xA0;')"
+      as="xs:string" />
+
+  <!-- Consecutive em-dashes. -->
+  <xsl:variable
+      name="text"
+      select="replace($text, '&mdash;&mdash;&mdash;',
+                      '&#x2E3B;')"
+      as="xs:string" />
+  <xsl:variable
+      name="text"
+      select="replace($text, '&mdash;&mdash;',
+                      '&#x2E3A;')"
       as="xs:string" />
 
   <xsl:sequence select="$text" />
