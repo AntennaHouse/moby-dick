@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY lsquo '&#x2018;' >
-<!ENTITY rsquo '&#x2019;' >
-<!ENTITY ldquo '&#x201C;' >
-<!ENTITY rdquo '&#x201D;' >
-<!ENTITY nbsp  '&#xA0;' >
-<!ENTITY ndash '&#x2013;' >
-<!ENTITY mdash '&#x2014;' >
-<!ENTITY times '&#xD7;' >
+<!ENTITY lsquo  '&#x2018;' >
+<!ENTITY rsquo  '&#x2019;' >
+<!ENTITY ldquo  '&#x201C;' >
+<!ENTITY rdquo  '&#x201D;' >
+<!ENTITY mdash  '&#x2014;' >
+<!ENTITY mdash2 '&#x2E3A;' >
+<!ENTITY mdash3 '&#x2E3B;' >
+<!ENTITY nbsp   '&#xA0;'   >
+<!ENTITY ndash  '&#x2013;' >
+<!ENTITY times  '&#xD7;'   >
+<!ENTITY zwj    '&#x2060;' >
 ]>
 
 <!-- Copyright 2020-2021 Antenna House, Inc. -->
@@ -1025,6 +1028,10 @@ keep-with-next="always">
   <xsl:param name="atts" select="()" as="attribute()*" />
 
   <fo:block widows="3" orphans="3">
+    <xsl:if test="exists(lb)">
+      <xsl:attribute name="keep-together.within-page"
+                     select="'always'" />
+    </xsl:if>
     <xsl:copy-of select="$atts" />
     <xsl:apply-templates />
     <!-- Process children of following <bibl> if it exists. -->
@@ -1048,8 +1055,26 @@ keep-with-next="always">
     match="bibl[exists(preceding-sibling::*[1][self::q[p]])]"
     priority="5" />
 
+<!-- Tablet inscriptions in Chapter VII. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[7]/p/q/p/text()">
+  <xsl:analyze-string
+      select="normalize-space(ahf:text(.))"
+      regex="To the Memory">
+    <xsl:matching-substring>
+      <fo:wrapper font-family="harrowgate">
+        <xsl:value-of select="." />
+      </fo:wrapper>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+      <xsl:value-of select="." />
+    </xsl:non-matching-substring>
+  </xsl:analyze-string>
+</xsl:template>
+
+<!-- The only table is on the first page of the second 'ETYMOLOGY'. -->
 <xsl:template match="table">
-  <fo:table-and-caption text-align="center" space-before="0.11in" font-size="10pt">
+  <fo:table-and-caption text-align="center"
+                        space-before="0.11in" font-size="10pt">
     <fo:table text-align="start">
       <fo:table-body>
         <xsl:apply-templates />
@@ -1530,23 +1555,23 @@ keep-with-next="always">
   <!-- Variations on '* * *' in 'Extracts'. -->
   <xsl:variable
       name="text"
-      select="replace($text, ' \*', '&#xA0;&#xA0;*')"
+      select="replace($text, ' \*', '&nbsp;&nbsp;*')"
       as="xs:string" />
   <xsl:variable
       name="text"
-      select="replace($text, '\* ', '*&#xA0;&#xA0;')"
+      select="replace($text, '\* ', '*&nbsp;&nbsp;')"
       as="xs:string" />
 
   <!-- Consecutive em-dashes. -->
   <xsl:variable
       name="text"
       select="replace($text, '&mdash;&mdash;&mdash;',
-                      '&#x2E3B;')"
+                      '&mdash3;')"
       as="xs:string" />
   <xsl:variable
       name="text"
       select="replace($text, '&mdash;&mdash;',
-                      '&#x2E3A;')"
+                      '&mdash2;')"
       as="xs:string" />
 
   <xsl:sequence select="$text" />
