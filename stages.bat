@@ -244,7 +244,32 @@ java -jar %SAXON% %SOURCE% paragraph-widow-2.xsl > stage3_paragraph-widow-2.fo
 
 :stage_3_fo_done
 
-call %ANALYZER_BAT% -d stage3_paragraph-widow-2.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage3_overrides.fo" "stage3_paragraph-widow-2.fo" "show-overrides.xsl"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage3_overrides.fo" goto stage_3_overrides_do
+
+echo 'stage3_overrides.fo' is up to date
+
+goto stage_3_overrides_done
+
+:stage_3_overrides_do
+
+if exist "stage3_overrides.fo" del "stage3_overrides.fo"
+if exist "stage3_overrides.fo" (
+   echo Unable to replace 'stage3_overrides.fo'
+   goto error
+)
+
+echo Generating 'stage3_overrides.fo'
+
+java -jar %SAXON% stage3_paragraph-widow-2.fo show-overrides.xsl > stage3_overrides.fo
+
+:stage_3_overrides_done
+
+call %ANALYZER_BAT% -d stage3_overrides.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
 
@@ -469,6 +494,71 @@ call %ANALYZER_BAT% -d stage8_overrides.fo -format report -opt "-x 4 -i paragrap
 echo %echo%
 
 :stage_8_done
+
+
+if "%STAGE%"=="all" goto stage_9_do
+if "%STAGE%"=="9" goto stage_9_do
+goto stage_9_done
+:stage_9_do
+
+echo.
+echo Stage 9: unbalanced spreads
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage9_unbalanced.fo" "unbalanced.xsl" "lines.xsl" "river.xsl" "white-space.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml" "white-space-settings.xml" "river-settings.xml"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage9_unbalanced.fo" goto stage_9_fo_do
+
+echo 'stage9_unbalanced.fo' is up to date
+
+goto stage_9_fo_done
+
+:stage_9_fo_do
+
+if exist "stage9_unbalanced.fo" del "stage9_unbalanced.fo"
+if exist "stage9_unbalanced.fo" (
+   echo Unable to replace 'stage9_unbalanced.fo'
+   goto error
+)
+
+echo Generating 'stage9_unbalanced.fo'
+
+java -jar %SAXON% %SOURCE% unbalanced.xsl > stage9_unbalanced.fo
+
+:stage_9_fo_done
+
+rem Sort files by date. Newer file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage9_overrides.fo" "stage9_unbalanced.fo" "show-overrides.xsl"`) do (
+    set NEWER=%%q
+)
+
+if not "%NEWER%"=="stage9_overrides.fo" goto stage_9_overrides_do
+
+echo 'stage9_overrides.fo' is up to date
+
+goto stage_9_overrides_done
+
+:stage_9_overrides_do
+
+if exist "stage9_overrides.fo" del "stage9_overrides.fo"
+if exist "stage9_overrides.fo" (
+   echo Unable to replace 'stage9_overrides.fo'
+   goto error
+)
+
+echo Generating 'stage9_overrides.fo'
+
+java -jar %SAXON% stage9_unbalanced.fo show-overrides.xsl > stage9_overrides.fo
+
+:stage_9_overrides_done
+
+call %ANALYZER_BAT% -d stage9_overrides.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD%
+
+echo %echo%
+
+:stage_9_done
 
 echo.
 
