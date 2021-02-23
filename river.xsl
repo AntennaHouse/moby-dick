@@ -343,12 +343,34 @@
 
 <xsl:function name="ahf:no-break" as="xs:string">
   <xsl:param name="text" as="text()" />
-  <xsl:param name="substring" as="xs:string" />
+  <xsl:param name="substrings" as="xs:string+" />
   
-  <xsl:sequence
-      select="replace(ahf:text($text),
-                      $substring,
-                      replace($substring, ' ', '&nbsp;'))" />
+  <xsl:variable name="text" select="normalize-space(ahf:text($text))" />
+
+  <xsl:sequence select="ahf:no-break-sub($text, $substrings)" />
+</xsl:function>
+
+
+<xsl:function name="ahf:no-break-sub" as="xs:string">
+  <xsl:param name="string" as="xs:string" />
+  <xsl:param name="substrings" as="xs:string+" />
+  
+  <xsl:variable name="string"
+      select="replace($string,
+                      $substrings[1],
+                      replace($substrings[1], ' ', '&nbsp;'))"
+      as="xs:string" />
+
+  <xsl:choose>
+    <xsl:when test="count($substrings) = 1">
+      <xsl:sequence select="$string" />
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:sequence
+          select="ahf:no-break-sub($string,
+                                   $substrings[position() > 1])" />
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:function>
 
 </xsl:stylesheet>
