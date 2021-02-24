@@ -219,9 +219,10 @@
 
 <!-- 'Alarmed at this...' (pg. 87) -->
 <!-- Gain a line so pg. 87 will fill text block.  -->
+<!-- 'the door' avoids adding a river. -->
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[68]/text()">
   <xsl:value-of
-      select="ahf:no-break(., ('Well then, down'))" />
+      select="ahf:no-break(., ('the door', 'Well then, down'))" />
 </xsl:template>
 
 <!-- '"Come hither to me...' (pg. 89) -->
@@ -629,5 +630,441 @@
   </xsl:next-match>
 </xsl:template>
 
-</xsl:stylesheet>
+<!-- 'Let us try...' (pg. 213) -->
+<!-- Lose a line to make pg. 212 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[42]/p[13]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
 
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.018em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Nor is it...' (pg. 214) -->
+<!-- Lose a line to pull two lines to pg. 217.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[42]/p[16]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Though, consumed...' (pg. 234) -->
+<!-- Lose a line to pull two lines to pg. 236.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[46]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'The ship was now kept...' (pg. 240) -->
+<!-- Lose a line to pull three lines to pg. 240.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[47]/p[12]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'The phantoms...' (pg. 240) -->
+<!-- Lose a line to pull three lines to pg. 240.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[48]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"Oh, I don't mind 'em...' (pg. 242) -->
+<!-- Gain a line to make pg. 242 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[48]/p[11]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.015em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Now the advent...' (pg. 244) -->
+<!-- Gain a line to make pg. 244 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[48]/p[20]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Not very far distant...' (pg. 245) -->
+<!-- Gain a line to make pg. 245 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[48]/p[24]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.015em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'There are certain queer times...' (pg. 252) -->
+<!-- Gain a line to make pg. 252 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[49]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.018em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Here then...' (pg. 253) -->
+<!-- Gain a line to make pg. 254 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[49]/p[7]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Among whale-wise people...' (pg. 255) -->
+<!-- Lose a line to pull two lines to pg. 256.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[50]/p[4]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.015em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Now, with the subordinate phantoms...' (pg. 257) -->
+<!-- Lose a line to pull two lines to pg. 256.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[50]/p[7]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Days, weeks passed...' (pg. 258) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'It was while...' (pg. 258) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[2]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.0025em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.01em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'During all this blackness...' (pg. 261) -->
+<!-- Avoid new rivers.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[2]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., ('a silent'))" />
+</xsl:template>
+
+<!-- 'Walking the deck...' (pg. 259) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<!-- Avoid page break from subordinate fo:block in 'river.xsl'. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[3]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <fo:block xsl:use-attribute-sets="p"
+            letter-spacing.minimum="0.005em"
+            word-spacing.minimum="0.02em">
+      <xsl:sequence select="$atts" />
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
+
+<!-- 'But, at last...' (pg. 260) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[7]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Cape of Good Hope...' (pg. 261) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[9]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.018em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'During all this blackness...' (pg. 261) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[10]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'During all this blackness...' (pg. 261) -->
+<!-- Gain a line to fix pg. 257-262.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[51]/p[10]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., ('the needle'))" />
+</xsl:template>
+
+<!-- 'Were this world...' (pg. 264) -->
+<!-- Lose a line to pull a line to pg. 264.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[52]/p[8]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'But look at the...' (pg. 267) -->
+<!-- Gain a line to make pg. 267 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[53]/p[6]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.01em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'But look at the...' (pg. 267) -->
+<!-- Avoid consecutive hyphens.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[53]/p[6]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., ('and such'))" />
+</xsl:template>
+
+<!-- '"Much this way...' (pg. 273) -->
+<!-- Avoid em dash at end of pg. 273 and fill pg. 274.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[9]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.01em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"Much this way...' (pg. 273) -->
+<!-- Avoid em dash at end of pg. 273 and fill pg. 274.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[9]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., 'deck, and')" />
+</xsl:template>
+
+<!-- '"Now, gentlemen...' (pg. 275) -->
+<!-- Lose a line to pull two lines to pg. 276.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[16]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"Now, gentlemen...' (pg. 275) -->
+<!-- Lose a line to pull two lines to pg. 276.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[16]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., 'with his')" />
+</xsl:template>
+
+<!-- 'Steelkilt rose...' (pg. 277) -->
+<!-- Lose a line to pull two lines to pg. 277.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[20]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'For three hundred and sixty miles...' (pg. 278) -->
+<!-- Gain a line to fill pg. 278.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[27]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.01em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"I see! I see!...' (pg. 280) -->
+<!-- Lose a line to pull a line to pg. 279.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[32]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"Better turn to now...' (pg. 283) -->
+<!-- Gain a line to push a line to pg. 283.  -->
+<!-- Makes the same paragraph widow as in the First Edition. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[49]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- '"Upon hearing the frantic project...' (pg. 284) -->
+<!-- Gain a line to push a line to pg. 284.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[54]/p[53]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'0.01em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'On Tower-hill...' (pg. 302) -->
+<!-- Gain a line to fill pg. 302.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[57]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'0.0025em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.015em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'Then, again...' (pg. 304) -->
+<!-- Lose a line to pull two lines to pg. 304 (and lose a separator).  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[57]/p[9]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="letter-spacing.minimum" select="'-0.005em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+</xsl:stylesheet>
