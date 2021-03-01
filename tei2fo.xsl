@@ -39,10 +39,16 @@
 
 <xsl:output
     method="xml"
+    use-character-maps="zwj"
     omit-xml-declaration='yes'
     indent="no"
     encoding="UTF-8"/>
 
+<!-- Generate &zwj; as numeric character reference so it is
+     visible. -->
+<xsl:character-map name="zwj">
+  <xsl:output-character character="&zwj;" string="&amp;#x2060;" />
+</xsl:character-map>
 
 <!-- ============================================================= -->
 <!-- xsl:strip-space                                               -->
@@ -107,8 +113,24 @@
 <!-- Table of Contents. -->
 <xsl:attribute-set name="contents" />
 
+<xsl:attribute-set name="footnote-body">
+  <xsl:attribute name="font-size" select="'7pt'" />
+  <xsl:attribute name="line-height" select="'10pt'" />
+  <!-- Overrides on containing fo:block should not affect the
+       footnote. -->
+  <xsl:attribute name="letter-spacing.minimum" select="'0'" />
+  <xsl:attribute name="word-spacing.minimum" select="'0'" />
+</xsl:attribute-set>
+
 <xsl:attribute-set name="p">
   <xsl:attribute name="text-indent" select="'1.5em'" />
+</xsl:attribute-set>
+
+<!-- Inline elements. -->
+
+<xsl:attribute-set name="abbr">
+  <xsl:attribute name="font-style" select="'italic'" />
+  <xsl:attribute name="keep-together.within-line" select="'always'" />
 </xsl:attribute-set>
 
 <xsl:attribute-set name="small-caps">
@@ -124,6 +146,7 @@
 
 <xsl:attribute-set name="stage">
   <xsl:attribute name="font-style" select="'italic'" />
+  <xsl:attribute name="font-variant" select="'normal'" />
 </xsl:attribute-set>
 
 
@@ -351,6 +374,7 @@
         </xsl:matching-substring>
         <xsl:non-matching-substring>
           <fo:block space-before="5pt" font-size="6pt"
+                    letter-spacing="0.1em"
                     xsl:use-attribute-sets="all-small-caps">
             <xsl:value-of select="normalize-space(.)" />
           </fo:block>
@@ -860,6 +884,8 @@ keep-with-next="always">
       <fo:external-graphic src="images/separator.svg" />
     </fo:block>
   </xsl:if>
+  <!-- Blank lines in XSL-FO for readability. -->
+  <xsl:text>&#xA;&#xA;&#xA;</xsl:text>
   <fo:block
       id="{@type}-{count(preceding::div[@type = current()/@type]) + 1}">
     <fo:marker marker-class-name="Chapter-Title">
@@ -943,6 +969,7 @@ keep-with-next="always">
       padding-before="0.02in"
       padding-after="0.05in"
       font-variant="all-small-caps"
+      hyphenate="false"
       keep-with-next="always">
     <xsl:if test="not(following-sibling::*[1][self::head][@type = 'sub'])">
       <xsl:attribute name="axf:analyze-lines-after"
@@ -1251,12 +1278,43 @@ keep-with-next="always">
   <fo:block text-align="center"
             text-indent="0"
             space-before="0.25lh"
+            space-after="0.25lh"
             font-size="7pt"
             line-height="9pt"
             axf:baseline-block-snap="before margin-box"
             axf:baseline-grid="new">
     <xsl:apply-templates />
   </fo:block>
+</xsl:template>
+
+<xsl:template match="body//q[lg[@type = 'stanza']]"
+              priority="5">
+  <fo:block text-indent="0"
+            space-before="0.25lh"
+            space-after="0.25lh"
+            font-size="7pt"
+            line-height="9pt"
+            axf:baseline-block-snap="before margin-box"
+            axf:baseline-grid="new">
+  <xsl:apply-templates />
+  <!--
+    <fo:inline-container start-indent="0"
+        axf:hanging-punctuation="start allow-end">
+      <xsl:apply-templates />
+    </fo:inline-container>
+  -->
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="body//lg[@type = 'stanza']">
+  <fo:block text-indent="0"
+            start-indent="8em"
+            space-before="1lh">
+      <xsl:attribute name="font-size" select="'7pt'" />
+      <xsl:attribute name="line-height" select="'9pt'" />
+      <xsl:attribute name="axf:baseline-grid" select="'new'" />
+        <xsl:apply-templates />
+      </fo:block>
 </xsl:template>
 
 <xsl:template match="lg">
@@ -1317,8 +1375,10 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
-<!-- Start of Chapter 40. -->
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[40]/stage[1]">
+<!-- In Chapter 40. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[40]/stage[1] |
+                     /TEI/text[1]/body[1]/div[1]/div[40]/sp[12]/stage[2] |
+                     /TEI/text[1]/body[1]/div[1]/div[40]/stage[2]">
   <fo:block
       text-indent="1.5em" font-style="italic"
       keep-with-next.within-page="always">
@@ -1327,9 +1387,9 @@ keep-with-next="always">
 </xsl:template>
 
 <!-- Start of Chapter CVIII and Chapter CXXVII, in Chapter XL. -->
-<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[108]/stage[1] |
-                     /TEI/text[1]/body[1]/div[1]/div[127]/stage[1] |
-                     /TEI/text[1]/body[1]/div[1]/div[40]/sp[12]/stage[2]">
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[37]/stage[1] |
+                     /TEI/text[1]/body[1]/div[1]/div[108]/stage[1] |
+                     /TEI/text[1]/body[1]/div[1]/div[127]/stage[1]">
   <fo:block start-indent="1.5em" text-indent="-1.5em"
             keep-with-next.within-page="always"
             space-after="1lh"
@@ -1338,6 +1398,14 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
+<!-- Chapter CXIX. (pg. 560) -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[119]/stage[1]">
+  <fo:block
+      text-indent="1.5em" xsl:use-attribute-sets="stage"
+      space-before="1lh" space-after="1lh">
+    <xsl:apply-templates />
+  </fo:block>
+</xsl:template>
 
 <xsl:template match="stage">
   <fo:block text-align="center" keep-with-next.within-page="always"
@@ -1351,7 +1419,7 @@ keep-with-next="always">
   </fo:block>
 </xsl:template>
 
-<xsl:template match="p/stage">
+<xsl:template match="p/stage | speaker/stage">
   <fo:inline xsl:use-attribute-sets="stage">
     <xsl:apply-templates />
   </fo:inline>
@@ -1371,7 +1439,14 @@ keep-with-next="always">
   </xsl:analyze-string>
 </xsl:template>
 
-<xsl:template match="abbr | emph | hi[@rend eq 'i'] | title">
+<!-- Chapter LVII contains '<abbr>i. e.</abbr>'. -->
+<xsl:template match="abbr">
+  <fo:inline xsl:use-attribute-sets="abbr">
+    <xsl:apply-templates />
+  </fo:inline>
+</xsl:template>
+
+<xsl:template match="emph | hi[@rend eq 'i'] | title">
   <fo:inline font-style="italic">
     <xsl:apply-templates />
   </fo:inline>
@@ -1422,9 +1497,8 @@ keep-with-next="always">
   <fo:block />
 </xsl:template>
 
-<xsl:template match="pb[@xml:id]">
-  <fo:wrapper xml:id="{@xml:id}" />
-</xsl:template>
+<!-- Drop <pb/> because they can interfere with page breaks. -->
+<xsl:template match="pb" />
 
 <!-- Drop row of '*' at end of chapter because page breaks are
      different and the separator appears if room allows. -->
@@ -1451,10 +1525,8 @@ keep-with-next="always">
         <xsl:value-of select="." />
       </fo:basic-link>
     </fo:inline>
-    <fo:footnote-body
-        id="{substring-after(@target, '#')}"
-        font-size="7pt"
-        line-height="10pt">
+    <fo:footnote-body xsl:use-attribute-sets="footnote-body"
+        id="{substring-after(@target, '#')}">
       <xsl:apply-templates
           select="key('footnote',
                       substring-after(@target, '#'))/node()" />
@@ -1533,6 +1605,10 @@ keep-with-next="always">
        single-quotes. -->
   <xsl:variable
       name="text"
+      select="replace($text, '^''&quot;', '&lsquo;&ldquo;')"
+      as="xs:string" />
+  <xsl:variable
+      name="text"
       select="replace($text, '''(s?t?(&quot;|\s|[.,;:]|(balmed|dention|em|gainst|ll|mong|parm|quid|specially|spose|stead|teak|till|[Tt]is|[Tt]was)(,|\.|\s)|$))', '&rsquo;$1')"
       as="xs:string" />
   <xsl:variable
@@ -1579,7 +1655,9 @@ keep-with-next="always">
 
 <xsl:template match="figure">
   <fo:external-graphic src="images/mark.jpg"
-                       alignment-baseline="middle" />
+                       alignment-baseline="middle"
+                       padding-left="1em"
+                       padding-right="1em" />
 </xsl:template>
 
 </xsl:stylesheet>

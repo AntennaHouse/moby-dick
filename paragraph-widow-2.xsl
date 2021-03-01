@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY lsquo '&#x2018;' >
-<!ENTITY rsquo '&#x2019;' >
-<!ENTITY ldquo '&#x201C;' >
-<!ENTITY rdquo '&#x201D;' >
-<!ENTITY nbsp  '&#xA0;' >
-<!ENTITY ndash '&#x2013;' >
-<!ENTITY times '&#xD7;' >
-<!ENTITY zwj   '&#x2060;' >
+<!ENTITY lsquo  '&#x2018;' >
+<!ENTITY rsquo  '&#x2019;' >
+<!ENTITY ldquo  '&#x201C;' >
+<!ENTITY rdquo  '&#x201D;' >
+<!ENTITY mdash  '&#x2014;' >
+<!ENTITY mdash2 '&#x2E3A;' >
+<!ENTITY mdash3 '&#x2E3B;' >
+<!ENTITY nbsp   '&#xA0;'   >
+<!ENTITY ndash  '&#x2013;' >
+<!ENTITY times  '&#xD7;'   >
+<!ENTITY zwj    '&#x2060;' >
 ]>
 
 <!-- Copyright 2020 Antenna House, Inc. -->
@@ -66,8 +69,9 @@
     match="/TEI/text[1]/body[1]/div[1]/div[1]/p[11]">
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
-      <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
-      <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
+      <!--<xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />-->
+      <xsl:attribute name="letter-spacing.minimum" select="'0.0025em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.0025em'" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
@@ -81,6 +85,12 @@
       <xsl:attribute name="word-spacing.minimum" select="'-0.0075em'" />
     </xsl:with-param>
   </xsl:next-match>
+</xsl:template>
+
+<!-- 'Nothing, Sir...' (pg. 78) -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[14]/text()">
+  <xsl:value-of
+      select="replace(ahf:text(.), '&mdash2;', '&zwj;&mdash2;')" />
 </xsl:template>
 
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[15]/p[4]/text()">

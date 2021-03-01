@@ -85,9 +85,12 @@
 <!-- 'Here ends BOOK II. (Octavo)...' (pg. 157) -->
 <xsl:template
     match="/TEI/text[1]/body[1]/div[1]/div[32]/p[37]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="axf:analyze-white-space" select="'none'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
@@ -95,9 +98,12 @@
 <!-- 'There are certain queer times...' (pg. 252) -->
 <xsl:template
     match="/TEI/text[1]/body[1]/div[1]/div[49]/p[1]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'-0.005em'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
@@ -106,9 +112,12 @@
      page break for 'The old black...' (pg. 327) -->
 <xsl:template
     match="/TEI/text[1]/body[1]/div[1]/div[62]/p[2]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'-0.0075em'" />
+      <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
 </xsl:template>
