@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY lsquo '&#x2018;' >
-<!ENTITY rsquo '&#x2019;' >
-<!ENTITY ldquo '&#x201C;' >
-<!ENTITY rdquo '&#x201D;' >
-<!ENTITY nbsp  '&#xA0;' >
-<!ENTITY ndash '&#x2013;' >
-<!ENTITY times '&#xD7;' >
-<!ENTITY zwj   '&#x2060;' >
+<!ENTITY lsquo  '&#x2018;' >
+<!ENTITY rsquo  '&#x2019;' >
+<!ENTITY ldquo  '&#x201C;' >
+<!ENTITY rdquo  '&#x201D;' >
+<!ENTITY mdash  '&#x2014;' >
+<!ENTITY mdash2 '&#x2E3A;' >
+<!ENTITY mdash3 '&#x2E3B;' >
+<!ENTITY nbsp   '&#xA0;'   >
+<!ENTITY ndash  '&#x2013;' >
+<!ENTITY times  '&#xD7;'   >
+<!ENTITY zwj    '&#x2060;' >
 ]>
 
 <!-- Copyright 2020-2021 Antenna House, Inc. -->
@@ -345,20 +348,47 @@
   <xsl:param name="text" as="text()" />
   <xsl:param name="substrings" as="xs:string+" />
   
-  <xsl:variable name="text" select="normalize-space(ahf:text($text))" />
+  <xsl:variable name="string"
+                select="normalize-space(ahf:text($text))"
+                as="xs:string" />
 
-  <xsl:sequence select="ahf:no-break-sub($text, $substrings)" />
+  <!-- <pb> between words could that mean space before or after <pb>
+       was normalized away. -->
+  <xsl:variable name="string"
+                select="if (matches($text, '^\s'))
+                          then concat(' ', $string)
+                        else $string"
+                as="xs:string" />
+  <xsl:variable name="string"
+                select="if (matches($text, '\s$'))
+                          then concat($string, ' ')
+                        else $string"
+                as="xs:string" />
+
+  <xsl:sequence select="ahf:no-break-sub($string, $substrings)" />
 </xsl:function>
-
 
 <xsl:function name="ahf:no-break-sub" as="xs:string">
   <xsl:param name="string" as="xs:string" />
   <xsl:param name="substrings" as="xs:string+" />
+
+  <xsl:variable
+      name="substring"
+      select="replace($substrings[1], '(\?)', '\\\\\\\\$1')"
+      as="xs:string" />
   
+  <xsl:variable name="replace-string"
+      select="replace(replace(replace($substring, ' ', '&nbsp;'),
+                              '([&mdash;&mdash2;&mdash3;])(\S)',
+                              '$1&zwj;$2'),
+                      '(\S)([&mdash;&mdash2;&mdash3;])',
+                      '$1&zwj;$2')"
+      as="xs:string" />
+
   <xsl:variable name="string"
       select="replace($string,
-                      $substrings[1],
-                      replace($substrings[1], ' ', '&nbsp;'))"
+                      $substring,
+                      $replace-string)"
       as="xs:string" />
 
   <xsl:choose>
@@ -369,6 +399,70 @@
       <xsl:sequence
           select="ahf:no-break-sub($string,
                                    $substrings[position() > 1])" />
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:function>
+
+<xsl:function name="ahf:no-hyphen" as="item()+">
+  <xsl:param name="text" as="text()" />
+  <xsl:param name="substrings" as="xs:string+" />
+  
+  <xsl:variable name="string"
+                select="normalize-space(ahf:text($text))"
+                as="xs:string" />
+
+  <!-- <pb> between words could that mean space before or after <pb>
+       was normalized away. -->
+  <xsl:variable name="string"
+                select="if (matches($text, '^\s'))
+                          then concat(' ', $string)
+                        else $string"
+                as="xs:string" />
+  <xsl:variable name="string"
+                select="if (matches($text, '\s$'))
+                          then concat($string, ' ')
+                        else $string"
+                as="xs:string" />
+
+  <xsl:sequence select="ahf:no-hyphen-sub($string, $substrings)" />
+</xsl:function>
+
+<xsl:function name="ahf:no-hyphen-sub" as="item()+">
+  <xsl:param name="string" as="xs:string" />
+  <xsl:param name="substrings" as="xs:string+" />
+  
+  <xsl:variable name="replace-string" as="item()+">
+    <xsl:analyze-string
+        select="$string"
+        regex="{$substrings[1]}">
+      <xsl:matching-substring>
+        <fo:inline keep-together.within-line="always">
+          <xsl:value-of select="." />
+        </fo:inline>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="." />
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="count($substrings) = 1">
+      <xsl:sequence select="$replace-string" />
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:for-each select="$replace-string">
+        <xsl:choose>
+          <xsl:when test="self::*">
+            <xsl:sequence select="." />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:sequence
+                select="ahf:no-hyphen-sub(.,
+                                          $substrings[position() > 1])" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>

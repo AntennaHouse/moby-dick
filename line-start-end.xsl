@@ -70,11 +70,16 @@
   </fo:block>
 </xsl:template>
 
+<!-- 'I thought him...' (pg. 84) -->
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[54]">
-  <fo:block word-spacing.minimum="0.01em"
-            xsl:use-attribute-sets="p">
-    <xsl:apply-templates />
-  </fo:block>
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'0.01em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
 </xsl:template>
 
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[81]/p[29]/text()">
