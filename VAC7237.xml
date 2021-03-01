@@ -6522,7 +6522,7 @@
             <div type="chapter">
                <head>CHAPTER XL.</head>
                <head type="sub">MIDNIGHT, FORECASTLE.</head>
-               <speaker>HARPOONEERS AND SAILORS.</speaker>
+               <head type="sub">HARPOONEERS AND SAILORS.</head>
                <stage>(Foresail rises and discovers the watch standing, lounging, leaning, and lying
                   in various attitudes, all singing in chorus.)</stage>
                <q>
@@ -6736,8 +6736,7 @@
                </sp>
                <sp>
                   <speaker>SPANISH SAILOR.</speaker>
-                  <stage>(Aside.)</stage>
-                  <p>He wants to bully, ah!—the old grudge makes me touchy.
+                  <p><stage>(Aside.)</stage> He wants to bully, ah!—the old grudge makes me touchy.
                         <stage>(Advancing.)</stage> Aye, harpooneer, thy race is the undeniable dark
                      side of mankind—devilish dark at that. No offence.</p>
                </sp>
@@ -16761,9 +16760,9 @@
                   full-freighted worlds, there's that in here that still remains indifferent. Oh,
                   thou clear spirit, of thy fire thou madest me, and like a true child of fire, I
                   breathe it back to thee."</p>
-               <p>[<stage>Sudden, repeated flashes of lightning; the nine flames leap lengthwise to
+               <stage>[Sudden, repeated flashes of lightning; the nine flames leap lengthwise to
                      thrice their previous height; Ahab, with the rest, closes his eyes, his right
-                     hand pressed hard upon them.</stage>]</p>
+                     hand pressed hard upon them.]</stage>
                <p>"I own thy speechless, placeless power; said I not so? Nor was it wrung from me;
                   nor do I now drop these links. Thou canst blind; but I can then grope. Thou canst
                   consume; but I can then be ashes. Take the homage of these poor eyes, and
@@ -17337,11 +17336,11 @@
                   makes the sounding-board is this—there's naught beneath. And yet, a coffin with a
                   body in it rings pretty much the same, Carpenter. Hast thou ever helped carry a
                   bier, and heard the coffin knock against the churchyard gate, going in?"</p>
-               <p>"Faith, sir, I've———"</p>
+               <p>"Faith, sir, I've ———"</p>
                <p>"Faith? What's that?"</p>
                <p>"Why, faith, sir, it's only a sort of exclamation like—that's all, sir."</p>
                <p>"Um, um; go on."</p>
-               <p>"I was about to say, sir, that———"</p>
+               <p>"I was about to say, sir, that ———"</p>
                <p>"Art thou a silk-worm? Dost thou spin thy own shroud out of thyself? Look at thy
                   bosom! Despatch! and get these traps out of sight."</p>
                <p>"He goes aft. That was sudden, now; but squalls come sudden in hot latitudes. I've
@@ -17349,8 +17348,8 @@
                   right in the middle. Seems to me some sort of Equator cuts yon old man, too, right
                   in his middle. He's always under the Line—fiery hot, I tell ye! He's looking this
                   way—come, oakum; quick. Here we go again. This wooden mallet is the cork, and I'm
-                  the professor of musical glasses—tap, tap!" <stage>(Ahab to himself.)</stage>
-               </p>
+                  the professor of musical glasses—tap, tap!"</p>
+               <stage>(Ahab to himself.)</stage>
                <p>"There's a sight! There's a sound! The greyheaded woodpecker pecker tapping the
                   hollow tree! Blind and dumb might well be envied now. See! that thing rests on two
                   line-tubs, full of tow-lines. A most malicious wag, that fellow. Rat-tat! So man's
@@ -17506,9 +17505,8 @@
                   thou wilt often hear my ivory foot upon the deck, and still know that I am there.
                   And now I quit thee. Thy hand!—Met! True art thou, lad, as the circumference to
                   its centre. So: God for ever bless thee; and if it come to that,—God for ever save
-                  thee, let what will befall." <stage>(Ahab goes; Pip steps one step
-                     forward.)</stage>
-               </p>
+                  thee, let what will befall."</p>
+               <stage>(Ahab goes; Pip steps one step forward.)</stage>
                <p>"Here he this instant stood; I stand in his air,—but I'm alone. Now were even poor
                   Pip here I could endure it, but he's missing. Pip! Pip! Ding, dong, ding! Who's
                   seen Pip? He must be up here; let's try the door. What? neither lock, nor bolt,
@@ -18251,7 +18249,7 @@
                   skilfully manœuvred, incessantly wheeling like trained chargers in the field; the
                   boats for a while eluded him; though, at times, but by a plank's breadth; while
                   all the time, Ahab's unearthly slogan tore every other cry but his to shreds.</p>
-               <p>But at last in his untraceable evolutions, the White Whale so crossed and
+                 <p>But at last in his untraceable evolutions, the White Whale so crossed and
                   recrossed, and in a thousand ways entangled the slack of the three lines now fast
                   to him, that they foreshortened, and, of themselves, warped the devoted boats
                   towards the planted irons in him; though now for a moment the whale drew aside a
