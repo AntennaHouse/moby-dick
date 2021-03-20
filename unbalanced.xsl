@@ -48,6 +48,12 @@
 <!-- ATTRIBUTE SETS                                                -->
 <!-- ============================================================= -->
 
+<!-- Page regions. -->
+
+<xsl:attribute-set name="xsl-region-body">
+  <xsl:attribute name="axf:adjust-last-line-spacing" select="'true'" />
+</xsl:attribute-set>
+
 
 <!-- ============================================================= -->
 <!-- TEMPLATES                                                     -->
@@ -230,6 +236,13 @@
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[68]/text()">
   <xsl:value-of
       select="ahf:no-break(., ('the door', 'Well then, down'))" />
+</xsl:template>
+
+<!-- 'But I had not proceeded far...' (pg. 88) -->
+<!-- River. -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[16]/p[76]/text()">
+  <xsl:value-of
+      select="ahf:no-break(., 'whale-ship will')" />
 </xsl:template>
 
 <!-- '"Come hither to me...' (pg. 89) -->
@@ -611,6 +624,26 @@
   </xsl:next-match>
 </xsl:template>
 
+<!-- 'While the mate...' (pg. 178) -->
+<!-- Gain a line to make pg. 178 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[36]/p[20]">
+  <xsl:param name="atts" select="()" as="attribute()*" />
+
+  <xsl:next-match>
+    <xsl:with-param name="atts" as="attribute()*">
+      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:sequence select="$atts" />
+    </xsl:with-param>
+  </xsl:next-match>
+</xsl:template>
+
+<!-- 'While the mate...' (pg. 178) -->
+<!-- Gain a line to make pg. 178 fill its text block.  -->
+<xsl:template match="/TEI/text[1]/body[1]/div[1]/div[36]/p[20]/text()">
+  <xsl:sequence
+      select="ahf:no-break(., ('any words', 'a sound'))" />
+</xsl:template>
+
 <!-- 'My soul is more than matched...' (pg. 186) -->
 <!-- Lose a line to make second song fit on pg. 188.  -->
 <xsl:template match="/TEI/text[1]/body[1]/div[1]/div[38]/p[1]">
@@ -812,7 +845,7 @@
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
       <xsl:attribute name="letter-spacing.minimum" select="'0.005em'" />
-      <xsl:attribute name="word-spacing.minimum" select="'0.02em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'0.015em'" />
       <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
@@ -1915,8 +1948,7 @@
 
   <xsl:next-match>
     <xsl:with-param name="atts" as="attribute()*">
-      <xsl:attribute name="letter-spacing.minimum" select="'-0.01em'" />
-      <xsl:attribute name="word-spacing.minimum" select="'-0.02em'" />
+      <xsl:attribute name="word-spacing.minimum" select="'-0.01em'" />
       <xsl:sequence select="$atts" />
     </xsl:with-param>
   </xsl:next-match>
