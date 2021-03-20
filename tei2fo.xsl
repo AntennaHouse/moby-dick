@@ -110,6 +110,14 @@
 <!-- ATTRIBUTE SETS                                                -->
 <!-- ============================================================= -->
 
+<!-- Page regions. -->
+
+<xsl:attribute-set name="xsl-region-body">
+  <xsl:attribute name="text-align" select="'justify'" />
+</xsl:attribute-set>
+
+<!-- Parts of document. -->
+
 <!-- Table of Contents. -->
 <xsl:attribute-set name="contents" />
 
@@ -121,6 +129,8 @@
   <xsl:attribute name="letter-spacing.minimum" select="'0'" />
   <xsl:attribute name="word-spacing.minimum" select="'0'" />
 </xsl:attribute-set>
+
+<!-- Block elements. -->
 
 <xsl:attribute-set name="p">
   <xsl:attribute name="text-indent" select="'1.5em'" />
@@ -340,7 +350,7 @@
   <fo:page-sequence
       master-reference="CoverFrontMaster">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify" line-height="11pt">
+             xsl:use-attribute-sets="xsl-region-body" line-height="11pt">
       <fo:block-container padding-top="1.6in">
         <xsl:apply-templates />
       </fo:block-container>
@@ -463,7 +473,7 @@
       master-reference="CoverFrontMaster"
       format="i">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
@@ -483,7 +493,7 @@
       xsl:use-attribute-sets="contents">
     <xsl:call-template name="Contents-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
@@ -630,7 +640,7 @@
       format="i">
     <xsl:call-template name="Extracts-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <fo:marker marker-class-name="Chapter-Title">
         <xsl:apply-templates
             select="(fw[@type = 'head'], head)[1]/node()"
@@ -836,7 +846,7 @@ keep-with-next="always">
   <fo:page-sequence
       master-reference="CoverFrontMaster">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
@@ -847,7 +857,7 @@ keep-with-next="always">
   <fo:page-sequence
       master-reference="CoverFrontMaster">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
@@ -862,7 +872,7 @@ keep-with-next="always">
       axf:baseline-grid="root">
     <xsl:call-template name="PageMaster-static-content" />
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
@@ -915,7 +925,7 @@ keep-with-next="always">
       master-reference="PageMaster"
       id="epilogue">
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <fo:marker marker-class-name="Chapter-Title" />
       <xsl:apply-templates />
       <xsl:apply-templates select="following-sibling::closer"
@@ -992,7 +1002,7 @@ keep-with-next="always">
       force-page-count="document 16">
     <!-- No headers or footers. -->
     <fo:flow flow-name="xsl-region-body" hyphenate="true"
-             text-align="justify">
+             xsl:use-attribute-sets="xsl-region-body">
       <xsl:apply-templates />
     </fo:flow>
   </fo:page-sequence>
