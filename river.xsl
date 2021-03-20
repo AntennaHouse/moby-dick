@@ -406,6 +406,23 @@
 <xsl:function name="ahf:no-hyphen" as="item()+">
   <xsl:param name="text" as="text()" />
   <xsl:param name="substrings" as="xs:string+" />
+
+  <xsl:sequence
+      select="ahf:hyphenate(false(), $text, $substrings)" />
+</xsl:function>
+
+<xsl:function name="ahf:hyphen" as="item()+">
+  <xsl:param name="text" as="text()" />
+  <xsl:param name="substrings" as="xs:string+" />
+
+  <xsl:sequence
+      select="ahf:hyphenate(true(), $text, $substrings)" />
+</xsl:function>
+
+<xsl:function name="ahf:hyphenate" as="item()+">
+  <xsl:param name="hyphenate" as="xs:boolean" />
+  <xsl:param name="text" as="text()" />
+  <xsl:param name="substrings" as="xs:string+" />
   
   <xsl:variable name="string"
                 select="normalize-space(ahf:text($text))"
@@ -424,10 +441,12 @@
                         else $string"
                 as="xs:string" />
 
-  <xsl:sequence select="ahf:no-hyphen-sub($string, $substrings)" />
+  <xsl:sequence
+      select="ahf:hyphenate-sub($hyphenate, $string, $substrings)" />
 </xsl:function>
 
-<xsl:function name="ahf:no-hyphen-sub" as="item()+">
+<xsl:function name="ahf:hyphenate-sub" as="item()+">
+  <xsl:param name="hyphenate" as="xs:boolean" />
   <xsl:param name="string" as="xs:string" />
   <xsl:param name="substrings" as="xs:string+" />
   
@@ -458,7 +477,8 @@
           </xsl:when>
           <xsl:otherwise>
             <xsl:sequence
-                select="ahf:no-hyphen-sub(.,
+                select="ahf:hyphenate-sub($hyphenate,
+                                          .,
                                           $substrings[position() > 1])" />
           </xsl:otherwise>
         </xsl:choose>
