@@ -14,6 +14,21 @@
 ]>
 
 <!-- Copyright 2020-2021 Antenna House, Inc. -->
+
+<!--
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
 <!-- 'Moby-Dick' first edition. -->
 <!-- http://purl.dlib.indiana.edu/iudl/wright/VAC7237 -->
 
@@ -145,7 +160,7 @@
 
 <xsl:attribute-set name="small-caps">
   <xsl:attribute name="font-variant" select="'small-caps'" />
-  <!-- Letter-space by 5%. -->
+  <!-- Letter-space by 4%. -->
   <xsl:attribute name="letter-spacing" select="'0.04em'" />
   <xsl:attribute name="word-spacing.maximum" select="'0.25em'" />
 </xsl:attribute-set>
@@ -310,6 +325,7 @@
       line-height="1"
       text-align="center"
       font-stretch="extra-condensed">
+    <xsl:copy-of select="preceding-sibling::*[1][self::pb]/@xml:id" />
     <xsl:analyze-string
         select="normalize-space(.)"
         regex="OR,">
@@ -903,6 +919,7 @@ keep-with-next="always">
           select="(fw[@type = 'head'], head[@type = 'sub'])[1]/node()"
           mode="marker" />
     </fo:marker>
+    <!-- Chapter I, Loomings, has larger chapter-drop. -->
     <fo:block-container
         axf:baseline-grid="none"
         axf:baseline-block-snap="none"
@@ -934,7 +951,6 @@ keep-with-next="always">
   </fo:page-sequence>
 </xsl:template>
 
-<!-- Chapter I, Loomings, has larger chapter-drop. -->
 <xsl:template
     match="div[@type = 'chapter']/head">
   <fo:block
@@ -1319,7 +1335,8 @@ keep-with-next="always">
 <xsl:template match="body//lg[@type = 'stanza']">
   <fo:block text-indent="0"
             start-indent="8em"
-            space-before="1lh">
+            space-before="1lh"
+            space-after="1lh">
       <xsl:attribute name="font-size" select="'7pt'" />
       <xsl:attribute name="line-height" select="'9pt'" />
       <xsl:attribute name="axf:baseline-grid" select="'new'" />
@@ -1350,6 +1367,18 @@ keep-with-next="always">
       </fo:block>
     </fo:inline-container>
   </fo:block>
+</xsl:template>
+
+<!-- The last lines of the stanzas in chapter CXIX, Candles, are very
+     long but are each all on one line. -->
+<xsl:template
+    match="body/div[@type = 'book']/div[@type = 'chapter'][119]//l[empty(@rend)]"
+    priority="5">
+  <fo:block-container overflow="condense" axf:overflow-condense="letter-spacing" margin-left="0">
+    <fo:block keep-together.within-line="always">
+      <xsl:apply-templates />
+    </fo:block>
+  </fo:block-container>
 </xsl:template>
 
 <xsl:template match="l">
@@ -1464,7 +1493,7 @@ keep-with-next="always">
 
 <xsl:template
     match="hi[@rend eq 'all-small-caps']">
-  <fo:inline font-variant="all-small-caps" letter-spacing="0.05em">
+  <fo:inline xsl:use-attribute-sets="all-small-caps">
     <xsl:apply-templates />
   </fo:inline>
 </xsl:template>
