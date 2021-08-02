@@ -2,13 +2,13 @@
 set echo=off
 echo %echo%
 
-rem    Copyright 2020 Antenna House, Inc.
+rem    Copyright 2020-2021 Antenna House, Inc.
 
 setlocal ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
 rem Directory locations
 set PWD=%cd%
-set SOURCE=VAC7237.xml
+set SOURCE=moby-dick-tei\VAC7237.xml
 set USE_ANALYZER_BAT=../analysis-utility/analyzer.bat
 set USE_SAXON=E:/saxon/9.9/saxon9he.jar
 set USE_AHFCMD="%AHF71_64_HOME%/AHFCmd.exe"
@@ -130,21 +130,32 @@ if not "%saxon%"=="" (
 )
 
 if not "%stage%"=="" (
-      set STAGE=%stage%
+   set STAGE=%stage%
 ) else (
    set STAGE=%USE_STAGE%
 )
 
-if "%STAGE%"=="all" goto stage_1_do
+if "%STAGE%"=="all" (
+   echo Running every stage independently.  This may take a while...
+   echo.
+   goto stage_1_do
+)
 if "%STAGE%"=="1" goto stage_1_do
 goto stage_1_done
 :stage_1_do
 echo Stage 1: Base
 
-rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage1_base.fo" "tei2fo.xsl" "fo-layout.xsl"`) do (
+rem Sort files by date. Newest file is last to set NEWER.
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage1_base.fo" "tei2fo.xsl" "fo-layout.xsl"`) do (
     set NEWER=%%q
 )
+
+rem 'dir /B /OD' does not work across directories.
+rem Use a function that returns timestamp in seconds since 1970.
+call :sub_file_mod_time "%SOURCE%" SOURCE_DATE
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_1_fo_do
 
 if not "%NEWER%"=="stage1_base.fo" goto stage_1_fo_do
 
@@ -181,11 +192,15 @@ echo.
 echo Stage 2: Paragraph Widow 1
 
 rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage2_paragraph-widow-1.fo" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage2_paragraph-widow-1.fo" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
     set NEWER=%%q
 )
 
 if not "%NEWER%"=="stage2_paragraph-widow-1.fo" goto stage_2_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_2_fo_do
 
 echo 'stage2_paragraph-widow-1.fo' is up to date
 
@@ -220,11 +235,15 @@ echo.
 echo Stage 3: Paragraph Widow 2
 
 rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage3_paragraph-widow-2.fo" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage2_paragraph-widow-1.fo" "stage3_paragraph-widow-2.fo" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
     set NEWER=%%q
 )
 
 if not "%NEWER%"=="stage3_paragraph-widow-2.fo" goto stage_3_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_3_fo_do
 
 echo 'stage3_paragraph-widow-2.fo' is up to date
 
@@ -250,6 +269,10 @@ for /F "usebackq delims=" %%q in (`dir /B /OD "stage3_overrides.fo" "stage3_para
 )
 
 if not "%NEWER%"=="stage3_overrides.fo" goto stage_3_overrides_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_3_overrides_do
 
 echo 'stage3_overrides.fo' is up to date
 
@@ -284,11 +307,15 @@ echo.
 echo Stage 4: Line Start and End
 
 rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage4_line-start-end.fo" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage4_line-start-end.fo" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
     set NEWER=%%q
 )
 
 if not "%NEWER%"=="stage4_line-start-end.fo" goto stage_4_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_4_fo_do
 
 echo 'stage4_line-start-end.fo' is up to date
 
@@ -323,11 +350,15 @@ echo.
 echo Stage 5: Consecutive Hyphens
 
 rem Sort files by date. Newer file is last to set NEWER.
-for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage5_consecutive-hyphens.fo" "consecutive-hyphens.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
+for /F "usebackq delims=" %%q in (`dir /B /OD "stage5_consecutive-hyphens.fo" "consecutive-hyphens.xsl" "line-start-end.xsl" "paragraph-widow-2.xsl" "tei2fo.xsl" "fo-layout.xsl" "paragraph-widow-settings.xml"`) do (
     set NEWER=%%q
 )
 
 if not "%NEWER%"=="stage5_consecutive-hyphens.fo" goto stage_5_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_5_fo_do
 
 echo 'stage5_consecutive-hyphens.fo' is up to date
 
@@ -368,6 +399,10 @@ for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage6_white-space.fo"
 
 if not "%NEWER%"=="stage6_white-space.fo" goto stage_6_fo_do
 
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_6_fo_do
+
 echo 'stage6_white-space.fo' is up to date
 
 goto stage_6_fo_done
@@ -407,6 +442,10 @@ for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage7_river.fo" "rive
 
 if not "%NEWER%"=="stage7_river.fo" goto stage_7_fo_do
 
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_7_fo_do
+
 echo 'stage7_river.fo' is up to date
 
 goto stage_7_fo_done
@@ -445,6 +484,10 @@ for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage8_lines.fo" "line
 )
 
 if not "%NEWER%"=="stage8_lines.fo" goto stage_8_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_8_fo_do
 
 echo 'stage8_lines.fo' is up to date
 
@@ -489,7 +532,7 @@ java -jar %SAXON% stage8_lines.fo show-overrides.xsl > stage8_overrides.fo
 
 :stage_8_overrides_done
 
-call %ANALYZER_BAT% -d stage8_overrides.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD%
+call %ANALYZER_BAT% -d stage8_overrides.fo -format report -opt "-x 4 -i paragraph-widow-settings.xml -i white-space-settings.xml -i river-settings.xml" -ahfcmd %AHFCMD% -show no
 
 echo %echo%
 
@@ -510,6 +553,10 @@ for /F "usebackq delims=" %%q in (`dir /B /OD "%SOURCE%" "stage9_unbalanced.fo" 
 )
 
 if not "%NEWER%"=="stage9_unbalanced.fo" goto stage_9_fo_do
+
+call :sub_file_mod_time %NEWER% NEWER_DATE
+
+if "%SOURCE_DATE%" GTR "%NEWER_DATE%" goto stage_9_fo_do
 
 echo 'stage9_unbalanced.fo' is up to date
 
@@ -570,3 +617,34 @@ exit /B 0
 rem ----------------------------------------------------------------------
 :error
 exit /B 1
+
+rem ----------------------------------------------------------------------
+rem Subroutines
+
+rem From https://www.dostips.com/forum/viewtopic.php?p=38229#p38229
+:sub_file_mod_time  File  [TimeVar]
+::
+::  Computes the Unix time (epoch time) for the last modified timestamp for File.
+::  The result is an empty string if the file does not exist. Stores the result
+::  in TimeVar, or prints the result if TimeVar is not specified.
+::
+::  Unix time = number of seconds since midnight, January 1, 1970 GMT
+::
+setlocal disableDelayedExpansion
+:: Get full path of file (short form if possible)
+for %%F in ("%~1") do set "file=%%~sF"
+:: Get last modified time in YYYYMMDDHHMMSS format
+set "time="
+for /f "skip=1 delims=,. tokens=2" %%A in (
+  'wmic datafile where name^="%file:\=\\%" get lastModified /format:csv 2^>nul'
+) do set "ts=%%A"
+set "ts=%ts%"
+:: Convert time to Unix time (aka epoch time)
+if defined ts (
+  set /a "yy=10000%ts:~0,4% %% 10000, mm=100%ts:~4,2% %% 100, dd=100%ts:~6,2% %% 100"
+  set /a "dd=dd-2472663+1461*(yy+4800+(mm-14)/12)/4+367*(mm-2-(mm-14)/12*12)/12-3*((yy+4900+(mm-14)/12)/100)/4"
+  set /a "ss=(((1%ts:~8,2%*60)+1%ts:~10,2%)*60)+1%ts:~12,2%-366100-%ts:~21,1%((1%ts:~22,3%*60)-60000)"
+  set /a "ts=ss+dd*86400"
+)
+:: Return the result
+endlocal & if "%~2" neq "" (set "%~2=%ts%") else echo(%ts%
