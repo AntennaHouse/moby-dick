@@ -14,6 +14,19 @@ The mark image is from the Project Gutenberg version:
 
 - http://www.gutenberg.org/1/15/
 
+## Installation
+
+1. Clone the repository and its 'moby-dick-tei' submodule from https://github.com/AntennaHouse/moby-dick
+   ```
+   git clone --recurse-submodules  https://github.com/AntennaHouse/moby-dick.git
+   ```
+
+## Updating from GitHub
+
+```
+git pull --recurse-submodules origin master
+```
+
 ## Generating PDF
 
 Run `moby-pdf.bat` to generate `moby-dick.pdf`.
@@ -22,11 +35,11 @@ Run `moby-pdf.bat` to generate `moby-dick.pdf`.
 
 AH Formatter V7.0 and later are able to automatically detect a range of typographic problems in a formatted document. Solving these problems usually requires editorial or stylistic changes, and sometimes both.
 
-'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. Analysis and correction are automated to occur in separate stages for different error types. This is simply for ease of explanation. In practice, errors can be corrected in any useful sequence.
+'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. Analysis and correction are automated to occur in separate stages for different error types. This is simply for ease of explanation. Fixing each type of error is a separate stage is not a realistic solution. In practice, errors can be more usefully be corrected by starting at the beginning of the document and fixing each error in sequence.
 
 Run `stages.bat` to format and analyse multiple renditions of 'Moby-Dick' with successively more error corrections applied.
 
-The types of corrections that are made are discussed in `doc/automated-analysis-example.docx`. The stages are:
+The types of corrections that are made are discussed in `doc/automated-analysis-example.pdf`. The stages are:
 
 - Stage 1: Base<br>Baseline version with no corrections applied
 - Stage 2: Paragraph Widow 1<br>Reduce the limit for Paragraph Widow errors to 2em because the original has many paragraph widows
@@ -62,6 +75,10 @@ See "[Developing the Stylesheets](developing.md)".
 
 Copyright 2020-2021 Antenna House
 
+### XSLT
+
+XSLT files are licensed under the Apache License:
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -73,3 +90,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+### Fonts
+
+Fonts have their own licenses.
