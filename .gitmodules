@@ -1,3 +1,4 @@
 [submodule "moby-dick-tei"]
 	path = moby-dick-tei
 	url = https://github.com/AntennaHouse/moby-dick-tei.git
+	branch = main
