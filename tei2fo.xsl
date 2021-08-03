@@ -402,7 +402,17 @@ limitations under the License.
           <fo:block space-before="5pt" font-size="6pt"
                     letter-spacing="0.1em"
                     xsl:use-attribute-sets="all-small-caps">
-            <xsl:value-of select="normalize-space(.)" />
+            <xsl:analyze-string select="normalize-space(.)"
+                                regex="[&ldquo;&rdquo;]">
+              <xsl:matching-substring>
+                <fo:inline font-size="8pt">
+                  <xsl:value-of select="." />
+                </fo:inline>
+              </xsl:matching-substring>
+              <xsl:non-matching-substring>
+                <xsl:value-of select="." />
+              </xsl:non-matching-substring>
+            </xsl:analyze-string>
           </fo:block>
         </xsl:non-matching-substring>
       </xsl:analyze-string>
@@ -437,7 +447,10 @@ limitations under the License.
 
 <xsl:template
     match="pubPlace[1]">
-  <fo:block font-size="10pt" space-before="101pt" letter-spacing="0.33em">
+  <fo:block text-align="center" space-before="44pt" space-after="44pt">
+    <fo:external-graphic src="images/wavy-line.svg" max-width="50pt"/>
+  </fo:block>
+  <fo:block font-size="10pt" letter-spacing="0.33em">
     <xsl:apply-templates />
   </fo:block>
 </xsl:template>
