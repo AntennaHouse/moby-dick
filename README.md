@@ -1,10 +1,15 @@
-# Moby-Dick
+* [English](#en)
+* [日本語](#ja)
 
-Source XML and stylesheet for transforming TEI of first American edition of 'Moby-Dick' into XSL-FO for formatting with AH Formatter.
+----
+
+# <a name="en"></a>Moby-Dick
+
+Source XML and stylesheet for transforming TEI of the first American edition of 'Moby-Dick' into XSL-FO for formatting with AH Formatter.
 
 The source XML is in a separate GitHub repository that is used as a submodule of this repository.
 
-Source XML is based on files from 'Wright American Fiction' project:
+Source XML is based on files from the 'Wright American Fiction' project:
 
 - http://purl.dlib.indiana.edu/iudl/wright/VAC7237
 
@@ -35,9 +40,9 @@ Run `moby-pdf.bat` to generate `moby-dick.pdf`.
 
 AH Formatter V7.0 and later are able to automatically detect a range of typographic problems in a formatted document. Solving these problems usually requires editorial or stylistic changes, and sometimes both.
 
-'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. Analysis and correction are automated to occur in separate stages for different error types. This is simply for ease of explanation. Fixing each type of error is a separate stage is not a realistic solution. In practice, errors can be more usefully be corrected by starting at the beginning of the document and fixing each error in sequence.
+'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. Analysis and correction are automated to occur in separate stages for different error types. This is simply for ease of explanation. Fixing each type of error in a separate stage is not a realistic solution. It is simpler and easier to correct the errors by starting at the beginning of the document and fixing each error in sequence.
 
-Run `stages.bat` to format and analyse multiple renditions of 'Moby-Dick' with successively more error corrections applied.
+Run `stages.bat` to format and analyze multiple renditions of 'Moby-Dick' with successively more error corrections applied.
 
 The types of corrections that are made are discussed in `doc/automated-analysis-example.pdf`. The stages are:
 
@@ -94,3 +99,108 @@ limitations under the License.
 ### Fonts
 
 Fonts have their own licenses.
+
+----
+
+# <a name="ja"></a>白鯨「モービー・ディック」
+
+「白鯨」のアメリカ初版のTEIをAH Formatterで組版するためのXSL-FOに変換するための組版対象のXML とスタイルシート。
+
+組版対象のXML はこのリポジトリのサブモジュールとして使用されている別の GitHub リポジトリにあります。
+
+組版対象のXML は「Wright American Fiction」プロジェクトのファイルに基にしています：
+
+- http://purl.dlib.indiana.edu/iudl/wright/VAC7237
+
+組版対象のXML はWright版と複数の違いがあります。特に、Wright版には見出しのマークアップがなく、テキストを囲むのではなく、空要素を使用して斜体テキストの開始をマークします。
+
+マークの画像は Project Gutenberg 版のものです:
+
+- http://www.gutenberg.org/1/15/
+
+## インストール方法
+
+1. リポジトリとその 「moby-dick-tei」サブモジュール を https://github.com/AntennaHouse/moby-dick
+からクローンします。
+
+   ```
+   git clone --recurse-submodules  https://github.com/AntennaHouse/moby-dick.git
+   ```
+
+## GitHubからの更新
+
+```
+git pull --recurse-submodules origin master
+```
+
+## PDFの生成
+
+`moby-pdf.bat`を実行して`moby-dick.pdf`を生成します。
+
+## 組版結果の自動分析
+
+AH Formatter V7.0 以降は、組版した文書内のさまざまな組版上の問題を自動的に検出できます。検出された問題を解決するには、通常、編集上または体裁上の変更が必要です。両方の変更が必要な場合もあります。
+
+「白鯨」 は、AH Formatter V7.0以降の組版結果の自動分析の機能の例として使用しています。分析と修正は、イラー種類に応じて別々のステージで発生するように自動化されています。これは、説明を簡単にするためです。それぞれのエラーを別々のステージで修正することは、現実的な解決策ではありません。文書の先頭から順番にエラーを修正していく方がシムプルで簡単です。
+
+ `stages.bat` を実行して、「白鯨」の複数のレンディションを組版して分析し、エラー修正を順次に適用します。
+
+行われた修正については`doc/automated-analysis-example.pdf`で説明しています。ステージは以下のとおりです:
+
+- ステージ 1: ベース<br>ベースライン版に修正を適用していません。 version with no corrections applied
+- ステージ 2: 段落ウィドウ１<br>原典には多くの段落ウィドウエラーがあるため、段落ウィドウエラーの制限を2emに縮小します。 
+- ステージ 3: 段落ウィドウ 2<br>残っているほとんどの段落ウィドウを修正します。
+- ステージ 4: 同じ単語が行頭や行末で連続する行<br>同じ単語が行頭や行末で連続する行を修正します。
+- ステージ 5: 連続ハイフン<br>連続したハイフンが多い段落を修正します。
+- ステージ 6: 空白<br>広い空白を修正します。
+- ステージ 7: リバー<br>リバーを修正します。
+- ステージ 8: 前後の行数<br>見出しの前後の行数が少なすぎるのを修正します。
+- ステージ 9: 不均衡な見開きページ<br>見開きページの最後の行が不揃いになっているのを修正します。
+
+`stages.bat` は、分析ユーティリティファイルが兄弟ディレクトリにあることを期待しています。(GitHub リポジトリの https://github.com/AntennaHouse/analysis-utilityで入手できます。) 
+つまり、 `../analysis-utility`内にあります。
+
+`stages.bat` AH Formatter V7.1 (または V7.0 MR4 以降) と Java と Saxon 9 以降が必要とします。  (AH Formatter V7.0 MR4 は段落ウィドウのみを報告します。できれば、後の版を使用した方が良いです。)
+
+`AHFCmd.exe`を`-ahfcmd` オプションで指定します。
+
+`analyzer.bat`を`-analyzer` オプションで指定します。
+
+`saxon9he.jar`を `-saxon` オプションで指定します。
+
+`stages.bat` は遅い場合もあります: 「白鯨」は６５０ページ以上組版しています。 何度も組版し、分析報告も複数作成しています。
+
+## Page Images
+
+アメリカの初版の画像は、 Wright American Fiction プロジェクトのほか、　
+
+https://melville.electroniclibrary.org/moby-dick-the-whale-proofs.html
+のハーマン・メルヴィルの電子図書館から入手できます。
+
+## Developing the stylesheets
+
+[Developing the Stylesheets](developing.md)を参照してください。
+
+## License
+
+Copyright 2020-2021 Antenna House
+
+### XSLT
+
+XSLT ファイルは Apache Licenseにに基づいています:
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+### Fonts
+
+それぞれのフォントは独自のライセンスがあります。
