@@ -1661,7 +1661,7 @@ keep-with-next="always">
       as="xs:string" />
   <xsl:variable
       name="text"
-      select="replace($text, '''(s?t?(&quot;|\s|[.,;:]|(balmed|dention|em|gainst|ll|mong|parm|quid|specially|spose|stead|teak|till|[Tt]is|[Tt]was)(,|\.|\s)|$))', '&rsquo;$1')"
+      select="replace($text, '''(s?t?(&quot;|\s|[.,;:]|(balmed|dention|em|gainst|ll|mong|parm|quid|specially|spose|stead|teak|till|[Tt]is|top|[Tt]was)(,|\.|\s)|$))', '&rsquo;$1')"
       as="xs:string" />
   <xsl:variable
       name="text"
