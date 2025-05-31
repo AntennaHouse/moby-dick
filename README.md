@@ -5,23 +5,18 @@
 
 # <a name="en"></a>Moby-Dick
 
-Source XML and stylesheet for transforming TEI of the first American edition of 'Moby-Dick' into XSL-FO for formatting with AH Formatter.
+Stylesheet for transforming TEI XML of the American first edition of 'Moby-Dick' into XSL-FO for formatting with AH Formatter. The formatted output is a pastiche, not a facsimile, of the 1851 first edition. For a description of aspects of the styling, see [Formatting Moby-Dick](https://github.com/AntennaHouse/moby-dick/raw/master/doc/formatting-moby-dick.pdf).
 
-The source XML is in a separate GitHub repository that is used as a submodule of this repository.
+PDF of the formatted first edition is included in every release. See https://github.com/AntennaHouse/moby-dick/releases/latest
 
-Source XML is based on files from the 'Wright American Fiction' project:
+## Contributing
 
-- http://purl.dlib.indiana.edu/iudl/wright/VAC7237
-
-The source XML has multiple differences from the Wright version. In particular, the Wright version lacks markup for page headers and uses empty elements to mark the start of italic text rather than enclosing the text.
-
-The mark image is from the Project Gutenberg version:
-
-- http://www.gutenberg.org/1/15/
+Issues, comments, and especially pull requests are all welcome.
 
 ## Installation
 
 1. Clone the repository and its 'moby-dick-tei' submodule from https://github.com/AntennaHouse/moby-dick
+
    ```
    git clone --recurse-submodules  https://github.com/AntennaHouse/moby-dick.git
    ```
@@ -36,11 +31,27 @@ git pull --recurse-submodules origin master
 
 Run `moby-pdf.bat` to generate `moby-dick.pdf`.
 
+## Sources
+
+The source XML is in the https://github.com/AntennaHouse/moby-dick-tei repository that is used as a submodule of this repository.
+
+The XML is based on files from the 'Wright American Fiction' project:
+
+- http://purl.dlib.indiana.edu/iudl/wright/VAC7237
+
+The source XML has multiple differences from the Wright version. In particular, the Wright version lacks markup for page headers and uses empty elements to mark the start of italic text rather than enclosing the text.
+
+The mark image is from the Project Gutenberg version:
+
+- http://www.gutenberg.org/1/15/
+
 ## Automated Analysis
 
 AH Formatter V7.0 and later are able to automatically detect a range of typographic problems in a formatted document. Solving these problems usually requires editorial or stylistic changes, and sometimes both.
 
-'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. Analysis and correction are automated to occur in separate stages for different error types. This is simply for ease of explanation. Fixing each type of error in a separate stage is not a realistic solution. It is simpler and easier to correct the errors by starting at the beginning of the document and fixing each error in sequence.
+'Moby-Dick' is used as an example for the Automated Analysis feature of AH Formatter V7.0 and later. See [Automated Analysis Example: Moby-Dick](https://github.com/AntennaHouse/moby-dick/raw/master/doc/automated-analysis-example.pdf).
+
+Analysis and correction for Moby-Dick are automated to occur in separate stages for different error types. This is simply for ease of explanation. Fixing each type of error in a separate stage is not a realistic solution. It is simpler and easier to correct the errors by starting at the beginning of the document and fixing each error in sequence.
 
 Run `stages.bat` to format and analyze multiple renditions of 'Moby-Dick' with successively more error corrections applied.
 
@@ -147,7 +158,7 @@ AH Formatter V7.0 以降は、組版した文書内のさまざまな組版上�
 
 行われた修正については`doc/automated-analysis-example.pdf`で説明しています。ステージは以下のとおりです:
 
-- ステージ 1: ベース<br>ベースライン版に修正を適用していません。 version with no corrections applied
+- ステージ 1: ベース<br>ベースライン版に修正を適用していません。 
 - ステージ 2: 段落ウィドウ１<br>原典には多くの段落ウィドウエラーがあるため、段落ウィドウエラーの制限を2emに縮小します。 
 - ステージ 3: 段落ウィドウ 2<br>残っているほとんどの段落ウィドウを修正します。
 - ステージ 4: 同じ単語が行頭や行末で連続する行<br>同じ単語が行頭や行末で連続する行を修正します。
