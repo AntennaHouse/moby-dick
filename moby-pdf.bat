@@ -11,9 +11,11 @@ set PWD=%cd%
 set SOURCE=moby-dick-tei\VAC7237.xml
 set USE_SAXON=E:/saxon/9.9/saxon9he.jar
 set USE_AHFCMD="%AHF71_64_HOME%/AHFCmd.exe"
+set USE_XSLT=unbalanced.xsl
 
 rem Command-line parameter defaults (possibly used in 'usage' message)
 set ahfcmd=
+set opt=
 set saxon=
 
 rem ----------------------------------------------------------------------
@@ -31,7 +33,7 @@ set __short_param=
 rem List of names of recognized parameters that require a value.
 rem There must be at least one space (' ') at the beginning and end of
 rem the list and between parameter names.
-set __long_param= ahfcmd saxon
+set __long_param= ahfcmd opt saxon xslt
 
 rem List of all recognized parameter names.
 rem There must be at least one space (' ') at the beginning and end of
@@ -116,7 +118,19 @@ if not "%saxon%"=="" (
    set SAXON=%USE_SAXON%
 )
 
-set opt=
+if not "%xslt%"=="" (
+   if EXIST "%xslt%" (
+      set XSLT="%xslt%"
+   ) else (
+      echo Xslt file does not exist: %xslt%
+      goto error
+   )
+) else (
+   set XSLT=%USE_XSLT%
+)
+
+set BASENAME=moby-dick
+rem call :sub_basename_ext BASENAME "%SOURCE%"
 
 echo.
 echo Formatting 'Moby-Dick'.
@@ -129,7 +143,7 @@ if exist "moby-dick.fo" (
 
 echo Generating 'moby-dick.fo'
 
-java -jar %SAXON% %SOURCE% unbalanced.xsl > moby-dick.fo
+java -jar %SAXON% %SOURCE% %XSLT% > moby-dick.fo
 
 :fo_done
 
